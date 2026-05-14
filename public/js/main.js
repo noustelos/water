@@ -235,7 +235,7 @@ const translations = {
     "opt-5": "General Inquiry",
     "cnt-lbl-message": "Property Details & Message *",
     "cnt-submit": "Send Message via Resend API",
-    "ft-copyright": "Water Cycle Systems. Secure Contact System integrated with Resend API. Built optimized for maximum speed.",
+    "ft-copyright": "Water Cycle Systems. All rights reserved.",
     "ft-privacy": "Privacy Policy",
     "ft-terms": "Terms of Care"
   },
@@ -312,7 +312,7 @@ const translations = {
     "opt-5": "Γενική Ερώτηση",
     "cnt-lbl-message": "Λεπτομέρειες Ιδιοκτησίας & Μήνυμα *",
     "cnt-submit": "Αποστολη Μηνυματος",
-    "ft-copyright": "Water Cycle Systems. Ασφαλές σύστημα επικοινωνίας μέσω Resend API. Βελτιστοποιημένο για μέγιστη ταχύτητα.",
+    "ft-copyright": "Water Cycle Systems. Με την επιφύλαξη παντός δικαιώματος.",
     "ft-privacy": "Πολιτική Απορρήτου",
     "ft-terms": "Όροι Υπηρεσιών"
   }
