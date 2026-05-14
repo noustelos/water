@@ -120,7 +120,7 @@
             </h1>
 
             <p data-translate="hero-p" class="text-lg text-slate-600 mb-8 max-w-xl mx-auto lg:mx-0 font-normal leading-relaxed">
-              Construction, Maintenance, and Specialized Chemicals for Pools & Spas. Water Cycle Systems is the official partner of Fluidra S.A. (AstralPool) in the heart of the Cyclades.
+              Construction, Maintenance, and Specialized Chemicals for Pools & Spas. <strong class="font-bold text-primary-500">Water Cycle Systems</strong> is the official partner of Fluidra S.A. (AstralPool) in the heart of the Cyclades.
             </p>
 
             <div class="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start">
@@ -299,7 +299,7 @@
               In Santorini, a pool or jacuzzi is not a luxury; it's your promise to the guest.
             </p>
             <p data-translate="abt-p2" class="text-slate-300 mb-8 leading-relaxed">
-              Water Cycle Systems specializes in the construction and integrated maintenance of swimming pools, hamams, and saunas, offering immediate response and affordable prices. With 24-hour availability and deep knowledge of chemical analysis, we ensure your facility operates flawlessly, winter or summer.
+              <strong class="font-bold text-primary-500">Water Cycle Systems</strong> specializes in the construction and integrated maintenance of swimming pools, hamams, and saunas, offering immediate response and affordable prices. With 24-hour availability and deep knowledge of chemical analysis, we ensure your facility operates flawlessly, winter or summer.
             </p>
             
             <div class="grid grid-cols-2 gap-6">
@@ -377,7 +377,7 @@
               &#9733;&#9733;&#9733;&#9733;&#9733;
             </div>
             <p data-translate="tst-r1-desc" class="text-slate-600 text-sm italic mb-6 leading-relaxed">
-              "Water Cycle Systems transformed our seasonal operation. Our luxury rental guests constantly compliment the absolute clarity of the pool water. Highly trustworthy crew!"
+              "<strong class="font-bold text-primary-500">Water Cycle Systems</strong> transformed our seasonal operation. Our luxury rental guests constantly compliment the absolute clarity of the pool water. Highly trustworthy crew!"
             </p>
             <div class="pt-4 border-t border-slate-100">
               <span data-translate="tst-r1-name" class="font-bold text-slate-900 text-sm block">Dimitris K.</span>
@@ -390,7 +390,7 @@
               &#9733;&#9733;&#9733;&#9733;&#9733;
             </div>
             <p data-translate="tst-r2-desc" class="text-slate-600 text-sm italic mb-6 leading-relaxed">
-              "When our central circulation pump failed right before a wedding event, Water Cycle Systems dispatched technicians within 2 hours. Exceptional emergency service."
+              "When our central circulation pump failed right before a wedding event, <strong class="font-bold text-primary-500">Water Cycle Systems</strong> dispatched technicians within 2 hours. Exceptional emergency service."
             </p>
             <div class="pt-4 border-t border-slate-100">
               <span data-translate="tst-r2-name" class="font-bold text-slate-900 text-sm block">Elena S.</span>
@@ -403,7 +403,7 @@
               &#9733;&#9733;&#9733;&#9733;&#9733;
             </div>
             <p data-translate="tst-r3-desc" class="text-slate-600 text-sm italic mb-6 leading-relaxed">
-              "We have worked with several service providers over the years, but none match the absolute lab precision of Water Cycle Systems chemical water balancing. 10/10."
+              "We have worked with several service providers over the years, but none match the absolute lab precision of <strong class="font-bold text-primary-500">Water Cycle Systems</strong> chemical water balancing. 10/10."
             </p>
             <div class="pt-4 border-t border-slate-100">
               <span data-translate="tst-r3-name" class="font-bold text-slate-900 text-sm block">Andreas M.</span>
@@ -504,27 +504,36 @@
   </main>
 
   <!-- Footer -->
-  <footer class="bg-slate-950 text-slate-400 py-12 border-t border-slate-900">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col md:flex-row items-center justify-between gap-6">
+  <footer class="bg-slate-950 text-slate-400 py-16 border-t border-slate-900 relative overflow-hidden">
+    <!-- Ambient subtle background glow for the footer -->
+    <div class="absolute bottom-0 left-1/4 w-96 h-96 bg-primary-500/5 rounded-full mix-blend-screen filter blur-3xl pointer-events-none"></div>
+
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col md:flex-row items-center justify-between gap-10 relative z-10">
       
-      <div class="flex items-center justify-center gap-3">
-        <img src="./images/logo.png" alt="Water Cycle Systems Logo" class="h-11 sm:h-12 w-auto object-contain brightness-0 invert opacity-70 hover:opacity-100 transition-opacity">
-        <div class="flex flex-col justify-center border-l border-slate-800 pl-3 py-0.5 text-left">
-          <span data-translate="brand-loc" class="text-[10px] font-bold tracking-widest text-primary-500 uppercase leading-none">Santorini</span>
-          <span data-translate="brand-sub" class="text-[9px] font-medium text-slate-500 tracking-wider mt-1 leading-none">Headquarters</span>
+      <!-- Imposing Brand Logo Presentation -->
+      <div class="flex items-center justify-center gap-5 group cursor-pointer">
+        <div class="relative">
+          <!-- Ethereal radial glow behind the logo -->
+          <div class="absolute inset-0 bg-gradient-to-r from-primary-500/20 to-cyan-400/20 rounded-full filter blur-xl opacity-60 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none"></div>
+          <img src="./images/logo.png" alt="Water Cycle Systems Logo" class="h-24 sm:h-32 w-auto object-contain brightness-0 invert opacity-90 group-hover:opacity-100 drop-shadow-[0_0_15px_rgba(6,182,212,0.25)] group-hover:drop-shadow-[0_0_30px_rgba(6,182,212,0.6)] transform group-hover:scale-105 transition-all duration-500 relative z-10">
+        </div>
+        
+        <div class="flex flex-col justify-center border-l-2 border-slate-800 group-hover:border-primary-500/50 pl-4 py-2 text-left transition-colors duration-500">
+          <span data-translate="brand-loc" class="text-xs sm:text-sm font-extrabold tracking-widest text-primary-500 uppercase leading-none block">Santorini</span>
+          <span data-translate="brand-sub" class="text-[10px] sm:text-xs font-medium text-slate-500 group-hover:text-slate-400 tracking-wider mt-1.5 leading-none block transition-colors">Headquarters</span>
         </div>
       </div>
 
-      <div class="text-xs text-slate-500 text-center md:text-left space-y-1.5">
-        <div>&copy; <span id="current-year">2026</span> <span data-translate="ft-copyright">Water Cycle Systems. All rights reserved.</span></div>
+      <div class="text-xs text-slate-500 text-center md:text-left space-y-2">
+        <div>&copy; <span id="current-year">2026</span> <span data-translate="ft-copyright"><strong class="font-bold text-primary-500">Water Cycle Systems</strong>. All rights reserved.</span></div>
         <a href="https://noustelos.gr" target="_blank" rel="noopener noreferrer" class="inline-block font-space font-bold text-primary-500 hover:text-primary-400 tracking-widest transition-colors text-[11px]">
           DESIGNED BY NOUSTELOS_STUDIO /&gt;
         </a>
       </div>
 
       <div class="flex gap-6 text-xs text-slate-500">
-        <a href="#" data-translate="ft-privacy" class="hover:text-slate-300">Privacy Policy</a>
-        <a href="#" data-translate="ft-terms" class="hover:text-slate-300">Terms of Care</a>
+        <a href="#" data-translate="ft-privacy" class="hover:text-slate-300 transition-colors">Privacy Policy</a>
+        <a href="#" data-translate="ft-terms" class="hover:text-slate-300 transition-colors">Terms of Care</a>
         <a href="mailto:info@noustelos.gr" class="text-primary-500 hover:underline">info@noustelos.gr</a>
       </div>
 

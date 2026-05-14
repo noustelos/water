@@ -62,7 +62,7 @@ app.post('/api/contact', async (req, res) => {
       html: `
         <div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto; padding: 20px; border: 1px solid #e5e7eb; border-radius: 8px;">
           <h2 style="color: #0284c7; border-bottom: 2px solid #e0f2fe; padding-bottom: 10px;">New Contact Form Submission</h2>
-          <p>You have received a new service inquiry from the <strong>Water Cycle Systems</strong> landing page.</p>
+          <p>You have received a new service inquiry from the <strong style="color: #0284c7;">Water Cycle Systems</strong> landing page.</p>
           
           <table style="width: 100%; border-collapse: collapse; margin-top: 20px;">
             <tr>
@@ -87,7 +87,7 @@ app.post('/api/contact', async (req, res) => {
           <div style="background-color: #f9fafb; padding: 15px; border-radius: 6px; color: #4b5563; white-space: pre-wrap;">${escapeHtml(message)}</div>
 
           <p style="margin-top: 30px; font-size: 12px; color: #9ca3af; text-align: center;">
-            Sent automatically from Water Cycle Systems Server.
+            Sent automatically from <strong style="color: #0284c7;">Water Cycle Systems</strong> Server.
           </p>
         </div>
       `
