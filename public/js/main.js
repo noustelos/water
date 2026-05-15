@@ -94,7 +94,7 @@ document.addEventListener('DOMContentLoaded', () => {
       // Set Loading State
       const isGreek = window.currentLang === 'el';
       if (submitBtn)    submitBtn.disabled = true;
-      if (submitText)   submitText.textContent = isGreek ? 'Επαλήθευση...' : 'Verifying...';
+      if (submitText)   submitText.textContent = isGreek ? 'Επαληθευση...' : 'Verifying...';
       if (submitSpinner) submitSpinner.classList.remove('hidden');
 
       try {
@@ -106,7 +106,7 @@ document.addEventListener('DOMContentLoaded', () => {
         }
 
         // Update loading label now that verification is done
-        if (submitText) submitText.textContent = isGreek ? 'Αποστολή...' : 'Sending...';
+        if (submitText) submitText.textContent = isGreek ? 'Αποστολη...' : 'Sending...';
 
         // ── Send to API ─────────────────────────────────────────────────
         const response = await fetch('/api/contact', {
@@ -145,7 +145,7 @@ document.addEventListener('DOMContentLoaded', () => {
       } finally {
         // Revert Loading State
         if (submitBtn)    submitBtn.disabled = false;
-        if (submitText)   submitText.textContent = isGreek ? 'Αποστολή Μηνύματος' : 'Send Message';
+        if (submitText)   submitText.textContent = isGreek ? 'Αποστολη Μηνυματος' : 'Send Message';
         if (submitSpinner) submitSpinner.classList.add('hidden');
       }
     });
@@ -404,22 +404,22 @@ const translations = {
     "part-feat1": "Επίσημη πρόσβαση στην πλήρη γκάμα επαγγελματικού εξοπλισμού της AstralPool.",
     "part-feat2": "Αμεση τεχνική υποστήριξη και γρήγορη πρόσβαση σε γνήσια ανταλλακτικά.",
     "part-feat3": "Εξοπλισμός σχεδιασμένος για τις υψηλές απαιτήσεις των εμπορικών κολυμβητηρίων και spa.",
-    "cnt-subtitle": "Αμεση Υποστήριξη",
+    "cnt-subtitle": "Αμεση Υποστηριξη",
     "cnt-title": "Θέλετε η πισίνα να είναι έτοιμη πριν το επόμενο check-in;",
     "cnt-desc": "Πείτε μας τι ακίνητο διαχειρίζεστε και τι υποστήριξη χρειάζεστε. Θα επικοινωνήσουμε μαζί σας με ξεκάθαρο επόμενο βήμα.",
     "cnt-btn-phone": "+30 694 207 2531",
     "cnt-btn-email": "info@watercyclesystem.gr",
-    "cnt-lbl-name": "Ονοματεπώνυμο *",
-    "cnt-lbl-email": "Διεύθυνση Email *",
-    "cnt-lbl-phone": "Τηλέφωνο Επικοινωνίας",
-    "cnt-lbl-service": "Υπηρεσία Ενδιαφέροντος",
+    "cnt-lbl-name": "Ονοματεπωνυμο *",
+    "cnt-lbl-email": "Διευθυνση Email *",
+    "cnt-lbl-phone": "Τηλεφωνο Επικοινωνιας",
+    "cnt-lbl-service": "Υπηρεσια Ενδιαφεροντος",
     "opt-1": "Σχεδιασμός & Κατασκευή",
     "opt-2": "Εποχιακή & Ετήσια Συντήρηση",
     "opt-3": "Ανάλυση Νερού & Χημικά",
     "opt-4": "Υποστήριξη Εξοπλισμού",
     "opt-5": "Γενική Ερώτηση",
-    "cnt-lbl-message": "Μήνυμα *",
-    "cnt-submit": "Αποστολή Μηνύματος",
+    "cnt-lbl-message": "Μηνυμα *",
+    "cnt-submit": "Αποστολη Μηνυματος",
     "ft-copyright": "<strong class=\"font-bold text-primary-500\">Water Cycle Systems</strong>. Με την επιφύλαξη παντός δικαιώματος.",
     "ft-privacy": "Πολιτική Απορρήτου",
     "ft-terms": "Οροι Υπηρεσιών",
@@ -462,7 +462,7 @@ function setLanguage(lang) {
   // Update dynamic submit button text if form is present
   const submitText = document.getElementById('submit-text');
   if (submitText) {
-    submitText.textContent = lang === 'el' ? 'Αποστολή Μηνύματος' : 'Send Message';
+    submitText.textContent = lang === 'el' ? 'Αποστολη Μηνυματος' : 'Send Message';
   }
 
   // Translate all tagged elements
