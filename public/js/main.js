@@ -138,7 +138,7 @@ document.addEventListener('DOMContentLoaded', () => {
     // Unique section IDs referenced by desktop nav
     const sectionIds = desktopLinks.map(l => l.getAttribute('href').slice(1));
 
-    console.log('ScrollSpy ready. Tracking:', sectionIds);
+    console.warn('ScrollSpy ready. Tracking:', sectionIds);
 
     function update() {
       const scrollY = window.scrollY || window.pageYOffset;
@@ -272,8 +272,8 @@ const translations = {
     "cnt-subtitle": "Direct Support",
     "cnt-title": "Need your pool ready before the next check-in?",
     "cnt-desc": "Tell us what property you manage and what support you need. We’ll get back to you with a clear next step.",
-    "cnt-btn-phone": "Call +30 6942072531",
-    "cnt-btn-email": "Email Us",
+    "cnt-btn-phone": "+30 694 207 2531",
+    "cnt-btn-email": "info@watercyclesystem.gr",
     "cnt-lbl-name": "Full Name *",
     "cnt-lbl-email": "Email Address *",
     "cnt-lbl-phone": "Phone Number",
@@ -349,8 +349,8 @@ const translations = {
     "cnt-subtitle": "Αμεση Υποστήριξη",
     "cnt-title": "Θέλετε η πισίνα να είναι έτοιμη πριν το επόμενο check-in;",
     "cnt-desc": "Πείτε μας τι ακίνητο διαχειρίζεστε και τι υποστήριξη χρειάζεστε. Θα επικοινωνήσουμε μαζί σας με ξεκάθαρο επόμενο βήμα.",
-    "cnt-btn-phone": "Καλέστε +30 6942072531",
-    "cnt-btn-email": "Στείλτε Email",
+    "cnt-btn-phone": "+30 694 207 2531",
+    "cnt-btn-email": "info@watercyclesystem.gr",
     "cnt-lbl-name": "Ονοματεπώνυμο *",
     "cnt-lbl-email": "Διεύθυνση Email *",
     "cnt-lbl-phone": "Τηλέφωνο Επικοινωνίας",
