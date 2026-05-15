@@ -96,7 +96,7 @@ document.addEventListener('DOMContentLoaded', () => {
       } finally {
         // Revert Loading State
         if (submitBtn) submitBtn.disabled = false;
-        if (submitText) submitText.textContent = isGreek ? 'Αποστολη Μηνυματος' : 'Send Message via Resend API';
+        if (submitText) submitText.textContent = isGreek ? 'Αποστολη Μηνυματος' : 'Send Message';
         if (submitSpinner) submitSpinner.classList.add('hidden');
       }
     });
@@ -250,6 +250,17 @@ const translations = {
     "ft-copyright": "<strong class=\"font-bold text-primary-500\">Water Cycle Systems</strong>. All rights reserved.",
     "ft-privacy": "Privacy Policy",
     "ft-terms": "Terms of Service",
+    "tst-subtitle": "Client Experiences",
+    "tst-title": "Trusted by Outstanding Properties",
+    "tst-r1-desc": "\"<strong class=\"font-bold text-primary-500\">Water Cycle Systems</strong> transformed our seasonal operation. Our luxury rental guests constantly compliment the absolute clarity of the pool water. Highly trustworthy crew!\"",
+    "tst-r1-name": "Dimitris K.",
+    "tst-r1-sub": "Villa Owner, Santorini",
+    "tst-r2-desc": "\"When our central circulation pump failed right before a wedding event, <strong class=\"font-bold text-primary-500\">Water Cycle Systems</strong> dispatched technicians within 2 hours. Exceptional emergency service.\"",
+    "tst-r2-name": "Elena S.",
+    "tst-r2-sub": "Boutique Resort Manager",
+    "tst-r3-desc": "\"We have worked with several service providers over the years, but none match the absolute lab precision of <strong class=\"font-bold text-primary-500\">Water Cycle Systems</strong> chemical water balancing. 10/10.\"",
+    "tst-r3-name": "Andreas M.",
+    "tst-r3-sub": "Residential Complex Board",
     "chat-title": "AI Assistant"
   },
   el: {
@@ -316,6 +327,17 @@ const translations = {
     "ft-copyright": "<strong class=\"font-bold text-primary-500\">Water Cycle Systems</strong>. Με την επιφύλαξη παντός δικαιώματος.",
     "ft-privacy": "Πολιτική Απορρήτου",
     "ft-terms": "Όροι Υπηρεσιών",
+    "tst-subtitle": "Εμπειρίες Πελατών",
+    "tst-title": "Μας εμπιστεύονται κορυφαία ακίνητα",
+    "tst-r1-desc": "\"Η <strong class=\"font-bold text-primary-500\">Water Cycle Systems</strong> μεταμόρφωσε την εποχιακή μας λειτουργία. Οι επισκέπτες μας σχολιάζουν διαρκώς την απόλυτη καθαρότητα του νερού. Πολύ αξιόπιστη ομάδα!\"",
+    "tst-r1-name": "Δημήτρης Κ.",
+    "tst-r1-sub": "Ιδιοκτήτης Βίλας, Σαντορίνη",
+    "tst-r2-desc": "\"Όταν η κεντρική αντλία μας χάλασε ακριβώς πριν από έναν γάμο, η <strong class=\"font-bold text-primary-500\">Water Cycle Systems</strong> έστειλε τεχνικούς μέσα σε 2 ώρες. Εξαιρετική υπηρεσία έκτακτης ανάγκης.\"",
+    "tst-r2-name": "Έλενα Σ.",
+    "tst-r2-sub": "Boutique Resort Manager",
+    "tst-r3-desc": "\"Έχουμε συνεργαστεί με πολλούς, αλλά κανείς δεν φτάνει την εργαστηριακή ακρίβεια της <strong class=\"font-bold text-primary-500\">Water Cycle Systems</strong> στη χημική ισορροπία του νερού. 10/10.\"",
+    "tst-r3-name": "Ανδρέας Μ.",
+    "tst-r3-sub": "Διαχείριση Οικιστικού Συγκροτήματος",
     "chat-title": "Ψηφιακός Βοηθός"
   }
 };
@@ -344,7 +366,7 @@ function setLanguage(lang) {
   // Update dynamic submit button text if form is present
   const submitText = document.getElementById('submit-text');
   if (submitText) {
-    submitText.textContent = lang === 'el' ? 'Αποστολη Μηνυματος' : 'Send Message via Resend API';
+    submitText.textContent = lang === 'el' ? 'Αποστολη Μηνυματος' : 'Send Message';
   }
 
   // Translate all tagged elements
