@@ -127,32 +127,34 @@ document.addEventListener('DOMContentLoaded', () => {
   if (minimizeChatBtn && chatContainer) minimizeChatBtn.addEventListener('click', hideChat);
 
 
-  // --- ScrollSpy Intersection Observer ---
-  const sections = document.querySelectorAll('section[id]');
-  const navLinks = document.querySelectorAll('nav a[href^="#"]');
+  // --- ScrollSpy via scroll event ---
+  const scrollNavLinks = document.querySelectorAll('nav a[href^="#"]');
+  // Only track sections that have a matching nav link
+  const trackedIds = Array.from(scrollNavLinks).map(l => l.getAttribute('href').substring(1));
 
-  const observerOptions = {
-    root: null,
-    rootMargin: '-20% 0px -75% 0px',
-    threshold: 0
-  };
+  function updateScrollSpy() {
+    const scrollMidpoint = window.scrollY + window.innerHeight * 0.35;
+    let activeId = null;
 
-  const observer = new IntersectionObserver((entries) => {
-    entries.forEach(entry => {
-      if (entry.isIntersecting) {
-        const id = entry.target.getAttribute('id');
-        navLinks.forEach(link => {
-          if (link.getAttribute('href') === `#${id}`) {
-            link.classList.add('nav-link-active');
-          } else {
-            link.classList.remove('nav-link-active');
-          }
-        });
+    trackedIds.forEach(id => {
+      const el = document.getElementById(id);
+      if (el && el.offsetTop <= scrollMidpoint) {
+        activeId = id;
       }
     });
-  }, observerOptions);
 
-  sections.forEach(section => observer.observe(section));
+    scrollNavLinks.forEach(link => {
+      const linkId = link.getAttribute('href').substring(1);
+      if (linkId === activeId) {
+        link.classList.add('nav-link-active');
+      } else {
+        link.classList.remove('nav-link-active');
+      }
+    });
+  }
+
+  window.addEventListener('scroll', updateScrollSpy, { passive: true });
+  updateScrollSpy(); // run once on load
 });
 
 // Helper function to preselect service dropdown option from cards
