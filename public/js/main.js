@@ -416,3 +416,77 @@ function setLanguage(lang) {
     }
   });
 }
+
+// ─── GDPR: Cookie Consent Banner ────────────────────────────────────────────
+
+(function initCookieConsent() {
+  const banner = document.getElementById('cookie-banner');
+  if (!banner) return;
+
+  const COOKIE_KEY = 'wcs-cookie-consent';
+
+  // Hide banner immediately if consent already given
+  if (localStorage.getItem(COOKIE_KEY)) {
+    banner.style.display = 'none';
+    return;
+  }
+
+  function dismissBanner(consentValue) {
+    localStorage.setItem(COOKIE_KEY, consentValue);
+    banner.classList.remove('cookie-banner-slide');
+    banner.classList.add('cookie-banner-hide');
+    banner.addEventListener('animationend', () => {
+      banner.style.display = 'none';
+    }, { once: true });
+  }
+
+  const acceptBtn = document.getElementById('cookie-accept-btn');
+  const necessaryBtn = document.getElementById('cookie-necessary-btn');
+
+  if (acceptBtn) acceptBtn.addEventListener('click', () => dismissBanner('all'));
+  if (necessaryBtn) necessaryBtn.addEventListener('click', () => dismissBanner('necessary'));
+
+  // "Μάθετε περισσότερα" opens the privacy modal
+  const cookieOpenPrivacy = document.getElementById('cookie-open-privacy');
+  if (cookieOpenPrivacy) {
+    cookieOpenPrivacy.addEventListener('click', () => openPrivacyModal());
+  }
+})();
+
+// ─── GDPR: Privacy Policy Modal ─────────────────────────────────────────────
+
+function openPrivacyModal() {
+  const modal = document.getElementById('privacy-modal');
+  if (!modal) return;
+  modal.classList.remove('hidden');
+  modal.classList.add('modal-open');
+  document.body.style.overflow = 'hidden';
+}
+
+function closePrivacyModal() {
+  const modal = document.getElementById('privacy-modal');
+  if (!modal) return;
+  modal.classList.add('hidden');
+  modal.classList.remove('modal-open');
+  document.body.style.overflow = '';
+}
+
+(function initPrivacyModal() {
+  // Open triggers
+  const openBtn = document.getElementById('open-privacy-modal');
+  if (openBtn) openBtn.addEventListener('click', openPrivacyModal);
+
+  // Close triggers: X button, footer button, backdrop click, ESC key
+  const closeBtn = document.getElementById('close-privacy-modal');
+  const closeFooterBtn = document.getElementById('close-privacy-modal-btn');
+  const backdrop = document.getElementById('privacy-modal-backdrop');
+
+  if (closeBtn)       closeBtn.addEventListener('click', closePrivacyModal);
+  if (closeFooterBtn) closeFooterBtn.addEventListener('click', closePrivacyModal);
+  if (backdrop)       backdrop.addEventListener('click', closePrivacyModal);
+
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape') closePrivacyModal();
+  });
+})();
+

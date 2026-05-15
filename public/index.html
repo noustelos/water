@@ -531,14 +531,128 @@
         </a>
       </div>
 
-      <div class="flex gap-6 text-xs text-slate-500">
-        <a href="#" data-translate="ft-privacy" class="hover:text-slate-300 transition-colors">Privacy Policy</a>
+      <div class="flex flex-wrap gap-6 text-xs text-slate-500">
+        <button id="open-privacy-modal" class="hover:text-slate-300 transition-colors text-left">Πολιτική Απορρήτου &amp; Cookies</button>
         <a href="#" data-translate="ft-terms" class="hover:text-slate-300 transition-colors">Terms of Care</a>
         <a href="mailto:info@watercyclesystem.gr" class="text-primary-500 hover:text-primary-400 transition-colors">info@watercyclesystem.gr</a>
       </div>
 
     </div>
   </footer>
+
+  <!-- Privacy Policy Modal -->
+  <div id="privacy-modal" class="fixed inset-0 z-[9998] hidden items-center justify-center p-4" role="dialog" aria-modal="true" aria-labelledby="privacy-modal-title">
+    <!-- Backdrop -->
+    <div id="privacy-modal-backdrop" class="absolute inset-0 bg-slate-950/80 backdrop-blur-sm"></div>
+    <!-- Panel -->
+    <div class="relative z-10 w-full max-w-2xl max-h-[85vh] flex flex-col glass-dark rounded-3xl border border-cyan-500/20 shadow-2xl overflow-hidden">
+      <!-- Header -->
+      <div class="flex items-center justify-between px-7 py-5 border-b border-slate-700/60 shrink-0">
+        <div class="flex items-center gap-3">
+          <div class="w-8 h-8 rounded-xl bg-gradient-to-br from-primary-500 to-cyan-500 flex items-center justify-center shrink-0">
+            <svg class="w-4 h-4 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"></path></svg>
+          </div>
+          <h2 id="privacy-modal-title" class="text-white font-extrabold text-lg tracking-tight">Πολιτική Απορρήτου &amp; Cookies</h2>
+        </div>
+        <button id="close-privacy-modal" class="p-2 rounded-full hover:bg-white/10 text-slate-400 hover:text-white transition-colors" aria-label="Κλείσιμο">
+          <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg>
+        </button>
+      </div>
+      <!-- Scrollable Body -->
+      <div class="overflow-y-auto px-7 py-6 text-slate-300 text-sm leading-relaxed space-y-5">
+        <p class="text-slate-400 text-xs">Τελευταία ενημέρωση: Μάιος 2025 &nbsp;·&nbsp; Water Cycle Systems, Σαντορίνη, Ελλάδα</p>
+
+        <section>
+          <h3 class="text-white font-bold text-base mb-2">1. Ποιοι είμαστε</h3>
+          <p>Η <strong class="text-primary-400">Water Cycle Systems</strong> είναι εταιρεία παροχής επαγγελματικών υπηρεσιών συντήρησης πισίνας και spa, με έδρα τη Σαντορίνη. Μπορείτε να επικοινωνήσετε μαζί μας στο <a href="mailto:info@watercyclesystem.gr" class="text-primary-400 hover:text-primary-300 transition-colors underline">info@watercyclesystem.gr</a> ή στο +30 694 207 2531.</p>
+        </section>
+
+        <section>
+          <h3 class="text-white font-bold text-base mb-2">2. Ποια δεδομένα συλλέγουμε</h3>
+          <p>Μέσω της φόρμας επικοινωνίας του ιστότοπού μας συλλέγουμε τα εξής προσωπικά δεδομένα:</p>
+          <ul class="list-disc list-inside mt-2 space-y-1 text-slate-400">
+            <li>Ονοματεπώνυμο</li>
+            <li>Διεύθυνση ηλεκτρονικού ταχυδρομείου (email)</li>
+            <li>Αριθμός τηλεφώνου (προαιρετικό)</li>
+            <li>Μήνυμα / Λεπτομέρειες αιτήματος</li>
+          </ul>
+          <p class="mt-2">Δεν συλλέγουμε δεδομένα πληρωμής ούτε ευαίσθητα προσωπικά δεδομένα.</p>
+        </section>
+
+        <section>
+          <h3 class="text-white font-bold text-base mb-2">3. Σκοπός επεξεργασίας</h3>
+          <p>Τα δεδομένα που συλλέγουμε χρησιμοποιούνται αποκλειστικά για:</p>
+          <ul class="list-disc list-inside mt-2 space-y-1 text-slate-400">
+            <li>Απάντηση στο αίτημά σας και παροχή προσφοράς/υπηρεσίας</li>
+            <li>Επικοινωνία σχετικά με την υπηρεσία που ζητήσατε</li>
+          </ul>
+          <p class="mt-2">Δεν χρησιμοποιούμε τα δεδομένα σας για marketing χωρίς ρητή συγκατάθεσή σας.</p>
+        </section>
+
+        <section>
+          <h3 class="text-white font-bold text-base mb-2">4. Διαμοιρασμός δεδομένων</h3>
+          <p>Δεν πωλούμε ούτε εκχωρούμε τα προσωπικά σας δεδομένα σε τρίτους. Ενδέχεται να χρησιμοποιούμε αξιόπιστους τρίτους παρόχους (π.χ. υπηρεσία αποστολής email) αποκλειστικά για τη διαβίβαση του μηνύματός σας, υπό την προϋπόθεση ότι δεσμεύονται από αντίστοιχες υποχρεώσεις εμπιστευτικότητας.</p>
+        </section>
+
+        <section>
+          <h3 class="text-white font-bold text-base mb-2">5. Cookies</h3>
+          <p>Ο ιστότοπος χρησιμοποιεί τα εξής είδη cookies:</p>
+          <ul class="list-disc list-inside mt-2 space-y-1 text-slate-400">
+            <li><strong class="text-slate-300">Απαραίτητα cookies:</strong> Για τη βασική λειτουργία του ιστότοπου (π.χ. αποθήκευση γλώσσας, προτίμηση cookies).</li>
+            <li><strong class="text-slate-300">Αναλυτικά cookies (με συγκατάθεση):</strong> Για ανώνυμη ανάλυση επισκεψιμότητας και βελτίωση της εμπειρίας σας.</li>
+          </ul>
+          <p class="mt-2">Μπορείτε να ανακαλέσετε τη συγκατάθεσή σας για τα analytics cookies ανά πάσα στιγμή διαγράφοντας το localStorage του browser σας.</p>
+        </section>
+
+        <section>
+          <h3 class="text-white font-bold text-base mb-2">6. Τα δικαιώματά σας (GDPR)</h3>
+          <p>Βάσει του Κανονισμού (ΕΕ) 2016/679 (GDPR), έχετε δικαίωμα:</p>
+          <ul class="list-disc list-inside mt-2 space-y-1 text-slate-400">
+            <li>Πρόσβασης στα δεδομένα σας</li>
+            <li>Διόρθωσης ανακριβών δεδομένων</li>
+            <li>Διαγραφής («δικαίωμα στη λήθη»)</li>
+            <li>Φορητότητας των δεδομένων σας</li>
+            <li>Εναντίωσης στην επεξεργασία</li>
+          </ul>
+          <p class="mt-2">Για οποιοδήποτε αίτημα, επικοινωνήστε μαζί μας στο <a href="mailto:info@watercyclesystem.gr" class="text-primary-400 hover:text-primary-300 transition-colors underline">info@watercyclesystem.gr</a>.</p>
+        </section>
+
+        <section>
+          <h3 class="text-white font-bold text-base mb-2">7. Διατήρηση δεδομένων</h3>
+          <p>Τα δεδομένα επικοινωνίας διατηρούνται για όσο διάστημα είναι απαραίτητο για τη διεκπεραίωση του αιτήματός σας και για έως 12 μήνες μετά, εκτός εάν ζητήσετε τη διαγραφή τους νωρίτερα.</p>
+        </section>
+
+        <p class="text-slate-500 text-xs border-t border-slate-700/60 pt-4">Για καταγγελίες μπορείτε να απευθυνθείτε στην Αρχή Προστασίας Δεδομένων Προσωπικού Χαρακτήρα (ΑΠΔΠΧ): <a href="https://www.dpa.gr" target="_blank" rel="noopener" class="text-primary-400 hover:text-primary-300 underline transition-colors">www.dpa.gr</a></p>
+      </div>
+      <!-- Footer -->
+      <div class="px-7 py-4 border-t border-slate-700/60 shrink-0 flex justify-end">
+        <button id="close-privacy-modal-btn" class="px-6 py-2.5 rounded-full bg-gradient-to-r from-primary-500 to-cyan-500 hover:from-primary-600 hover:to-cyan-600 text-white font-semibold text-sm transition-all duration-200">Κατανοώ &amp; Κλείνω</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Cookie Consent Banner -->
+  <div id="cookie-banner" class="fixed bottom-0 left-0 right-0 z-[9997] cookie-banner-slide" role="region" aria-label="Cookie consent">
+    <div class="bg-slate-900/95 backdrop-blur-xl border-t border-slate-700/60 shadow-2xl">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4 flex flex-col sm:flex-row items-start sm:items-center gap-4 justify-between">
+        <div class="flex items-start gap-3 flex-1 min-w-0">
+          <span class="text-xl mt-0.5 shrink-0">🍪</span>
+          <p class="text-slate-300 text-sm leading-relaxed">
+            Ο ιστότοπός μας χρησιμοποιεί cookies για να βελτιώσει την εμπειρία σας και να αναλύσει την επισκεψιμότητα.
+            <button id="cookie-open-privacy" class="text-primary-400 hover:text-primary-300 underline underline-offset-2 transition-colors ml-1 font-medium">Μάθετε περισσότερα</button>
+          </p>
+        </div>
+        <div class="flex items-center gap-3 shrink-0 w-full sm:w-auto">
+          <button id="cookie-necessary-btn" class="flex-1 sm:flex-none px-5 py-2.5 rounded-full bg-slate-700 hover:bg-slate-600 text-slate-300 hover:text-white text-xs font-semibold transition-all duration-200 border border-slate-600 hover:border-slate-500 whitespace-nowrap">
+            Μόνο τα Απαραίτητα
+          </button>
+          <button id="cookie-accept-btn" class="flex-1 sm:flex-none px-6 py-2.5 rounded-full bg-gradient-to-r from-primary-500 to-cyan-500 hover:from-primary-600 hover:to-cyan-600 text-white text-xs font-bold transition-all duration-200 shadow-md hover:shadow-cyan-500/25 whitespace-nowrap">
+            Αποδοχή Όλων
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
 
   <!-- Fixed Notification Toast Container -->
   <div id="toast-container" class="fixed bottom-5 right-5 z-50 flex flex-col gap-3 max-w-sm w-full px-4 sm:px-0"></div>
