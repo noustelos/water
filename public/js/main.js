@@ -126,26 +126,33 @@ document.addEventListener('DOMContentLoaded', () => {
   if (closeChatBtn && chatContainer) closeChatBtn.addEventListener('click', hideChat);
   if (minimizeChatBtn && chatContainer) minimizeChatBtn.addEventListener('click', hideChat);
 
-  // --- ScrollSpy: direct inline-style approach ---
+  // --- ScrollSpy: inline-style approach for both desktop + mobile nav ---
   (function initScrollSpy() {
-    const navEl = document.querySelector('header nav');
-    if (!navEl) return;
+    // Grab desktop nav links AND mobile menu links
+    const desktopLinks = Array.from(document.querySelectorAll('header nav a[href^="#"]'));
+    const mobileLinks = Array.from(document.querySelectorAll('#mobile-menu a[href^="#"]'));
+    const allLinks = [...desktopLinks, ...mobileLinks];
 
-    const links = Array.from(navEl.querySelectorAll('a[href^="#"]'));
-    const sectionIds = links.map(l => l.getAttribute('href').slice(1));
+    if (allLinks.length === 0) { console.warn('ScrollSpy: no nav links found'); return; }
+
+    // Unique section IDs referenced by desktop nav
+    const sectionIds = desktopLinks.map(l => l.getAttribute('href').slice(1));
+
+    console.log('ScrollSpy ready. Tracking:', sectionIds);
 
     function update() {
-      const threshold = (window.scrollY || window.pageYOffset) + window.innerHeight * 0.4;
+      const scrollY = window.scrollY || window.pageYOffset;
+      const threshold = scrollY + window.innerHeight * 0.4;
       let activeId = null;
 
       sectionIds.forEach(id => {
         const section = document.getElementById(id);
         if (!section) return;
-        const sectionTop = section.getBoundingClientRect().top + (window.scrollY || window.pageYOffset);
+        const sectionTop = section.getBoundingClientRect().top + scrollY;
         if (sectionTop <= threshold) activeId = id;
       });
 
-      links.forEach(link => {
+      allLinks.forEach(link => {
         const isActive = link.getAttribute('href') === '#' + activeId;
         link.style.color = isActive ? '#06b6d4' : '';
         link.style.fontWeight = isActive ? '700' : '';
@@ -155,6 +162,7 @@ document.addEventListener('DOMContentLoaded', () => {
     window.addEventListener('scroll', update, { passive: true });
     setTimeout(update, 200);
   })();
+
 
 });
 
