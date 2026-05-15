@@ -261,7 +261,7 @@ const translations = {
     "tst-r3-desc": "\"We have worked with several service providers over the years, but none match the absolute lab precision of <strong class=\"font-bold text-primary-500\">Water Cycle Systems</strong> chemical water balancing. 10/10.\"",
     "tst-r3-name": "Andreas M.",
     "tst-r3-sub": "Residential Complex Board",
-    "chat-title": "Water Cycle Systems Support (beta)"
+    "chat-title": "Water Cycle Systems Assistant"
   },
   el: {
     "brand-loc": "Σαντορίνη",
@@ -338,7 +338,7 @@ const translations = {
     "tst-r3-desc": "\"Έχουμε συνεργαστεί με πολλούς, αλλά κανείς δεν φτάνει την εργαστηριακή ακρίβεια της <strong class=\"font-bold text-primary-500\">Water Cycle Systems</strong> στη χημική ισορροπία του νερού. 10/10.\"",
     "tst-r3-name": "Ανδρέας Μ.",
     "tst-r3-sub": "Διαχείριση Οικιστικού Συγκροτήματος",
-    "chat-title": "Υποστήριξη Water Cycle Systems (beta)"
+    "chat-title": "Βοηθός Water Cycle Systems"
   }
 };
 

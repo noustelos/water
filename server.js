@@ -52,7 +52,7 @@ app.post('/api/contact', async (req, res) => {
     // Send email via Resend API
     // Using Resend's default onboarding sender address which works on all unverified test accounts
     const fromAddress = process.env.RESEND_FROM_EMAIL || 'Water Cycle Systems <onboarding@resend.dev>';
-    const targetEmail = 'info@noustelos.gr';
+    const targetEmail = 'info@watercyclesystem.gr';
 
     const data = await resend.emails.send({
       from: fromAddress,
