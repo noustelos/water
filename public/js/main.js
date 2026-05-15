@@ -126,6 +126,33 @@ document.addEventListener('DOMContentLoaded', () => {
   if (closeChatBtn && chatContainer) closeChatBtn.addEventListener('click', hideChat);
   if (minimizeChatBtn && chatContainer) minimizeChatBtn.addEventListener('click', hideChat);
 
+
+  // --- ScrollSpy Intersection Observer ---
+  const sections = document.querySelectorAll('section[id]');
+  const navLinks = document.querySelectorAll('nav a[href^="#"]');
+
+  const observerOptions = {
+    root: null,
+    rootMargin: '-30% 0px -60% 0px',
+    threshold: 0
+  };
+
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        const id = entry.target.getAttribute('id');
+        navLinks.forEach(link => {
+          if (link.getAttribute('href') === `#${id}`) {
+            link.classList.add('nav-link-active');
+          } else {
+            link.classList.remove('nav-link-active');
+          }
+        });
+      }
+    });
+  }, observerOptions);
+
+  sections.forEach(section => observer.observe(section));
 });
 
 // Helper function to preselect service dropdown option from cards
@@ -264,14 +291,14 @@ const translations = {
     "chat-title": "Water Cycle Systems Assistant"
   },
   el: {
-    "brand-loc": "Σαντορίνη",
+    "brand-loc": "Σαντορινη",
     "brand-sub": "Κεντρικά Γραφεία",
     "nav-services": "Υπηρεσίες",
     "nav-about": "Η Εταιρεία",
     "nav-standards": "Συνεργασία",
     "nav-testimonials": "Κριτικές",
-    "nav-cta": "Επικοινωνία",
-    "hero-badge": "Επίσημος Συνεργάτης Fluidra",
+    "nav-cta": "Επικοινωνια",
+    "hero-badge": "Επισημος Συνεργατης Fluidra",
     "hero-h1-1": "Φροντίδα Πισίνας & Spa",
     "hero-h1-2": "για Βίλες & Ξενοδοχεία στη Σαντορίνη",
     "hero-p": "Κατασκευή, συντήρηση, ανάλυση νερού και επαγγελματικά χημικά για πισίνες, jacuzzi, χαμάμ και σάουνες. Τοπική υποστήριξη στη Σαντορίνη, με άμεση ανταπόκριση και αξιόπιστο εξοπλισμό Fluidra / AstralPool.",
@@ -282,8 +309,8 @@ const translations = {
     "badge-3": "Τεχνική Εξειδίκευση",
     "overlay-1": "Πιστοποίηση AstralPool",
     "overlay-2": "Κορυφαίος Εξοπλισμός",
-    "srv-subtitle": "Τοπικές Υπηρεσίες",
-    "srv-title": "Όλα όσα χρειάζεται η πισίνα σας, πριν το προσέξει ο επισκέπτης",
+    "srv-subtitle": "Τοπικες Υπηρεσιες",
+    "srv-title": "Ολα όσα χρειάζεται η πισίνα σας, πριν το προσέξει ο επισκέπτης",
     "srv-desc": "Επαγγελματική φροντίδα για βίλες και ξενοδοχεία. Αναλαμβάνουμε το τεχνικό κομμάτι για να είναι οι εγκαταστάσεις σας πάντα καθαρές και ασφαλείς.",
     "srv-card1-title": "Σχεδιασμός & Κατασκευή",
     "srv-card1-desc": "Προσαρμοσμένες πισίνες, jacuzzi, χαμάμ και σάουνες, ιδανικές για boutique ξενοδοχεία και πολυτελείς βίλες.",
@@ -292,9 +319,9 @@ const translations = {
     "srv-card3-title": "Ανάλυση Νερού & Χημικά",
     "srv-card3-desc": "Ακριβής χημική ισορροπία με αξιόπιστα προϊόντα CTX, για την απόλυτη ασφάλεια των επισκεπτών σας.",
     "srv-card4-title": "Υποστήριξη Εξοπλισμού",
-    "srv-card4-desc": "Άμεσες τοπικές επισκευές και λύσεις αυτοματοποιημένου καθαρισμού με ρομπότ Zodiac & Polaris.",
+    "srv-card4-desc": "Αμεσες τοπικές επισκευές και λύσεις αυτοματοποιημένου καθαρισμού με ρομπότ Zodiac & Polaris.",
     "srv-inquire": "Εκδήλωση Ενδιαφέροντος &rarr;",
-    "abt-subtitle": "Τοπική Υποστήριξη",
+    "abt-subtitle": "Τοπικη Υποστηριξη",
     "abt-title": "Στη Σαντορίνη, η πισίνα είναι μέρος της εμπειρίας του επισκέπτη.",
     "abt-p1": "Θολό νερό, πρόβλημα στο jacuzzi ή λάθος χημική ισορροπία μπορούν πολύ γρήγορα να γίνουν παράπονο. Η Water Cycle Systems προσφέρει τοπική, επαγγελματική υποστήριξη για βίλες και ξενοδοχειακές μονάδες που δεν έχουν περιθώριο για προβλήματα μέσα στη σεζόν.",
     "abt-p2": "Συνδυάζουμε τεχνική γνώση, ανάλυση νερού και άμεση ανταπόκριση, ώστε οι εγκαταστάσεις σας να παραμένουν καθαρές, ασφαλείς και έτοιμες κάθε μέρα.",
@@ -302,13 +329,13 @@ const translations = {
     "abt-feat1-desc": "Με έδρα τη Σαντορίνη για άμεση ανταπόκριση όταν η εγκατάστασή σας το χρειάζεται.",
     "abt-feat2-title": "Αναλυτική Καταγραφή",
     "abt-feat2-desc": "Αναλυτικά αρχεία χημικών ώστε οι διαχειριστές να γνωρίζουν πάντα την κατάσταση.",
-    "part-subtitle": "Επίσημος Συνεργάτης",
+    "part-subtitle": "Επισημος Συνεργατης",
     "part-title": "Αξιόπιστος Εξοπλισμός για Επαγγελματικές Εγκαταστάσεις.",
     "part-copy": "Ως επίσημος συνεργάτης της Fluidra S.A. και της AstralPool, παρέχουμε και εγκαθιστούμε επαγγελματικό εξοπλισμό πισίνας και spa, κατασκευασμένο για βαριά εποχιακή χρήση.",
     "part-feat1": "Επίσημη πρόσβαση στην πλήρη γκάμα επαγγελματικού εξοπλισμού της AstralPool.",
-    "part-feat2": "Άμεση τεχνική υποστήριξη και γρήγορη πρόσβαση σε γνήσια ανταλλακτικά.",
+    "part-feat2": "Αμεση τεχνική υποστήριξη και γρήγορη πρόσβαση σε γνήσια ανταλλακτικά.",
     "part-feat3": "Εξοπλισμός σχεδιασμένος για τις υψηλές απαιτήσεις των εμπορικών κολυμβητηρίων και spa.",
-    "cnt-subtitle": "Άμεση Υποστήριξη",
+    "cnt-subtitle": "Αμεση Υποστήριξη",
     "cnt-title": "Θέλετε η πισίνα να είναι έτοιμη πριν το επόμενο check-in;",
     "cnt-desc": "Πείτε μας τι ακίνητο διαχειρίζεστε και τι υποστήριξη χρειάζεστε. Θα επικοινωνήσουμε μαζί σας με ξεκάθαρο επόμενο βήμα.",
     "cnt-btn-phone": "Καλέστε +30 6942072531",
@@ -326,16 +353,16 @@ const translations = {
     "cnt-submit": "Αποστολή Μηνύματος",
     "ft-copyright": "<strong class=\"font-bold text-primary-500\">Water Cycle Systems</strong>. Με την επιφύλαξη παντός δικαιώματος.",
     "ft-privacy": "Πολιτική Απορρήτου",
-    "ft-terms": "Όροι Υπηρεσιών",
-    "tst-subtitle": "Εμπειρίες Πελατών",
+    "ft-terms": "Οροι Υπηρεσιών",
+    "tst-subtitle": "Εμπειριες Πελατων",
     "tst-title": "Μας εμπιστεύονται κορυφαία ακίνητα",
     "tst-r1-desc": "\"Η <strong class=\"font-bold text-primary-500\">Water Cycle Systems</strong> μεταμόρφωσε την εποχιακή μας λειτουργία. Οι επισκέπτες μας σχολιάζουν διαρκώς την απόλυτη καθαρότητα του νερού. Πολύ αξιόπιστη ομάδα!\"",
     "tst-r1-name": "Δημήτρης Κ.",
     "tst-r1-sub": "Ιδιοκτήτης Βίλας, Σαντορίνη",
-    "tst-r2-desc": "\"Όταν η κεντρική αντλία μας χάλασε ακριβώς πριν από έναν γάμο, η <strong class=\"font-bold text-primary-500\">Water Cycle Systems</strong> έστειλε τεχνικούς μέσα σε 2 ώρες. Εξαιρετική υπηρεσία έκτακτης ανάγκης.\"",
-    "tst-r2-name": "Έλενα Σ.",
+    "tst-r2-desc": "\"Οταν η κεντρική αντλία μας χάλασε ακριβώς πριν από έναν γάμο, η <strong class=\"font-bold text-primary-500\">Water Cycle Systems</strong> έστειλε τεχνικούς μέσα σε 2 ώρες. Εξαιρετική υπηρεσία έκτακτης ανάγκης.\"",
+    "tst-r2-name": "Ελενα Σ.",
     "tst-r2-sub": "Boutique Resort Manager",
-    "tst-r3-desc": "\"Έχουμε συνεργαστεί με πολλούς, αλλά κανείς δεν φτάνει την εργαστηριακή ακρίβεια της <strong class=\"font-bold text-primary-500\">Water Cycle Systems</strong> στη χημική ισορροπία του νερού. 10/10.\"",
+    "tst-r3-desc": "\"Εχουμε συνεργαστεί με πολλούς, αλλά κανείς δεν φτάνει την εργαστηριακή ακρίβεια της <strong class=\"font-bold text-primary-500\">Water Cycle Systems</strong> στη χημική ισορροπία του νερού. 10/10.\"",
     "tst-r3-name": "Ανδρέας Μ.",
     "tst-r3-sub": "Διαχείριση Οικιστικού Συγκροτήματος",
     "chat-title": "Βοηθός Water Cycle Systems"
