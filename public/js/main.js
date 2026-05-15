@@ -194,12 +194,19 @@ document.addEventListener('DOMContentLoaded', () => {
       const threshold = scrollY + window.innerHeight * 0.4;
       let activeId = null;
 
-      sectionIds.forEach(id => {
-        const section = document.getElementById(id);
-        if (!section) return;
-        const sectionTop = section.getBoundingClientRect().top + scrollY;
-        if (sectionTop <= threshold) activeId = id;
-      });
+      // If scrolled to (or very near) the bottom of the page, always activate last section
+      const nearBottom = (window.innerHeight + scrollY) >= (document.documentElement.scrollHeight - 40);
+
+      if (nearBottom && sectionIds.length > 0) {
+        activeId = sectionIds[sectionIds.length - 1];
+      } else {
+        sectionIds.forEach(id => {
+          const section = document.getElementById(id);
+          if (!section) return;
+          const sectionTop = section.getBoundingClientRect().top + scrollY;
+          if (sectionTop <= threshold) activeId = id;
+        });
+      }
 
       allLinks.forEach(link => {
         const isActive = link.getAttribute('href') === '#' + activeId;
@@ -280,6 +287,7 @@ const translations = {
     "nav-about": "About Us",
     "nav-standards": "Partnership",
     "nav-testimonials": "Testimonials",
+    "nav-contact": "Contact",
     "nav-cta": "Contact Us",
     "hero-badge": "Official Fluidra Partner",
     "hero-h1-1": "Pool & Spa Care",
@@ -357,6 +365,7 @@ const translations = {
     "nav-about": "Η Εταιρεία",
     "nav-standards": "Συνεργασία",
     "nav-testimonials": "Κριτικές",
+    "nav-contact": "Επικοινωνία",
     "nav-cta": "Επικοινωνια",
     "hero-badge": "Επισημος Συνεργατης Fluidra",
     "hero-h1-1": "Φροντίδα Πισίνας & Spa",
