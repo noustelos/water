@@ -102,6 +102,30 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }
 
+  // Floating Chat Widget Logic
+  const chatBtn = document.getElementById('chat-widget-btn');
+  const closeChatBtn = document.getElementById('close-chat-btn');
+  const minimizeChatBtn = document.getElementById('minimize-chat-btn');
+  const chatContainer = document.getElementById('chat-widget-container');
+
+  if (chatBtn && chatContainer) {
+    chatBtn.addEventListener('click', () => {
+      chatContainer.classList.toggle('show-chat');
+      // Hide button when chat is open on mobile
+      if (window.innerWidth < 640 && chatContainer.classList.contains('show-chat')) {
+        chatBtn.style.display = 'none';
+      }
+    });
+  }
+
+  const hideChat = () => {
+    chatContainer.classList.remove('show-chat');
+    if (chatBtn) chatBtn.style.display = 'flex';
+  };
+
+  if (closeChatBtn && chatContainer) closeChatBtn.addEventListener('click', hideChat);
+  if (minimizeChatBtn && chatContainer) minimizeChatBtn.addEventListener('click', hideChat);
+
 });
 
 // Helper function to preselect service dropdown option from cards
@@ -222,7 +246,8 @@ const translations = {
     "cnt-submit": "Send Message",
     "ft-copyright": "<strong class=\"font-bold text-primary-500\">Water Cycle Systems</strong>. All rights reserved.",
     "ft-privacy": "Privacy Policy",
-    "ft-terms": "Terms of Service"
+    "ft-terms": "Terms of Service",
+    "chat-title": "AI Assistant"
   },
   el: {
     "brand-loc": "Σαντορινη",
@@ -284,7 +309,8 @@ const translations = {
     "cnt-submit": "Αποστολη Μηνυματος",
     "ft-copyright": "<strong class=\"font-bold text-primary-500\">Water Cycle Systems</strong>. Με την επιφύλαξη παντός δικαιώματος.",
     "ft-privacy": "Πολιτική Απορρήτου",
-    "ft-terms": "Όροι Υπηρεσιών"
+    "ft-terms": "Όροι Υπηρεσιών",
+    "chat-title": "Ψηφιακός Βοηθός"
   }
 };
 
