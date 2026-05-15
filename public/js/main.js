@@ -126,37 +126,35 @@ document.addEventListener('DOMContentLoaded', () => {
   if (closeChatBtn && chatContainer) closeChatBtn.addEventListener('click', hideChat);
   if (minimizeChatBtn && chatContainer) minimizeChatBtn.addEventListener('click', hideChat);
 
-  // --- ScrollSpy via scroll event ---
-  const scrollNavLinks = document.querySelectorAll('nav a[href^="#"]');
-  const trackedIds = Array.from(scrollNavLinks).map(l => l.getAttribute('href').substring(1));
+  // --- ScrollSpy: direct inline-style approach ---
+  (function initScrollSpy() {
+    const navEl = document.querySelector('header nav');
+    if (!navEl) return;
 
-  function updateScrollSpy() {
-    // Use getBoundingClientRect + scrollY for reliable absolute position
-    const triggerPoint = window.scrollY + window.innerHeight * 0.4;
-    let activeId = null;
+    const links = Array.from(navEl.querySelectorAll('a[href^="#"]'));
+    const sectionIds = links.map(l => l.getAttribute('href').slice(1));
 
-    trackedIds.forEach(id => {
-      const el = document.getElementById(id);
-      if (!el) return;
-      const elTop = el.getBoundingClientRect().top + window.scrollY;
-      if (elTop <= triggerPoint) {
-        activeId = id;
-      }
-    });
+    function update() {
+      const threshold = (window.scrollY || window.pageYOffset) + window.innerHeight * 0.4;
+      let activeId = null;
 
-    scrollNavLinks.forEach(link => {
-      const linkId = link.getAttribute('href').substring(1);
-      if (linkId === activeId) {
-        link.classList.add('nav-link-active');
-      } else {
-        link.classList.remove('nav-link-active');
-      }
-    });
-  }
+      sectionIds.forEach(id => {
+        const section = document.getElementById(id);
+        if (!section) return;
+        const sectionTop = section.getBoundingClientRect().top + (window.scrollY || window.pageYOffset);
+        if (sectionTop <= threshold) activeId = id;
+      });
 
-  window.addEventListener('scroll', updateScrollSpy, { passive: true });
-  // Small delay on load to ensure layout is complete
-  setTimeout(updateScrollSpy, 100);
+      links.forEach(link => {
+        const isActive = link.getAttribute('href') === '#' + activeId;
+        link.style.color = isActive ? '#06b6d4' : '';
+        link.style.fontWeight = isActive ? '700' : '';
+      });
+    }
+
+    window.addEventListener('scroll', update, { passive: true });
+    setTimeout(update, 200);
+  })();
 
 });
 
