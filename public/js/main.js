@@ -420,10 +420,26 @@ function setLanguage(lang) {
 // ─── GDPR: Cookie Consent Banner ────────────────────────────────────────────
 
 (function initCookieConsent() {
-  const banner = document.getElementById('cookie-banner');
+  const banner      = document.getElementById('cookie-banner');
+  const chatBtn     = document.getElementById('chat-widget-btn');
+  const chatPanel   = document.getElementById('chat-widget-container');
   if (!banner) return;
 
-  const COOKIE_KEY = 'wcs-cookie-consent';
+  const COOKIE_KEY  = 'wcs-cookie-consent';
+  const GAP         = 16; // px gap between banner top and chat button bottom
+
+  // Push the chat FAB + panel above the banner
+  function liftChatUI() {
+    const h = banner.offsetHeight;
+    if (chatBtn)   chatBtn.style.bottom   = (h + GAP) + 'px';
+    if (chatPanel) chatPanel.style.bottom = (h + GAP + chatBtn.offsetHeight + 8) + 'px';
+  }
+
+  // Reset to Tailwind defaults (bottom-6 = 24px)
+  function resetChatUI() {
+    if (chatBtn)   chatBtn.style.bottom   = '';
+    if (chatPanel) chatPanel.style.bottom = '';
+  }
 
   // Hide banner immediately if consent already given
   if (localStorage.getItem(COOKIE_KEY)) {
@@ -431,19 +447,25 @@ function setLanguage(lang) {
     return;
   }
 
+  // Lift on first paint, and again if window resizes (banner height may change on mobile)
+  liftChatUI();
+  window.addEventListener('resize', liftChatUI, { passive: true });
+
   function dismissBanner(consentValue) {
     localStorage.setItem(COOKIE_KEY, consentValue);
+    window.removeEventListener('resize', liftChatUI);
     banner.classList.remove('cookie-banner-slide');
     banner.classList.add('cookie-banner-hide');
     banner.addEventListener('animationend', () => {
       banner.style.display = 'none';
+      resetChatUI();
     }, { once: true });
   }
 
-  const acceptBtn = document.getElementById('cookie-accept-btn');
+  const acceptBtn    = document.getElementById('cookie-accept-btn');
   const necessaryBtn = document.getElementById('cookie-necessary-btn');
 
-  if (acceptBtn) acceptBtn.addEventListener('click', () => dismissBanner('all'));
+  if (acceptBtn)    acceptBtn.addEventListener('click',    () => dismissBanner('all'));
   if (necessaryBtn) necessaryBtn.addEventListener('click', () => dismissBanner('necessary'));
 
   // "Μάθετε περισσότερα" opens the privacy modal
