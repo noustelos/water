@@ -126,19 +126,20 @@ document.addEventListener('DOMContentLoaded', () => {
   if (closeChatBtn && chatContainer) closeChatBtn.addEventListener('click', hideChat);
   if (minimizeChatBtn && chatContainer) minimizeChatBtn.addEventListener('click', hideChat);
 
-
   // --- ScrollSpy via scroll event ---
   const scrollNavLinks = document.querySelectorAll('nav a[href^="#"]');
-  // Only track sections that have a matching nav link
   const trackedIds = Array.from(scrollNavLinks).map(l => l.getAttribute('href').substring(1));
 
   function updateScrollSpy() {
-    const scrollMidpoint = window.scrollY + window.innerHeight * 0.35;
+    // Use getBoundingClientRect + scrollY for reliable absolute position
+    const triggerPoint = window.scrollY + window.innerHeight * 0.4;
     let activeId = null;
 
     trackedIds.forEach(id => {
       const el = document.getElementById(id);
-      if (el && el.offsetTop <= scrollMidpoint) {
+      if (!el) return;
+      const elTop = el.getBoundingClientRect().top + window.scrollY;
+      if (elTop <= triggerPoint) {
         activeId = id;
       }
     });
@@ -154,7 +155,9 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
   window.addEventListener('scroll', updateScrollSpy, { passive: true });
-  updateScrollSpy(); // run once on load
+  // Small delay on load to ensure layout is complete
+  setTimeout(updateScrollSpy, 100);
+
 });
 
 // Helper function to preselect service dropdown option from cards
