@@ -83,7 +83,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
         if (response.ok && result.success) {
           // Trigger custom Success Toast alert
-          showToast(isGreek ? 'Επιτυχία!' : 'Success!', result.message || (isGreek ? 'Το μήνυμα εστάλη επιτυχώς.' : 'Email sent successfully via Resend API.'), 'success');
+          showToast(isGreek ? 'Επιτυχία!' : 'Success!', result.message || (isGreek ? 'Ευχαριστούμε. Το μήνυμά σας στάλθηκε με επιτυχία.' : 'Thank you. Your message has been sent successfully.'), 'success');
           contactForm.reset();
         } else {
           // Trigger custom Error Toast alert
@@ -96,7 +96,7 @@ document.addEventListener('DOMContentLoaded', () => {
       } finally {
         // Revert Loading State
         if (submitBtn) submitBtn.disabled = false;
-        if (submitText) submitText.textContent = isGreek ? 'Αποστολη Μηνυματος' : 'Send Message';
+        if (submitText) submitText.textContent = isGreek ? 'Αποστολή Μηνύματος' : 'Send Message';
         if (submitSpinner) submitSpinner.classList.add('hidden');
       }
     });
@@ -196,7 +196,7 @@ const translations = {
     "nav-cta": "Contact Us",
     "hero-badge": "Official Fluidra Partner",
     "hero-h1-1": "Pool & Spa Care",
-    "hero-h1-2": "for Santorini Villas and Hotels.",
+    "hero-h1-2": "for Santorini Villas & Hotels",
     "hero-p": "Construction, maintenance, water analysis and professional chemicals for pools, jacuzzis, hamams and saunas. Local support in Santorini, with fast response and trusted equipment from Fluidra / AstralPool.",
     "hero-btn-1": "Contact Us",
     "hero-btn-2": "Explore Services",
@@ -241,9 +241,9 @@ const translations = {
     "cnt-lbl-phone": "Phone Number",
     "cnt-lbl-service": "Service of Interest",
     "opt-1": "Design & Construction",
-    "opt-2": "Maintenance 365",
-    "opt-3": "Chemicals & Analysis",
-    "opt-4": "Automated Cleaning",
+    "opt-2": "Seasonal & Year-Round Maintenance",
+    "opt-3": "Water Analysis & Chemicals",
+    "opt-4": "Equipment Support",
     "opt-5": "General Inquiry",
     "cnt-lbl-message": "Message *",
     "cnt-submit": "Send Message",
@@ -273,7 +273,7 @@ const translations = {
     "nav-cta": "Επικοινωνια",
     "hero-badge": "Επίσημος Συνεργάτης Fluidra",
     "hero-h1-1": "Φροντίδα Πισίνας & Spa",
-    "hero-h1-2": "για Βίλες και Ξενοδοχεία",
+    "hero-h1-2": "για Βίλες & Ξενοδοχεία στη Σαντορίνη",
     "hero-p": "Κατασκευή, συντήρηση, ανάλυση νερού και επαγγελματικά χημικά για πισίνες, jacuzzi, χαμάμ και σάουνες. Τοπική υποστήριξη στη Σαντορίνη, με άμεση ανταπόκριση και αξιόπιστο εξοπλισμό Fluidra / AstralPool.",
     "hero-btn-1": "Επικοινωνηστε",
     "hero-btn-2": "Υπηρεσιες",
@@ -318,12 +318,12 @@ const translations = {
     "cnt-lbl-phone": "Τηλέφωνο Επικοινωνίας",
     "cnt-lbl-service": "Υπηρεσία Ενδιαφέροντος",
     "opt-1": "Σχεδιασμός & Κατασκευή",
-    "opt-2": "Συντήρηση 365",
-    "opt-3": "Χημικά & Ανάλυση",
-    "opt-4": "Αυτοματοποιημένος Καθαρισμός",
+    "opt-2": "Εποχιακή & Ετήσια Συντήρηση",
+    "opt-3": "Ανάλυση Νερού & Χημικά",
+    "opt-4": "Υποστήριξη Εξοπλισμού",
     "opt-5": "Γενική Ερώτηση",
     "cnt-lbl-message": "Μήνυμα *",
-    "cnt-submit": "Αποστολη Μηνυματος",
+    "cnt-submit": "Αποστολή Μηνύματος",
     "ft-copyright": "<strong class=\"font-bold text-primary-500\">Water Cycle Systems</strong>. Με την επιφύλαξη παντός δικαιώματος.",
     "ft-privacy": "Πολιτική Απορρήτου",
     "ft-terms": "Όροι Υπηρεσιών",
@@ -366,7 +366,7 @@ function setLanguage(lang) {
   // Update dynamic submit button text if form is present
   const submitText = document.getElementById('submit-text');
   if (submitText) {
-    submitText.textContent = lang === 'el' ? 'Αποστολη Μηνυματος' : 'Send Message';
+    submitText.textContent = lang === 'el' ? 'Αποστολή Μηνύματος' : 'Send Message';
   }
 
   // Translate all tagged elements
