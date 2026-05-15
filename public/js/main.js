@@ -44,10 +44,38 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
   // Contact Form Handling
-  const contactForm = document.getElementById('noustelos-contact-form');
-  const submitBtn = document.getElementById('form-submit-btn');
-  const submitText = document.getElementById('submit-text');
+  const contactForm  = document.getElementById('noustelos-contact-form');
+  const submitBtn    = document.getElementById('form-submit-btn');
+  const submitText   = document.getElementById('submit-text');
   const submitSpinner = document.getElementById('submit-spinner');
+
+  // ── reCAPTCHA v3 helper ──────────────────────────────────────────────────
+  // Reads site key from the button's data-sitekey.
+  // Falls back to submitting without a token when key is still the placeholder
+  // (so local dev is never blocked).
+  async function getRecaptchaToken() {
+    const siteKey = submitBtn?.getAttribute('data-sitekey') || '';
+    const action  = submitBtn?.getAttribute('data-action')  || 'submit';
+
+    if (!siteKey || siteKey === 'YOUR_SITE_KEY' || typeof grecaptcha === 'undefined') {
+      console.warn('reCAPTCHA: placeholder key or library not loaded — skipping token (dev mode).');
+      return null;
+    }
+
+    return new Promise((resolve) => {
+      grecaptcha.ready(() => {
+        grecaptcha.execute(siteKey, { action }).then(resolve);
+      });
+    });
+  }
+
+  // ── Global callback referenced by data-callback="onRecaptchaSuccess" ─────
+  // Called automatically by reCAPTCHA if the button is rendered as a widget;
+  // also invoked manually below for the programmatic v3 flow.
+  window.onRecaptchaSuccess = function(token) {
+    // Expose latest token so the submit handler can pick it up
+    window._recaptchaToken = token;
+  };
 
   if (contactForm) {
     contactForm.addEventListener('submit', async (e) => {
@@ -56,20 +84,31 @@ document.addEventListener('DOMContentLoaded', () => {
       // Gather Form Data
       const formData = new FormData(contactForm);
       const payload = {
-        name: formData.get('name')?.trim(),
-        email: formData.get('email')?.trim(),
-        phone: formData.get('phone')?.trim(),
+        name:    formData.get('name')?.trim(),
+        email:   formData.get('email')?.trim(),
+        phone:   formData.get('phone')?.trim(),
         service: formData.get('service'),
         message: formData.get('message')?.trim()
       };
 
       // Set Loading State
       const isGreek = window.currentLang === 'el';
-      if (submitBtn) submitBtn.disabled = true;
-      if (submitText) submitText.textContent = isGreek ? 'Αποστολή...' : 'Sending...';
+      if (submitBtn)    submitBtn.disabled = true;
+      if (submitText)   submitText.textContent = isGreek ? 'Επαλήθευση...' : 'Verifying...';
       if (submitSpinner) submitSpinner.classList.remove('hidden');
 
       try {
+        // ── Acquire reCAPTCHA v3 token ───────────────────────────────────
+        const token = await getRecaptchaToken();
+        if (token) {
+          window.onRecaptchaSuccess(token);   // keep global in sync
+          payload.recaptchaToken = token;     // send to backend for verification
+        }
+
+        // Update loading label now that verification is done
+        if (submitText) submitText.textContent = isGreek ? 'Αποστολή...' : 'Sending...';
+
+        // ── Send to API ─────────────────────────────────────────────────
         const response = await fetch('/api/contact', {
           method: 'POST',
           headers: {
@@ -82,21 +121,31 @@ document.addEventListener('DOMContentLoaded', () => {
         const result = await response.json();
 
         if (response.ok && result.success) {
-          // Trigger custom Success Toast alert
-          showToast(isGreek ? 'Επιτυχία!' : 'Success!', result.message || (isGreek ? 'Ευχαριστούμε. Το μήνυμά σας στάλθηκε με επιτυχία.' : 'Thank you. Your message has been sent successfully.'), 'success');
+          showToast(
+            isGreek ? 'Επιτυχία!' : 'Success!',
+            result.message || (isGreek ? 'Ευχαριστούμε. Το μήνυμά σας στάλθηκε με επιτυχία.' : 'Thank you. Your message has been sent successfully.'),
+            'success'
+          );
           contactForm.reset();
         } else {
-          // Trigger custom Error Toast alert
-          showToast(isGreek ? 'Σφάλμα αποστολής' : 'Error sending message', result.error || (isGreek ? 'Αποτυχία αποστολής email.' : 'Failed to dispatch email.'), 'error');
+          showToast(
+            isGreek ? 'Σφάλμα αποστολής' : 'Error sending message',
+            result.error || (isGreek ? 'Αποτυχία αποστολής email.' : 'Failed to dispatch email.'),
+            'error'
+          );
         }
 
       } catch (err) {
         console.error('Submission processing error:', err);
-        showToast(isGreek ? 'Σφάλμα Σύνδεσης' : 'Network Connection Error', isGreek ? 'Αδυναμία σύνδεσης στον server. Παρακαλώ δοκιμάστε ξανά.' : 'Could not reach server. Please try again later.', 'error');
+        showToast(
+          isGreek ? 'Σφάλμα Σύνδεσης' : 'Network Connection Error',
+          isGreek ? 'Αδυναμία σύνδεσης στον server. Παρακαλώ δοκιμάστε ξανά.' : 'Could not reach server. Please try again later.',
+          'error'
+        );
       } finally {
         // Revert Loading State
-        if (submitBtn) submitBtn.disabled = false;
-        if (submitText) submitText.textContent = isGreek ? 'Αποστολή Μηνύματος' : 'Send Message';
+        if (submitBtn)    submitBtn.disabled = false;
+        if (submitText)   submitText.textContent = isGreek ? 'Αποστολή Μηνύματος' : 'Send Message';
         if (submitSpinner) submitSpinner.classList.add('hidden');
       }
     });
