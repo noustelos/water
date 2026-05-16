@@ -105,7 +105,7 @@ document.addEventListener('DOMContentLoaded', () => {
       };
 
       function openEmailFallback() {
-        const subject = `Water Cycle Systems inquiry: ${payload.service || 'General Inquiry'}`;
+        const subject = `Water Cycle System inquiry: ${payload.service || 'General Inquiry'}`;
         const body = [
           `Name: ${payload.name || ''}`,
           `Email: ${payload.email || ''}`,
@@ -360,7 +360,6 @@ const translations = {
     "nav-services": "Services",
     "nav-about": "About Us",
     "nav-standards": "Partnership",
-    "nav-testimonials": "Testimonials",
     "nav-contact": "Contact",
     "nav-cta": "Contact Us",
     "hero-badge": "Official Fluidra Partner",
@@ -388,7 +387,7 @@ const translations = {
     "srv-inquire": "Inquire Service &rarr;",
     "abt-subtitle": "Local Support",
     "abt-title": "In Santorini, a pool is part of the guest experience.",
-    "abt-p1": "A cloudy pool, a cold jacuzzi or a chemical imbalance can turn into a complaint fast. Water Cycle Systems provides local, professional pool and spa support for properties that cannot afford downtime during the season.",
+    "abt-p1": "A cloudy pool, a cold jacuzzi or a chemical imbalance can turn into a complaint fast. Water Cycle System provides local, professional pool and spa support for properties that cannot afford downtime during the season.",
     "abt-p2": "We combine technical knowledge, water analysis and fast response, helping villas and hotels keep their facilities clean, safe and ready every day.",
     "abt-feat1-title": "Local Technicians",
     "abt-feat1-desc": "Based in Santorini for fast response when your property needs it most.",
@@ -416,21 +415,10 @@ const translations = {
     "opt-5": "General Inquiry",
     "cnt-lbl-message": "Message *",
     "cnt-submit": "Send Message",
-    "ft-copyright": "<strong class=\"font-bold text-primary-500\">Water Cycle Systems</strong>. All rights reserved.",
+    "ft-copyright": "<strong class=\"font-bold text-primary-500\">Water Cycle System</strong>. All rights reserved.",
     "ft-privacy": "Privacy Policy",
     "ft-terms": "Terms of Service",
-    "tst-subtitle": "Client Experiences",
-    "tst-title": "Trusted by Outstanding Properties",
-    "tst-r1-desc": "\"<strong class=\"font-bold text-primary-500\">Water Cycle Systems</strong> transformed our seasonal operation. Our luxury rental guests constantly compliment the absolute clarity of the pool water. Highly trustworthy crew!\"",
-    "tst-r1-name": "Dimitris K.",
-    "tst-r1-sub": "Villa Owner, Santorini",
-    "tst-r2-desc": "\"When our central circulation pump failed right before a wedding event, <strong class=\"font-bold text-primary-500\">Water Cycle Systems</strong> dispatched technicians within 2 hours. Exceptional emergency service.\"",
-    "tst-r2-name": "Elena S.",
-    "tst-r2-sub": "Boutique Resort Manager",
-    "tst-r3-desc": "\"We have worked with several service providers over the years, but none match the absolute lab precision of <strong class=\"font-bold text-primary-500\">Water Cycle Systems</strong> chemical water balancing. 10/10.\"",
-    "tst-r3-name": "Andreas M.",
-    "tst-r3-sub": "Residential Complex Board",
-    "chat-title": "Water Cycle Systems Assistant"
+    "chat-title": "Water Cycle System Assistant"
   },
   el: {
     "brand-loc": "Σαντορινη",
@@ -438,7 +426,6 @@ const translations = {
     "nav-services": "Υπηρεσίες",
     "nav-about": "Η Εταιρεία",
     "nav-standards": "Συνεργασία",
-    "nav-testimonials": "Κριτικές",
     "nav-contact": "Επικοινωνία",
     "nav-cta": "Επικοινωνία",
     "hero-badge": "Επισημος Συνεργατης Fluidra",
@@ -466,7 +453,7 @@ const translations = {
     "srv-inquire": "Εκδήλωση Ενδιαφέροντος &rarr;",
     "abt-subtitle": "Τοπικη Υποστηριξη",
     "abt-title": "Στη Σαντορίνη, η πισίνα είναι μέρος της εμπειρίας του επισκέπτη.",
-    "abt-p1": "Θολό νερό, πρόβλημα στο jacuzzi ή λάθος χημική ισορροπία μπορούν πολύ γρήγορα να γίνουν παράπονο. Η Water Cycle Systems προσφέρει τοπική, επαγγελματική υποστήριξη για βίλες και ξενοδοχειακές μονάδες που δεν έχουν περιθώριο για προβλήματα μέσα στη σεζόν.",
+    "abt-p1": "Θολό νερό, πρόβλημα στο jacuzzi ή λάθος χημική ισορροπία μπορούν πολύ γρήγορα να γίνουν παράπονο. Η Water Cycle System προσφέρει τοπική, επαγγελματική υποστήριξη για βίλες και ξενοδοχειακές μονάδες που δεν έχουν περιθώριο για προβλήματα μέσα στη σεζόν.",
     "abt-p2": "Συνδυάζουμε τεχνική γνώση, ανάλυση νερού και άμεση ανταπόκριση, ώστε οι εγκαταστάσεις σας να παραμένουν καθαρές, ασφαλείς και έτοιμες κάθε μέρα.",
     "abt-feat1-title": "Τοπικοί Τεχνικοί",
     "abt-feat1-desc": "Με έδρα τη Σαντορίνη για άμεση ανταπόκριση όταν η εγκατάστασή σας το χρειάζεται.",
@@ -494,21 +481,10 @@ const translations = {
     "opt-5": "Γενική Ερώτηση",
     "cnt-lbl-message": "Μηνυμα *",
     "cnt-submit": "Αποστολη Μηνυματος",
-    "ft-copyright": "<strong class=\"font-bold text-primary-500\">Water Cycle Systems</strong>. Με την επιφύλαξη παντός δικαιώματος.",
+    "ft-copyright": "<strong class=\"font-bold text-primary-500\">Water Cycle System</strong>. Με την επιφύλαξη παντός δικαιώματος.",
     "ft-privacy": "Πολιτική Απορρήτου",
     "ft-terms": "Οροι Υπηρεσιών",
-    "tst-subtitle": "Εμπειριες Πελατων",
-    "tst-title": "Μας εμπιστεύονται κορυφαία ακίνητα",
-    "tst-r1-desc": "\"Η <strong class=\"font-bold text-primary-500\">Water Cycle Systems</strong> μεταμόρφωσε την εποχιακή μας λειτουργία. Οι επισκέπτες μας σχολιάζουν διαρκώς την απόλυτη καθαρότητα του νερού. Πολύ αξιόπιστη ομάδα!\"",
-    "tst-r1-name": "Δημήτρης Κ.",
-    "tst-r1-sub": "Ιδιοκτήτης Βίλας, Σαντορίνη",
-    "tst-r2-desc": "\"Οταν η κεντρική αντλία μας χάλασε ακριβώς πριν από έναν γάμο, η <strong class=\"font-bold text-primary-500\">Water Cycle Systems</strong> έστειλε τεχνικούς μέσα σε 2 ώρες. Εξαιρετική υπηρεσία έκτακτης ανάγκης.\"",
-    "tst-r2-name": "Έλενα Σ.",
-    "tst-r2-sub": "Boutique Resort Manager",
-    "tst-r3-desc": "\"Εχουμε συνεργαστεί με πολλούς, αλλά κανείς δεν φτάνει την εργαστηριακή ακρίβεια της <strong class=\"font-bold text-primary-500\">Water Cycle Systems</strong> στη χημική ισορροπία του νερού. 10/10.\"",
-    "tst-r3-name": "Ανδρέας Μ.",
-    "tst-r3-sub": "Διαχείριση Οικιστικού Συγκροτήματος",
-    "chat-title": "Βοηθός Water Cycle Systems"
+    "chat-title": "Βοηθός Water Cycle System"
   }
 };
 

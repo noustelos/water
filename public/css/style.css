@@ -76,18 +76,6 @@ label,
   letter-spacing: 0.02em;
 }
 
-/* Testimonials */
-.testimonial-text {
-  font-family: 'Inter', sans-serif;
-  line-height: 1.7;
-}
-
-.testimonial-author {
-  font-family: 'Manrope', sans-serif;
-  font-weight: 700;
-}
-
-
 /* Custom Scrollbar */
 ::-webkit-scrollbar {
   width: 10px;
