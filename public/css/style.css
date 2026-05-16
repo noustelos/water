@@ -1,19 +1,88 @@
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Outfit:wght@400;500;600;700;800&family=Space+Grotesk:wght@400;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Manrope:wght@500;600;700;800&display=swap');
+
 
 /* Base & Typography */
 html {
   scroll-behavior: smooth;
   font-family: 'Inter', sans-serif;
   overflow-x: hidden;
+  color: #1e293b;
+  line-height: 1.6;
+}
+
+
+/* Skip Navigation Link */
+.skip-link {
+  position: absolute;
+  top: -100%;
+  left: 1rem;
+  z-index: 10000;
+  padding: 0.75rem 1.5rem;
+  background: #06b6d4;
+  color: #fff;
+  font-weight: 700;
+  font-size: 0.875rem;
+  border-radius: 0 0 0.5rem 0.5rem;
+  text-decoration: none;
+  transition: top 0.2s;
+}
+.skip-link:focus {
+  top: 0;
+}
+
+/* Screen-reader only utility */
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border-width: 0;
 }
 
 h1, h2, h3, h4, h5, h6 {
-  font-family: 'Outfit', sans-serif;
+  font-family: 'Manrope', sans-serif;
+  font-weight: 700;
 }
 
-.font-space {
-  font-family: 'Space Grotesk', sans-serif;
+h1 {
+  font-weight: 800;
+  line-height: 1.0;
+  letter-spacing: -0.045em;
 }
+
+h2 {
+  font-weight: 700;
+  letter-spacing: -0.035em;
+}
+
+/* Nav, Buttons, Labels */
+nav a, 
+button, 
+.cta-button, 
+label,
+[class*="nav-"],
+[class*="btn-"],
+[class*="badge"] {
+  font-family: 'Manrope', sans-serif;
+  font-weight: 700;
+  letter-spacing: 0.02em;
+}
+
+/* Testimonials */
+.testimonial-text {
+  font-family: 'Inter', sans-serif;
+  line-height: 1.7;
+}
+
+.testimonial-author {
+  font-family: 'Manrope', sans-serif;
+  font-weight: 700;
+}
+
 
 /* Custom Scrollbar */
 ::-webkit-scrollbar {
@@ -172,5 +241,28 @@ h1, h2, h3, h4, h5, h6 {
 }
 #privacy-modal.modal-open > div:last-child {
   animation: modalFadeIn 0.3s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+/* Accessible Focus Ring — overrides Tailwind's focus:outline-none where needed */
+a:focus-visible,
+button:focus-visible,
+input:focus-visible,
+textarea:focus-visible,
+select:focus-visible {
+  outline: 2px solid #06b6d4;
+  outline-offset: 3px;
+  border-radius: 4px;
+}
+
+/* Reduced Motion — disable all animations for users who prefer it */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
 }
 

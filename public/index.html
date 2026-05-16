@@ -1,11 +1,13 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Water Cycle Systems | Premium Pool Care & Maintenance</title>
-  <meta name="description" content="Professional swimming pool services in Greece. Premium maintenance, chemical balancing, deep cleaning, and automated installation by Water Cycle Systems.">
-  
+  <meta name="description"
+    content="Professional swimming pool services in Greece. Premium maintenance, chemical balancing, deep cleaning, and automated installation by Water Cycle Systems.">
+
   <!-- Tailwind CSS CDN -->
   <script src="https://cdn.tailwindcss.com"></script>
   <script>
@@ -30,44 +32,58 @@
       }
     }
   </script>
-  
+
   <!-- Custom Stylesheet -->
   <link rel="stylesheet" href="./css/style.css">
-  
+
   <!-- Favicon -->
-  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Ccircle cx='16' cy='16' r='16' fill='%2306b6d4'/%3E%3Cpath d='M8 20c1-2 3-3 4-1s3 3 4 1 3-3 4-1 3 1 4-1' stroke='%23fff' stroke-width='2' fill='none' stroke-linecap='round'/%3E%3Cpath d='M16 10a2 2 0 100-4 2 2 0 000 4zm0 0v6' stroke='%23fff' stroke-width='2' fill='none' stroke-linecap='round'/%3E%3C/svg%3E">
+  <link rel="icon" type="image/svg+xml"
+    href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Ccircle cx='16' cy='16' r='16' fill='%2306b6d4'/%3E%3Cpath d='M8 20c1-2 3-3 4-1s3 3 4 1 3-3 4-1 3 1 4-1' stroke='%23fff' stroke-width='2' fill='none' stroke-linecap='round'/%3E%3Cpath d='M16 10a2 2 0 100-4 2 2 0 000 4zm0 0v6' stroke='%23fff' stroke-width='2' fill='none' stroke-linecap='round'/%3E%3C/svg%3E">
 
   <!-- Google reCAPTCHA v3 — replace YOUR_SITE_KEY with your actual key from https://www.google.com/recaptcha/admin -->
   <script src="https://www.google.com/recaptcha/api.js?render=YOUR_SITE_KEY" async defer></script>
 </head>
+
 <body class="bg-slate-50 text-slate-800 antialiased selection:bg-primary-500 selection:text-white">
+
+  <!-- Skip Navigation Link -->
+  <a href="#main-content" class="skip-link">Skip to main content</a>
+
 
   <!-- Navigation Header Container -->
   <div class="sticky top-4 z-50 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 transition-all duration-300">
     <header class="glass rounded-full px-5 sm:px-8 py-3 flex items-center justify-between shadow-lg shadow-cyan-500/5">
-      
+
       <!-- Brand Logo -->
       <a href="#" class="flex items-center gap-3 group shrink-0">
-        <img src="./images/logo_opt.png" alt="Water Cycle Systems Logo" class="h-14 sm:h-16 w-auto object-contain group-hover:scale-105 transition-transform" width="200" height="64" fetchpriority="high">
+        <img src="./images/logo_opt.png" alt="Water Cycle Systems Logo"
+          class="h-14 sm:h-16 w-auto object-contain group-hover:scale-105 transition-transform" width="200" height="64"
+          fetchpriority="high">
         <div class="hidden sm:flex flex-col justify-center border-l-2 border-primary-200 pl-3 py-0.5">
-          <span data-translate="brand-loc" class="text-[10px] font-bold tracking-widest text-primary-600 uppercase leading-none">Santorini</span>
-          <span data-translate="brand-sub" class="text-[9px] font-medium text-slate-400 tracking-wider mt-1 leading-none">Headquarters</span>
+          <span data-translate="brand-loc"
+            class="text-[10px] font-bold tracking-widest text-primary-600 uppercase leading-none">Santorini</span>
+          <span data-translate="brand-sub"
+            class="text-[9px] font-medium text-slate-400 tracking-wider mt-1 leading-none">Headquarters</span>
         </div>
       </a>
 
       <!-- Desktop Navigation Links -->
-      <nav class="hidden lg:flex items-center gap-8 font-medium text-slate-600 text-sm">
+      <nav aria-label="Main navigation" class="hidden lg:flex items-center gap-8 font-medium text-slate-600 text-sm">
+
         <a href="#services" data-translate="nav-services" class="hover:text-primary-600 transition-colors">Services</a>
         <a href="#about" data-translate="nav-about" class="hover:text-primary-600 transition-colors">About Us</a>
-        <a href="#gallery" data-translate="nav-standards" class="hover:text-primary-600 transition-colors">Quality Standards</a>
-        <a href="#testimonials" data-translate="nav-testimonials" class="hover:text-primary-600 transition-colors">Testimonials</a>
+        <a href="#gallery" data-translate="nav-standards" class="hover:text-primary-600 transition-colors">Quality
+          Standards</a>
+        <a href="#testimonials" data-translate="nav-testimonials"
+          class="hover:text-primary-600 transition-colors">Testimonials</a>
         <a href="#contact" data-translate="nav-contact" class="hover:text-primary-600 transition-colors">Contact</a>
       </nav>
 
       <!-- Right Side Actions: Language Toggle & CTA Button -->
       <div class="flex items-center gap-3 shrink-0">
         <!-- Language Toggle Switch -->
-        <button id="lang-toggle-btn" aria-label="Toggle Language" class="px-3 py-1.5 rounded-full bg-white/80 hover:bg-white text-slate-700 font-bold text-xs shadow-sm border border-slate-200/60 transition-all flex items-center gap-1.5">
+        <button id="lang-toggle-btn" aria-label="Switch to Greek"
+          class="px-3 py-1.5 rounded-full bg-white/80 hover:bg-white text-slate-700 font-bold text-xs shadow-sm border border-slate-200/60 transition-all flex items-center gap-1.5">
           <span id="lang-en" class="text-cyan-600 font-black">EN</span>
           <span class="text-slate-300 font-normal">/</span>
           <span id="lang-el" class="opacity-50 hover:opacity-100 transition-opacity">EL</span>
@@ -75,64 +91,95 @@
 
         <!-- CTA Button -->
         <div class="hidden lg:block">
-          <a href="#contact" data-translate="nav-cta" class="px-6 py-3 rounded-full bg-gradient-to-r from-primary-500 to-cyan-500 hover:from-primary-600 hover:to-cyan-600 text-white font-semibold shadow-md hover:shadow-lg hover:shadow-cyan-500/20 transition-all duration-200 text-xs tracking-wider uppercase">
+          <a href="#contact" data-translate="nav-cta"
+            class="px-6 py-3 rounded-full bg-gradient-to-r from-primary-500 to-cyan-500 hover:from-primary-600 hover:to-cyan-600 text-white font-semibold shadow-md hover:shadow-lg hover:shadow-cyan-500/20 transition-all duration-200 text-xs tracking-wider uppercase">
             Get a Quote
           </a>
         </div>
 
         <!-- Mobile Menu Button -->
-        <button id="mobile-menu-btn" aria-label="Toggle Menu" class="lg:hidden p-2 text-slate-600 hover:text-primary-600 focus:outline-none">
-          <svg id="menu-icon" class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <button id="mobile-menu-btn"
+          aria-label="Open navigation menu"
+          aria-expanded="false"
+          aria-controls="mobile-menu"
+          class="lg:hidden p-2 text-slate-600 hover:text-primary-600">
+          <svg id="menu-icon" aria-hidden="true" focusable="false" class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
           </svg>
         </button>
+
       </div>
 
     </header>
 
     <!-- Mobile Navigation Dropdown -->
-    <div id="mobile-menu" class="hidden lg:hidden mt-3 glass rounded-3xl p-5 space-y-2 shadow-xl border border-white/80">
-      <a href="#services" data-translate="nav-services" class="block px-4 py-2.5 rounded-xl hover:bg-primary-50/80 text-slate-700 font-medium text-sm">Services</a>
-      <a href="#about" data-translate="nav-about" class="block px-4 py-2.5 rounded-xl hover:bg-primary-50/80 text-slate-700 font-medium text-sm">About Us</a>
-      <a href="#gallery" data-translate="nav-standards" class="block px-4 py-2.5 rounded-xl hover:bg-primary-50/80 text-slate-700 font-medium text-sm">Quality Standards</a>
-      <a href="#testimonials" data-translate="nav-testimonials" class="block px-4 py-2.5 rounded-xl hover:bg-primary-50/80 text-slate-700 font-medium text-sm">Testimonials</a>
-      <a href="#contact" data-translate="nav-contact" class="block px-4 py-2.5 rounded-xl hover:bg-primary-50/80 text-slate-700 font-medium text-sm">Contact</a>
-      <a href="#contact" data-translate="nav-cta" class="block text-center mt-4 px-5 py-3 rounded-xl bg-gradient-to-r from-primary-500 to-cyan-500 text-white font-semibold shadow text-sm uppercase tracking-wider">Get a Quote</a>
-    </div>
+    <nav id="mobile-menu"
+      aria-label="Mobile navigation"
+      class="hidden lg:hidden mt-3 glass rounded-3xl p-5 space-y-2 shadow-xl border border-white/80">
+      <a href="#services" data-translate="nav-services"
+        class="block px-4 py-2.5 rounded-xl hover:bg-primary-50/80 text-slate-700 font-medium text-sm">Services</a>
+      <a href="#about" data-translate="nav-about"
+        class="block px-4 py-2.5 rounded-xl hover:bg-primary-50/80 text-slate-700 font-medium text-sm">About Us</a>
+      <a href="#gallery" data-translate="nav-standards"
+        class="block px-4 py-2.5 rounded-xl hover:bg-primary-50/80 text-slate-700 font-medium text-sm">Quality
+        Standards</a>
+      <a href="#testimonials" data-translate="nav-testimonials"
+        class="block px-4 py-2.5 rounded-xl hover:bg-primary-50/80 text-slate-700 font-medium text-sm">Testimonials</a>
+      <a href="#contact" data-translate="nav-contact"
+        class="block px-4 py-2.5 rounded-xl hover:bg-primary-50/80 text-slate-700 font-medium text-sm">Contact</a>
+      <a href="#contact" data-translate="nav-cta"
+        class="block text-center mt-4 px-5 py-3 rounded-xl bg-gradient-to-r from-primary-500 to-cyan-500 text-white font-semibold shadow text-sm uppercase tracking-wider">Get
+        a Quote</a>
+    </nav>
+
   </div>
 
   <!-- Main Content -->
-  <main>
-    
+  <main id="main-content">
+
+
     <!-- Hero Section -->
-    <section id="hero" class="relative pt-12 pb-32 sm:pb-24 lg:pt-20 lg:pb-32 overflow-hidden bg-gradient-radial">
-      <!-- Added dynamic mesh gradient layered blobs behind the text for ultimate immersion -->
-      <div class="absolute top-1/4 left-1/3 w-96 h-96 bg-cyan-100 rounded-full mix-blend-multiply filter blur-3xl opacity-50 animate-blob"></div>
-      
+    <section id="hero" aria-labelledby="hero-heading" class="relative pt-12 pb-32 sm:pb-24 lg:pt-20 lg:pb-32 overflow-hidden bg-gradient-radial">
+
+      <!-- Decorative mesh gradient blob -->
+      <div aria-hidden="true"
+        class="absolute top-1/4 left-1/3 w-96 h-96 bg-cyan-100 rounded-full mix-blend-multiply filter blur-3xl opacity-50 animate-blob">
+      </div>
+
+
       <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         <div class="grid lg:grid-cols-12 gap-12 items-center">
-          
+
           <!-- Text Content -->
           <div class="lg:col-span-6 text-center lg:text-left">
-            <div class="inline-flex items-center gap-2 px-4 py-2 rounded-full glass border border-primary-200/60 text-primary-700 text-xs font-semibold uppercase tracking-wider mb-6 animate-float shadow-sm">
+            <div
+              class="inline-flex items-center gap-2 px-4 py-2 rounded-full glass border border-primary-200/60 text-primary-700 text-xs font-semibold uppercase tracking-wider mb-6 animate-float shadow-sm">
               <span class="flex h-2 w-2 rounded-full bg-cyan-500 animate-pulse"></span>
               <span data-translate="hero-badge">Official Fluidra Partner</span>
             </div>
-            
-            <h1 class="text-4xl sm:text-5xl lg:text-6xl xl:text-7xl font-extrabold text-slate-900 tracking-tight leading-[1.1] mb-8">
+
+            <h1 id="hero-heading"
+              class="text-4xl sm:text-5xl lg:text-6xl xl:text-7xl font-extrabold text-slate-900 mb-8">
+
+
               <span data-translate="hero-h1-1" class="block mb-2">Pool & Spa Care</span>
               <span data-translate="hero-h1-2" class="block text-gradient">for Santorini Villas & Hotels</span>
             </h1>
 
-            <p data-translate="hero-p" class="text-lg text-slate-600 mb-8 max-w-xl mx-auto lg:mx-0 font-normal leading-relaxed">
-              Construction, maintenance, water analysis and professional chemicals for pools, jacuzzis, hamams and saunas. Local support in Santorini, with fast response and trusted equipment from Fluidra / AstralPool.
+            <p data-translate="hero-p"
+              class="text-lg text-slate-600 mb-8 max-w-xl mx-auto lg:mx-0 font-normal">
+
+              Construction, maintenance, water analysis and professional chemicals for pools, jacuzzis, hamams and
+              saunas. Local support in Santorini, with fast response and trusted equipment from Fluidra / AstralPool.
             </p>
 
             <div class="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start">
-              <a href="#contact" data-translate="hero-btn-1" class="px-8 py-4 rounded-full bg-gradient-to-r from-primary-500 to-cyan-500 hover:from-primary-600 hover:to-cyan-600 text-white font-bold text-base shadow-lg hover:shadow-xl hover:shadow-cyan-500/25 hover:translate-y-[-2px] transition-all duration-200 text-center">
+              <a href="#contact" data-translate="hero-btn-1"
+                class="px-8 py-4 rounded-full bg-gradient-to-r from-primary-500 to-cyan-500 hover:from-primary-600 hover:to-cyan-600 text-white font-bold text-base shadow-lg hover:shadow-xl hover:shadow-cyan-500/25 hover:translate-y-[-2px] transition-all duration-200 text-center">
                 Contact Us
               </a>
-              <a href="#services" data-translate="hero-btn-2" class="px-8 py-4 rounded-full glass hover:bg-white/90 text-slate-700 font-semibold text-base shadow-sm hover:shadow transition-all duration-200 text-center border border-slate-200/60">
+              <a href="#services" data-translate="hero-btn-2"
+                class="px-8 py-4 rounded-full glass hover:bg-white/90 text-slate-700 font-semibold text-base shadow-sm hover:shadow transition-all duration-200 text-center border border-slate-200/60">
                 Explore Services
               </a>
             </div>
@@ -158,23 +205,35 @@
           <!-- Hero Image with Glassmorphism overlay card -->
           <div class="lg:col-span-6 relative">
             <div class="relative mx-auto max-w-lg lg:max-w-none">
-              <!-- Decorative blob gradient behind image -->
-              <div class="absolute -top-4 -left-4 w-72 h-72 bg-primary-200 rounded-full mix-blend-multiply filter blur-2xl opacity-70 animate-blob"></div>
-              <div class="absolute -bottom-8 -right-4 w-72 h-72 bg-cyan-200 rounded-full mix-blend-multiply filter blur-2xl opacity-70 animate-blob animation-delay-2000"></div>
-              
+              <!-- Decorative blob gradients behind image -->
+              <div aria-hidden="true"
+                class="absolute -top-4 -left-4 w-72 h-72 bg-primary-200 rounded-full mix-blend-multiply filter blur-2xl opacity-70 animate-blob">
+              </div>
+              <div aria-hidden="true"
+                class="absolute -bottom-8 -right-4 w-72 h-72 bg-cyan-200 rounded-full mix-blend-multiply filter blur-2xl opacity-70 animate-blob animation-delay-2000">
+              </div>
+
+
               <!-- Premium Generated Hero Image -->
-              <img src="./images/hero_opt.png" alt="Luxury Swimming Pool in Premium Greek Villa" class="rounded-3xl shadow-2xl w-full object-cover aspect-[4/3] relative z-10 border border-white/60" width="800" height="600" fetchpriority="high">
-              
+              <img src="./images/hero_opt.png" alt="Luxury Swimming Pool in Premium Greek Villa"
+                class="rounded-3xl shadow-2xl w-full object-cover aspect-[4/3] relative z-10 border border-white/60"
+                width="800" height="600" fetchpriority="high">
+
               <!-- Floating Glass Card Overlay -->
-              <div class="absolute -bottom-6 left-2 sm:left-6 z-20 glass-premium p-4 rounded-2xl shadow-xl flex items-center gap-4 max-w-[260px] sm:max-w-xs border-white">
-                <div class="w-12 h-12 rounded-full bg-gradient-to-br from-cyan-400 to-primary-500 flex items-center justify-center text-white shrink-0 shadow-md">
-                  <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <div
+                class="absolute -bottom-6 left-2 sm:left-6 z-20 glass-premium p-4 rounded-2xl shadow-xl flex items-center gap-4 max-w-[260px] sm:max-w-xs border-white">
+                <div
+                  class="w-12 h-12 rounded-full bg-gradient-to-br from-cyan-400 to-primary-500 flex items-center justify-center text-white shrink-0 shadow-md">
+                  <svg aria-hidden="true" focusable="false" class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
                   </svg>
+
                 </div>
                 <div>
-                  <span data-translate="overlay-1" class="text-xs font-bold text-slate-900 block">pH Perfectly Balanced</span>
-                  <span data-translate="overlay-2" class="text-xs text-slate-500 block">Tested automatically today</span>
+                  <span data-translate="overlay-1" class="text-xs font-bold text-slate-900 block">pH Perfectly
+                    Balanced</span>
+                  <span data-translate="overlay-2" class="text-xs text-slate-500 block">Tested automatically
+                    today</span>
                 </div>
               </div>
 
@@ -186,99 +245,132 @@
     </section>
 
     <!-- Services Section -->
-    <section id="services" class="py-20 relative overflow-hidden">
+    <section id="services" aria-labelledby="services-heading" class="py-20 relative overflow-hidden">
+
       <!-- Serene water glow backgrounds -->
-      <div class="absolute top-1/2 right-1/4 w-80 h-80 bg-cyan-50 rounded-full mix-blend-multiply filter blur-3xl opacity-60 -z-10"></div>
-      
+      <div
+        class="absolute top-1/2 right-1/4 w-80 h-80 bg-cyan-50 rounded-full mix-blend-multiply filter blur-3xl opacity-60 -z-10">
+      </div>
+
       <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-        
+
         <div class="text-center max-w-3xl mx-auto mb-16">
-          <h2 data-translate="srv-subtitle" class="text-xs font-bold uppercase tracking-widest text-cyan-600 mb-3">Local Services</h2>
-          <p data-translate="srv-title" class="text-3xl sm:text-4xl font-bold text-slate-900 tracking-tight">Everything Your Pool Needs Before Guests Notice a Problem</p>
-          <p data-translate="srv-desc" class="text-slate-600 mt-4 font-normal">Professional care for villas and resorts. We handle the technical work so your facilities are always clean, safe, and ready.</p>
+          <p data-translate="srv-subtitle" class="text-xs font-bold uppercase tracking-widest text-cyan-600 mb-3">Local
+            Services</p>
+          <h2 id="services-heading" data-translate="srv-title" class="text-3xl sm:text-4xl font-bold text-slate-900 tracking-tight">Everything
+            Your Pool Needs Before Guests Notice a Problem</h2>
+          <p data-translate="srv-desc" class="text-slate-600 mt-4 font-normal">Professional care for villas and resorts.
+            We handle the technical work so your facilities are always clean, safe, and ready.</p>
         </div>
 
+
         <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
-          
+
           <!-- Service Card 1 -->
-          <div class="glass rounded-3xl p-8 border border-white/80 hover-scale relative group flex flex-col justify-between overflow-hidden shadow-sm">
+          <div
+            class="glass rounded-3xl p-8 border border-white/80 hover-scale relative group flex flex-col justify-between overflow-hidden shadow-sm">
             <div>
-              <div class="w-14 h-14 rounded-2xl bg-gradient-to-br from-cyan-100 to-primary-100 text-cyan-600 flex items-center justify-center mb-6 group-hover:from-cyan-500 group-hover:to-primary-500 group-hover:text-white transition-all duration-300 shadow-sm">
-                <svg class="w-7 h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10"></path>
+              <div
+                class="w-14 h-14 rounded-2xl bg-gradient-to-br from-cyan-100 to-primary-100 text-cyan-600 flex items-center justify-center mb-6 group-hover:from-cyan-500 group-hover:to-primary-500 group-hover:text-white transition-all duration-300 shadow-sm">
+                <svg aria-hidden="true" focusable="false" class="w-7 h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                    d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10">
+                  </path>
                 </svg>
+
               </div>
-              <h3 data-translate="srv-card1-title" class="text-xl font-bold text-slate-900 mb-3">Design & Construction</h3>
+              <h3 data-translate="srv-card1-title" class="text-xl font-bold text-slate-900 mb-3">Design & Construction
+              </h3>
               <p data-translate="srv-card1-desc" class="text-sm text-slate-600 leading-relaxed mb-6">
                 Custom pools, jacuzzis, hamams, and saunas tailored for boutique hotels and luxury private villas.
               </p>
             </div>
-            
+
             <div class="pt-4 border-t border-slate-200/60 mt-auto">
-              <a href="#contact" onclick="preselectService('Design & Construction')" data-translate="srv-inquire" class="inline-flex items-center gap-1 text-sm font-semibold text-cyan-600 hover:text-cyan-700">
+              <a href="#contact" onclick="preselectService('Design & Construction')" data-translate="srv-inquire"
+                class="inline-flex items-center gap-1 text-sm font-semibold text-cyan-600 hover:text-cyan-700">
                 Inquire Service &rarr;
               </a>
             </div>
           </div>
 
           <!-- Service Card 2 -->
-          <div class="glass rounded-3xl p-8 border border-white/80 hover-scale relative group flex flex-col justify-between overflow-hidden shadow-sm">
+          <div
+            class="glass rounded-3xl p-8 border border-white/80 hover-scale relative group flex flex-col justify-between overflow-hidden shadow-sm">
             <div>
-              <div class="w-14 h-14 rounded-2xl bg-gradient-to-br from-cyan-100 to-primary-100 text-cyan-600 flex items-center justify-center mb-6 group-hover:from-cyan-500 group-hover:to-primary-500 group-hover:text-white transition-all duration-300 shadow-sm">
-                <svg class="w-7 h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"></path>
+              <div
+                class="w-14 h-14 rounded-2xl bg-gradient-to-br from-cyan-100 to-primary-100 text-cyan-600 flex items-center justify-center mb-6 group-hover:from-cyan-500 group-hover:to-primary-500 group-hover:text-white transition-all duration-300 shadow-sm">
+                <svg aria-hidden="true" focusable="false" class="w-7 h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                    d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"></path>
                 </svg>
               </div>
-              <h3 data-translate="srv-card2-title" class="text-xl font-bold text-slate-900 mb-3">Seasonal & Year-Round Maintenance</h3>
+              <h3 data-translate="srv-card2-title" class="text-xl font-bold text-slate-900 mb-3">Seasonal & Year-Round
+                Maintenance</h3>
               <p data-translate="srv-card2-desc" class="text-sm text-slate-600 leading-relaxed mb-6">
-                Reliable cleaning and system checks to ensure your water remains crystal clear throughout the heavy tourist season.
+                Reliable cleaning and system checks to ensure your water remains crystal clear throughout the heavy
+                tourist season.
               </p>
             </div>
-            
+
             <div class="pt-4 border-t border-slate-200/60 mt-auto">
-              <a href="#contact" onclick="preselectService('Maintenance 365')" data-translate="srv-inquire" class="inline-flex items-center gap-1 text-sm font-semibold text-cyan-600 hover:text-cyan-700">
+              <a href="#contact" onclick="preselectService('Maintenance 365')" data-translate="srv-inquire"
+                class="inline-flex items-center gap-1 text-sm font-semibold text-cyan-600 hover:text-cyan-700">
                 Inquire Service &rarr;
               </a>
             </div>
           </div>
 
           <!-- Service Card 3 -->
-          <div class="glass rounded-3xl p-8 border border-white/80 hover-scale relative group flex flex-col justify-between overflow-hidden shadow-sm">
+          <div
+            class="glass rounded-3xl p-8 border border-white/80 hover-scale relative group flex flex-col justify-between overflow-hidden shadow-sm">
             <div>
-              <div class="w-14 h-14 rounded-2xl bg-gradient-to-br from-cyan-100 to-primary-100 text-cyan-600 flex items-center justify-center mb-6 group-hover:from-cyan-500 group-hover:to-primary-500 group-hover:text-white transition-all duration-300 shadow-sm">
-                <svg class="w-7 h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19.428 15.428a2 2 0 00-1.022-.547l-2.387-.477a6 6 0 00-3.86.517l-.318.158a6 6 0 01-3.86.517L6.05 15.21a2 2 0 00-1.806.547M8 4h8l-1 1v5.172a2 2 0 00.586 1.414l5 5c1.26 1.26.367 3.414-1.415 3.414H4.828c-1.782 0-2.674-2.154-1.414-3.414l5-5A2 2 0 009 10.172V5L8 4z"></path>
+              <div
+                class="w-14 h-14 rounded-2xl bg-gradient-to-br from-cyan-100 to-primary-100 text-cyan-600 flex items-center justify-center mb-6 group-hover:from-cyan-500 group-hover:to-primary-500 group-hover:text-white transition-all duration-300 shadow-sm">
+                <svg aria-hidden="true" focusable="false" class="w-7 h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                    d="M19.428 15.428a2 2 0 00-1.022-.547l-2.387-.477a6 6 0 00-3.86.517l-.318.158a6 6 0 01-3.86.517L6.05 15.21a2 2 0 00-1.806.547M8 4h8l-1 1v5.172a2 2 0 00.586 1.414l5 5c1.26 1.26.367 3.414-1.415 3.414H4.828c-1.782 0-2.674-2.154-1.414-3.414l5-5A2 2 0 009 10.172V5L8 4z">
+                  </path>
                 </svg>
+
               </div>
-              <h3 data-translate="srv-card3-title" class="text-xl font-bold text-slate-900 mb-3">Water Analysis & Chemicals</h3>
+              <h3 data-translate="srv-card3-title" class="text-xl font-bold text-slate-900 mb-3">Water Analysis &
+                Chemicals</h3>
               <p data-translate="srv-card3-desc" class="text-sm text-slate-600 leading-relaxed mb-6">
-                Precise chemical balancing using trusted CTX products to guarantee safe swimming conditions for every guest.
+                Precise chemical balancing using trusted CTX products to guarantee safe swimming conditions for every
+                guest.
               </p>
             </div>
-            
+
             <div class="pt-4 border-t border-slate-200/60 mt-auto">
-              <a href="#contact" onclick="preselectService('Chemicals & Analysis')" data-translate="srv-inquire" class="inline-flex items-center gap-1 text-sm font-semibold text-cyan-600 hover:text-cyan-700">
+              <a href="#contact" onclick="preselectService('Chemicals & Analysis')" data-translate="srv-inquire"
+                class="inline-flex items-center gap-1 text-sm font-semibold text-cyan-600 hover:text-cyan-700">
                 Inquire Service &rarr;
               </a>
             </div>
           </div>
 
           <!-- Service Card 4 -->
-          <div class="glass rounded-3xl p-8 border border-white/80 hover-scale relative group flex flex-col justify-between overflow-hidden shadow-sm">
+          <div
+            class="glass rounded-3xl p-8 border border-white/80 hover-scale relative group flex flex-col justify-between overflow-hidden shadow-sm">
             <div>
-              <div class="w-14 h-14 rounded-2xl bg-gradient-to-br from-cyan-100 to-primary-100 text-cyan-600 flex items-center justify-center mb-6 group-hover:from-cyan-500 group-hover:to-primary-500 group-hover:text-white transition-all duration-300 shadow-sm">
-                <svg class="w-7 h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"></path>
+              <div
+                class="w-14 h-14 rounded-2xl bg-gradient-to-br from-cyan-100 to-primary-100 text-cyan-600 flex items-center justify-center mb-6 group-hover:from-cyan-500 group-hover:to-primary-500 group-hover:text-white transition-all duration-300 shadow-sm">
+                <svg aria-hidden="true" focusable="false" class="w-7 h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z">
+                  </path>
                 </svg>
+
               </div>
               <h3 data-translate="srv-card4-title" class="text-xl font-bold text-slate-900 mb-3">Equipment Support</h3>
               <p data-translate="srv-card4-desc" class="text-sm text-slate-600 leading-relaxed mb-6">
                 Fast local repairs and automated cleaning solutions with Zodiac & Polaris robots to minimize downtime.
               </p>
             </div>
-            
+
             <div class="pt-4 border-t border-slate-200/60 mt-auto">
-              <a href="#contact" onclick="preselectService('Automated Cleaning')" data-translate="srv-inquire" class="inline-flex items-center gap-1 text-sm font-semibold text-cyan-600 hover:text-cyan-700">
+              <a href="#contact" onclick="preselectService('Automated Cleaning')" data-translate="srv-inquire"
+                class="inline-flex items-center gap-1 text-sm font-semibold text-cyan-600 hover:text-cyan-700">
                 Inquire Service &rarr;
               </a>
             </div>
@@ -290,39 +382,55 @@
     </section>
 
     <!-- About Section -->
-    <section id="about" class="py-20 bg-slate-900 text-white relative overflow-hidden">
+    <section id="about" aria-labelledby="about-heading" class="py-20 bg-slate-900 text-white relative overflow-hidden">
+
       <!-- Background elements -->
-      <div class="absolute inset-0 opacity-10 bg-[radial-gradient(#38bdf8_1px,transparent_1px)] [background-size:24px_24px]"></div>
-      
+      <div
+        class="absolute inset-0 opacity-10 bg-[radial-gradient(#38bdf8_1px,transparent_1px)] [background-size:24px_24px]">
+      </div>
+
       <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         <div class="grid lg:grid-cols-2 gap-12 items-center">
-          
+
           <div>
-            <span data-translate="abt-subtitle" class="text-primary-400 font-bold text-xs uppercase tracking-widest block mb-3">Local Support</span>
-            <h2 data-translate="abt-title" class="text-3xl sm:text-4xl font-extrabold tracking-tight mb-6">In Santorini, a pool is part of the guest experience.</h2>
+            <span data-translate="abt-subtitle"
+              class="text-primary-400 font-bold text-xs uppercase tracking-widest block mb-3">Local Support</span>
+            <h2 id="about-heading" data-translate="abt-title" class="text-3xl sm:text-4xl font-extrabold tracking-tight mb-6">In Santorini,
+              a pool is part of the guest experience.</h2>
+
             <p data-translate="abt-p1" class="text-slate-300 mb-6 leading-relaxed">
-              A cloudy pool, a cold jacuzzi or a chemical imbalance can turn into a complaint fast. Water Cycle Systems provides local, professional pool and spa support for properties that cannot afford downtime during the season.
+              A cloudy pool, a cold jacuzzi or a chemical imbalance can turn into a complaint fast. Water Cycle Systems
+              provides local, professional pool and spa support for properties that cannot afford downtime during the
+              season.
             </p>
             <p data-translate="abt-p2" class="text-slate-300 mb-8 leading-relaxed">
-              We combine technical knowledge, water analysis and fast response, helping villas and hotels keep their facilities clean, safe and ready every day.
+              We combine technical knowledge, water analysis and fast response, helping villas and hotels keep their
+              facilities clean, safe and ready every day.
             </p>
-            
+
             <div class="grid grid-cols-2 gap-6">
               <div class="border-l-2 border-primary-500 pl-4">
-                <h4 data-translate="abt-feat1-title" class="font-bold text-lg text-white">Local Technicians</h4>
-                <p data-translate="abt-feat1-desc" class="text-xs text-slate-400 mt-1">Based in Santorini for fast response when your property needs it most.</p>
+                <h3 data-translate="abt-feat1-title" class="font-bold text-lg text-white">Local Technicians</h3>
+                <p data-translate="abt-feat1-desc" class="text-xs text-slate-400 mt-1">Based in Santorini for fast
+                  response when your property needs it most.</p>
               </div>
               <div class="border-l-2 border-cyan-400 pl-4">
-                <h4 data-translate="abt-feat2-title" class="font-bold text-lg text-white">Detailed Logging</h4>
-                <p data-translate="abt-feat2-desc" class="text-xs text-slate-400 mt-1">Detailed chemical logs so property managers always know the state of their pools.</p>
+                <h3 data-translate="abt-feat2-title" class="font-bold text-lg text-white">Detailed Logging</h3>
+                <p data-translate="abt-feat2-desc" class="text-xs text-slate-400 mt-1">Detailed chemical logs so
+                  property managers always know the state of their pools.</p>
               </div>
+
             </div>
           </div>
 
           <!-- Feature Image showcase grid -->
           <div class="grid grid-cols-2 gap-4">
-            <img src="./images/hero_opt.png" alt="Luxury Villa Infinity Pool" class="rounded-xl object-cover h-64 w-full shadow-lg border border-slate-800" loading="lazy" width="400" height="256">
-            <img src="./images/testing_opt.png" alt="Water Testing Professional" class="rounded-xl object-cover h-64 w-full shadow-lg border border-slate-800 translate-y-6" loading="lazy" width="400" height="256">
+            <img src="./images/hero_opt.png" alt="Luxury Villa Infinity Pool"
+              class="rounded-xl object-cover h-64 w-full shadow-lg border border-slate-800" loading="lazy" width="400"
+              height="256">
+            <img src="./images/testing_opt.png" alt="Water Testing Professional"
+              class="rounded-xl object-cover h-64 w-full shadow-lg border border-slate-800 translate-y-6" loading="lazy"
+              width="400" height="256">
           </div>
 
         </div>
@@ -330,36 +438,64 @@
     </section>
 
     <!-- Partnership Section -->
-    <section id="gallery" class="py-20 bg-slate-50 relative overflow-hidden">
+    <section id="gallery" aria-labelledby="partnership-heading" class="py-20 bg-slate-50 relative overflow-hidden">
+
       <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-        
+
         <div class="text-center max-w-2xl mx-auto mb-16">
-          <h2 data-translate="part-subtitle" class="text-xs font-bold uppercase tracking-widest text-cyan-600 mb-3">Official Partner</h2>
-          <p data-translate="part-title" class="text-3xl font-bold text-slate-900">Trusted Equipment for Professional Properties.</p>
-          <p data-translate="part-copy" class="text-slate-600 mt-4 font-normal">As an official partner of Fluidra S.A. and AstralPool, we supply and install professional-grade pool and spa equipment built for heavy seasonal use.</p>
+          <p data-translate="part-subtitle" class="text-xs font-bold uppercase tracking-widest text-cyan-600 mb-3">
+            Official Partner</p>
+          <h2 id="partnership-heading" data-translate="part-title" class="text-3xl font-bold text-slate-900">Trusted Equipment for Professional
+            Properties.</h2>
+          <p data-translate="part-copy" class="text-slate-600 mt-4 font-normal">As an official partner of Fluidra S.A.
+            and AstralPool, we supply and install professional-grade pool and spa equipment built for heavy seasonal
+            use.</p>
         </div>
 
+
         <div class="grid sm:grid-cols-3 gap-6">
-          
-          <div class="glass rounded-2xl p-8 shadow-sm border border-white/80 flex flex-col items-center text-center hover-scale">
-            <div class="w-12 h-12 rounded-xl bg-gradient-to-br from-cyan-100 to-primary-100 text-cyan-600 flex items-center justify-center mb-4 shadow-sm">
-              <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"></path></svg>
+
+          <div
+            class="glass rounded-2xl p-8 shadow-sm border border-white/80 flex flex-col items-center text-center hover-scale">
+            <div
+              class="w-12 h-12 rounded-xl bg-gradient-to-br from-cyan-100 to-primary-100 text-cyan-600 flex items-center justify-center mb-4 shadow-sm">
+              <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                  d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z">
+                </path>
+              </svg>
             </div>
-            <p data-translate="part-feat1" class="text-sm text-slate-600 font-medium">Official access to AstralPool's full range of professional equipment.</p>
+            <p data-translate="part-feat1" class="text-sm text-slate-600 font-medium">Official access to AstralPool's
+              full range of professional equipment.</p>
           </div>
 
-          <div class="glass rounded-2xl p-8 shadow-sm border border-white/80 flex flex-col items-center text-center hover-scale">
-            <div class="w-12 h-12 rounded-xl bg-gradient-to-br from-cyan-100 to-primary-100 text-cyan-600 flex items-center justify-center mb-4 shadow-sm">
-              <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"></path></svg>
+          <div
+            class="glass rounded-2xl p-8 shadow-sm border border-white/80 flex flex-col items-center text-center hover-scale">
+            <div
+              class="w-12 h-12 rounded-xl bg-gradient-to-br from-cyan-100 to-primary-100 text-cyan-600 flex items-center justify-center mb-4 shadow-sm">
+              <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z">
+                </path>
+              </svg>
             </div>
-            <p data-translate="part-feat2" class="text-sm text-slate-600 font-medium">Direct technical support and fast access to original spare parts.</p>
+            <p data-translate="part-feat2" class="text-sm text-slate-600 font-medium">Direct technical support and fast
+              access to original spare parts.</p>
           </div>
 
-          <div class="glass rounded-2xl p-8 shadow-sm border border-white/80 flex flex-col items-center text-center hover-scale">
-            <div class="w-12 h-12 rounded-xl bg-gradient-to-br from-cyan-100 to-primary-100 text-cyan-600 flex items-center justify-center mb-4 shadow-sm">
-              <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z"></path><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"></path></svg>
+          <div
+            class="glass rounded-2xl p-8 shadow-sm border border-white/80 flex flex-col items-center text-center hover-scale">
+            <div
+              class="w-12 h-12 rounded-xl bg-gradient-to-br from-cyan-100 to-primary-100 text-cyan-600 flex items-center justify-center mb-4 shadow-sm">
+              <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                  d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z">
+                </path>
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                  d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"></path>
+              </svg>
             </div>
-            <p data-translate="part-feat3" class="text-sm text-slate-600 font-medium">Equipment built for the heavy demands of commercial pools and spas.</p>
+            <p data-translate="part-feat3" class="text-sm text-slate-600 font-medium">Equipment built for the heavy
+              demands of commercial pools and spas.</p>
           </div>
 
         </div>
@@ -368,55 +504,67 @@
     </section>
 
     <!-- Testimonials Section -->
-    <section id="testimonials" class="py-20 relative overflow-hidden">
+    <section id="testimonials" aria-labelledby="testimonials-heading" class="py-20 relative overflow-hidden">
+
       <!-- Ambient water blobs -->
-      <div class="absolute top-1/3 right-10 w-80 h-80 bg-cyan-50 rounded-full mix-blend-multiply filter blur-3xl opacity-60 -z-10"></div>
+      <div
+        class="absolute top-1/3 right-10 w-80 h-80 bg-cyan-50 rounded-full mix-blend-multiply filter blur-3xl opacity-60 -z-10">
+      </div>
 
       <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-        
+
         <div class="text-center max-w-2xl mx-auto mb-16">
-          <h2 data-translate="tst-subtitle" class="text-xs font-bold uppercase tracking-widest text-cyan-600 mb-3">Client Experiences</h2>
-          <p data-translate="tst-title" class="text-3xl font-bold text-slate-900">Trusted by Outstanding Properties</p>
+          <p data-translate="tst-subtitle" class="text-xs font-bold uppercase tracking-widest text-cyan-600 mb-3">
+            Client Experiences</p>
+          <h2 id="testimonials-heading" data-translate="tst-title" class="text-3xl font-bold text-slate-900">Trusted by Outstanding Properties</h2>
         </div>
 
+
         <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-          
+
           <div class="p-8 rounded-3xl glass border border-white/80 flex flex-col justify-between shadow-sm hover-scale">
-            <div class="flex items-center gap-1 text-amber-400 mb-4">
-              &#9733;&#9733;&#9733;&#9733;&#9733;
+            <div class="flex items-center gap-1 text-amber-400 mb-4" role="img" aria-label="5 out of 5 stars">
+              <span aria-hidden="true">&#9733;&#9733;&#9733;&#9733;&#9733;</span>
             </div>
-            <p data-translate="tst-r1-desc" class="text-slate-600 text-sm italic mb-6 leading-relaxed">
-              "<strong class="font-bold text-primary-500">Water Cycle Systems</strong> transformed our seasonal operation. Our luxury rental guests constantly compliment the absolute clarity of the pool water. Highly trustworthy crew!"
+            <p data-translate="tst-r1-desc" class="text-slate-600 text-sm italic mb-6 testimonial-text">
+              "<strong class="font-bold text-primary-500">Water Cycle Systems</strong> transformed our seasonal
+              operation. Our luxury rental guests constantly compliment the absolute clarity of the pool water. Highly
+              trustworthy crew!"
             </p>
             <div class="pt-4 border-t border-slate-100">
-              <span data-translate="tst-r1-name" class="font-bold text-slate-900 text-sm block">Dimitris K.</span>
-              <span data-translate="tst-r1-sub" class="text-xs text-cyan-600 font-medium">Villa Owner, Santorini</span>
+              <span data-translate="tst-r1-name" class="font-bold text-slate-900 text-sm block testimonial-author">Dimitris K.</span>
+              <span data-translate="tst-r1-sub" class="text-xs text-cyan-600 font-medium testimonial-author">Villa Owner, Santorini</span>
             </div>
           </div>
 
           <div class="p-8 rounded-3xl glass border border-white/80 flex flex-col justify-between shadow-sm hover-scale">
-            <div class="flex items-center gap-1 text-amber-400 mb-4">
-              &#9733;&#9733;&#9733;&#9733;&#9733;
+            <div class="flex items-center gap-1 text-amber-400 mb-4" role="img" aria-label="5 out of 5 stars">
+              <span aria-hidden="true">&#9733;&#9733;&#9733;&#9733;&#9733;</span>
             </div>
-            <p data-translate="tst-r2-desc" class="text-slate-600 text-sm italic mb-6 leading-relaxed">
-              "When our central circulation pump failed right before a wedding event, <strong class="font-bold text-primary-500">Water Cycle Systems</strong> dispatched technicians within 2 hours. Exceptional emergency service."
+            <p data-translate="tst-r2-desc" class="text-slate-600 text-sm italic mb-6 testimonial-text">
+              "When our central circulation pump failed right before a wedding event, <strong
+                class="font-bold text-primary-500">Water Cycle Systems</strong> dispatched technicians within 2 hours.
+              Exceptional emergency service."
             </p>
             <div class="pt-4 border-t border-slate-100">
-              <span data-translate="tst-r2-name" class="font-bold text-slate-900 text-sm block">Elena S.</span>
-              <span data-translate="tst-r2-sub" class="text-xs text-cyan-600 font-medium">Boutique Resort Manager</span>
+              <span data-translate="tst-r2-name" class="font-bold text-slate-900 text-sm block testimonial-author">Elena S.</span>
+              <span data-translate="tst-r2-sub" class="text-xs text-cyan-600 font-medium testimonial-author">Boutique Resort Manager</span>
             </div>
           </div>
 
           <div class="p-8 rounded-3xl glass border border-white/80 flex flex-col justify-between shadow-sm hover-scale">
-            <div class="flex items-center gap-1 text-amber-400 mb-4">
-              &#9733;&#9733;&#9733;&#9733;&#9733;
+            <div class="flex items-center gap-1 text-amber-400 mb-4" role="img" aria-label="5 out of 5 stars">
+              <span aria-hidden="true">&#9733;&#9733;&#9733;&#9733;&#9733;</span>
             </div>
-            <p data-translate="tst-r3-desc" class="text-slate-600 text-sm italic mb-6 leading-relaxed">
-              "We have worked with several service providers over the years, but none match the absolute lab precision of <strong class="font-bold text-primary-500">Water Cycle Systems</strong> chemical water balancing. 10/10."
+            <p data-translate="tst-r3-desc" class="text-slate-600 text-sm italic mb-6 testimonial-text">
+              "We have worked with several service providers over the years, but none match the absolute lab precision
+              of <strong class="font-bold text-primary-500">Water Cycle Systems</strong> chemical water balancing.
+              10/10."
             </p>
             <div class="pt-4 border-t border-slate-100">
-              <span data-translate="tst-r3-name" class="font-bold text-slate-900 text-sm block">Andreas M.</span>
-              <span data-translate="tst-r3-sub" class="text-xs text-cyan-600 font-medium">Residential Complex Board</span>
+              <span data-translate="tst-r3-name" class="font-bold text-slate-900 text-sm block testimonial-author">Andreas M.</span>
+              <span data-translate="tst-r3-sub" class="text-xs text-cyan-600 font-medium testimonial-author">Residential Complex
+                Board</span>
             </div>
           </div>
 
@@ -426,57 +574,79 @@
     </section>
 
     <!-- Contact Form Section -->
-    <section id="contact" class="py-20 bg-gradient-to-b from-white to-slate-100 border-t border-slate-200/60 relative">
+    <section id="contact" aria-labelledby="contact-heading" class="py-20 bg-gradient-to-b from-white to-slate-100 border-t border-slate-200/60 relative">
+
       <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-        
+
         <div class="glass-dark text-white rounded-3xl p-8 sm:p-12 shadow-2xl relative">
-          
+
           <div class="max-w-2xl mx-auto text-center mb-10">
-            <span data-translate="cnt-subtitle" class="text-primary-400 font-bold text-xs uppercase tracking-widest block mb-2">Direct Support</span>
-            <h2 data-translate="cnt-title" class="text-3xl font-extrabold tracking-tight">Need your pool ready before the next check-in?</h2>
+            <span data-translate="cnt-subtitle"
+              class="text-primary-400 font-bold text-xs uppercase block mb-2">Direct Support</span>
+            <h2 id="contact-heading" data-translate="cnt-title" class="text-3xl font-extrabold tracking-tight">Need your pool ready before
+              the next check-in?</h2>
+
             <p data-translate="cnt-desc" class="text-slate-400 text-sm mt-2">
               Tell us what property you manage and what support you need. We’ll get back to you with a clear next step.
             </p>
 
             <!-- Quick Contact Links -->
             <div class="flex flex-wrap justify-center gap-4 mt-8">
-              <a href="tel:+306942072531" class="px-6 py-3 rounded-xl bg-slate-800/80 border border-slate-700 hover:border-primary-500 transition-all flex items-center gap-3 text-sm font-semibold">
-                <span>📞</span>
+              <a href="tel:+306942072531"
+                class="px-6 py-3 rounded-xl bg-slate-800/80 border border-slate-700 hover:border-primary-500 transition-all flex items-center gap-3 text-sm font-semibold">
+                <span aria-hidden="true">📞</span>
+                <span class="sr-only">Phone:</span>
                 <span data-translate="cnt-btn-phone">+30 694 207 2531</span>
               </a>
-              <a href="mailto:info@watercyclesystem.gr" class="px-6 py-3 rounded-xl bg-slate-800/80 border border-slate-700 hover:border-primary-500 transition-all flex items-center gap-3 text-sm font-semibold">
-                <span>📧</span>
+              <a href="mailto:info@watercyclesystem.gr"
+                class="px-6 py-3 rounded-xl bg-slate-800/80 border border-slate-700 hover:border-primary-500 transition-all flex items-center gap-3 text-sm font-semibold">
+                <span aria-hidden="true">📧</span>
+                <span class="sr-only">Email:</span>
                 <span data-translate="cnt-btn-email">info@watercyclesystem.gr</span>
               </a>
             </div>
+
           </div>
 
           <!-- The Contact Form -->
           <form id="noustelos-contact-form" class="space-y-6">
-            
+
             <div class="grid sm:grid-cols-2 gap-6">
               <div>
-                <label for="contact-name" data-translate="cnt-lbl-name" class="block text-xs font-semibold text-slate-300 uppercase tracking-wider mb-2">Full Name *</label>
-                <input type="text" id="contact-name" name="name" required placeholder="e.g. Giannis Papadopoulos" class="w-full px-4 py-3 rounded-xl bg-slate-800/80 border border-slate-700 text-white placeholder-slate-500 focus:outline-none focus:border-primary-500 focus:ring-1 focus:ring-primary-500 transition-colors text-sm">
+                <label for="contact-name" data-translate="cnt-lbl-name"
+                  class="block text-xs font-semibold text-slate-300 uppercase tracking-wider mb-2">Full Name *</label>
+                <input type="text" id="contact-name" name="name" required aria-required="true" placeholder="e.g. Giannis Papadopoulos"
+                  class="w-full px-4 py-3 rounded-xl bg-slate-800/80 border border-slate-700 text-white placeholder-slate-500 focus:outline-none focus:border-primary-500 focus:ring-1 focus:ring-primary-500 transition-colors text-sm">
+
               </div>
 
               <div>
-                <label for="contact-email" data-translate="cnt-lbl-email" class="block text-xs font-semibold text-slate-300 uppercase tracking-wider mb-2">Email Address *</label>
-                <input type="email" id="contact-email" name="email" required placeholder="e.g. name@domain.com" class="w-full px-4 py-3 rounded-xl bg-slate-800/80 border border-slate-700 text-white placeholder-slate-500 focus:outline-none focus:border-primary-500 focus:ring-1 focus:ring-primary-500 transition-colors text-sm">
+                <label for="contact-email" data-translate="cnt-lbl-email"
+                  class="block text-xs font-semibold text-slate-300 uppercase tracking-wider mb-2">Email Address
+                  *</label>
+                <input type="email" id="contact-email" name="email" required aria-required="true" placeholder="e.g. name@domain.com"
+                  class="w-full px-4 py-3 rounded-xl bg-slate-800/80 border border-slate-700 text-white placeholder-slate-500 focus:outline-none focus:border-primary-500 focus:ring-1 focus:ring-primary-500 transition-colors text-sm">
+
               </div>
             </div>
 
             <div class="grid sm:grid-cols-2 gap-6">
               <div>
-                <label for="contact-phone" data-translate="cnt-lbl-phone" class="block text-xs font-semibold text-slate-300 uppercase tracking-wider mb-2">Phone Number</label>
-                <input type="tel" id="contact-phone" name="phone" placeholder="e.g. +30 69..." class="w-full px-4 py-3 rounded-xl bg-slate-800/80 border border-slate-700 text-white placeholder-slate-500 focus:outline-none focus:border-primary-500 focus:ring-1 focus:ring-primary-500 transition-colors text-sm">
+                <label for="contact-phone" data-translate="cnt-lbl-phone"
+                  class="block text-xs font-semibold text-slate-300 uppercase tracking-wider mb-2">Phone Number</label>
+                <input type="tel" id="contact-phone" name="phone" placeholder="e.g. +30 69..."
+                  class="w-full px-4 py-3 rounded-xl bg-slate-800/80 border border-slate-700 text-white placeholder-slate-500 focus:outline-none focus:border-primary-500 focus:ring-1 focus:ring-primary-500 transition-colors text-sm">
               </div>
 
               <div>
-                <label for="contact-service" data-translate="cnt-lbl-service" class="block text-xs font-semibold text-slate-300 uppercase tracking-wider mb-2">Service of Interest</label>
-                <select id="contact-service" name="service" class="w-full px-4 py-3 rounded-xl bg-slate-800/80 border border-slate-700 text-white focus:outline-none focus:border-primary-500 focus:ring-1 focus:ring-primary-500 transition-colors text-sm">
+                <label for="contact-service" data-translate="cnt-lbl-service"
+                  class="block text-xs font-semibold text-slate-300 uppercase tracking-wider mb-2">Service of
+                  Interest</label>
+                <select id="contact-service" name="service"
+                  class="w-full px-4 py-3 rounded-xl bg-slate-800/80 border border-slate-700 text-white focus:outline-none focus:border-primary-500 focus:ring-1 focus:ring-primary-500 transition-colors text-sm">
                   <option value="Design & Construction" data-translate="opt-1">Design & Construction</option>
-                  <option value="Seasonal & Year-Round Maintenance" data-translate="opt-2">Seasonal & Year-Round Maintenance</option>
+                  <option value="Seasonal & Year-Round Maintenance" data-translate="opt-2">Seasonal & Year-Round
+                    Maintenance</option>
                   <option value="Water Analysis & Chemicals" data-translate="opt-3">Water Analysis & Chemicals</option>
                   <option value="Equipment Support" data-translate="opt-4">Equipment Support</option>
                   <option value="General Inquiry" data-translate="opt-5">General Inquiry</option>
@@ -485,25 +655,33 @@
             </div>
 
             <div>
-              <label for="contact-message" data-translate="cnt-lbl-message" class="block text-xs font-semibold text-slate-300 uppercase tracking-wider mb-2">Property Details & Message *</label>
-              <textarea id="contact-message" name="message" required rows="4" placeholder="Briefly describe your pool location, volume, or specific maintenance needs..." class="w-full px-4 py-3 rounded-xl bg-slate-800/80 border border-slate-700 text-white placeholder-slate-500 focus:outline-none focus:border-primary-500 focus:ring-1 focus:ring-primary-500 transition-colors text-sm"></textarea>
+              <label for="contact-message" data-translate="cnt-lbl-message"
+                class="block text-xs font-semibold text-slate-300 uppercase tracking-wider mb-2">Property Details &
+                Message *</label>
+              <textarea id="contact-message" name="message" required aria-required="true" rows="4"
+                placeholder="Briefly describe your pool location, volume, or specific maintenance needs..."
+                class="w-full px-4 py-3 rounded-xl bg-slate-800/80 border border-slate-700 text-white placeholder-slate-500 focus:outline-none focus:border-primary-500 focus:ring-1 focus:ring-primary-500 transition-colors text-sm"></textarea>
+
             </div>
 
             <!-- Submit Button with loading spinners -->
             <div class="text-center pt-2">
-              <button
-                id="form-submit-btn"
-                type="submit"
-                data-sitekey="YOUR_SITE_KEY"
-                data-callback="onRecaptchaSuccess"
+              <button id="form-submit-btn" type="submit" data-sitekey="YOUR_SITE_KEY" data-callback="onRecaptchaSuccess"
                 data-action="submit"
                 class="w-full sm:w-auto px-10 py-4 rounded-full bg-gradient-to-r from-primary-500 to-cyan-500 hover:from-primary-600 hover:to-cyan-600 active:scale-95 text-white font-bold text-sm shadow-lg hover:shadow-cyan-500/25 transition-all duration-200 flex items-center justify-center gap-2 mx-auto disabled:opacity-50 disabled:pointer-events-none tracking-wide uppercase text-xs">
                 <span id="submit-text" data-translate="cnt-submit">Send Message</span>
-                <svg id="submit-spinner" class="w-5 h-5 animate-spin hidden" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15"></path>
+                <svg id="submit-spinner" aria-hidden="true" focusable="false" class="w-5 h-5 animate-spin hidden" fill="none" stroke="currentColor"
+                  viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                    d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15">
+                  </path>
                 </svg>
               </button>
             </div>
+
+            <!-- Accessibility live region for form feedback -->
+            <div id="form-status" class="sr-only" aria-live="polite"></div>
+
 
           </form>
 
@@ -517,65 +695,99 @@
   <!-- Footer -->
   <footer class="bg-slate-950 text-slate-400 py-16 border-t border-slate-900 relative overflow-hidden">
     <!-- Ambient subtle background glow for the footer -->
-    <div class="absolute bottom-0 left-1/4 w-96 h-96 bg-primary-500/5 rounded-full mix-blend-screen filter blur-3xl pointer-events-none"></div>
+    <div
+      class="absolute bottom-0 left-1/4 w-96 h-96 bg-primary-500/5 rounded-full mix-blend-screen filter blur-3xl pointer-events-none">
+    </div>
 
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col md:flex-row items-center justify-between gap-10 relative z-10">
-      
+    <div
+      class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col md:flex-row items-center justify-between gap-10 relative z-10">
+
       <!-- Imposing Brand Logo Presentation -->
-      <div class="flex items-center justify-center gap-5 group cursor-pointer">
-        <div class="relative drop-shadow-[0_0_15px_rgba(6,182,212,0.25)] group-hover:drop-shadow-[0_0_30px_rgba(6,182,212,0.6)] transition-all duration-500">
+      <a href="#" aria-label="Water Cycle Systems - Home" class="flex items-center justify-center gap-5 group cursor-pointer">
+        <div
+          class="relative drop-shadow-[0_0_15px_rgba(6,182,212,0.25)] group-hover:drop-shadow-[0_0_30px_rgba(6,182,212,0.6)] transition-all duration-500">
           <!-- Ethereal radial glow behind the logo -->
-          <div class="absolute inset-0 bg-gradient-to-r from-primary-500/20 to-cyan-400/20 rounded-full filter blur-xl opacity-60 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none"></div>
-          <img src="./images/logo_opt.png" alt="Water Cycle Systems Logo" class="h-24 sm:h-32 w-auto object-contain brightness-0 invert opacity-90 group-hover:opacity-100 transform group-hover:scale-105 transition-all duration-500 relative z-10" loading="lazy" width="200" height="128">
+          <div aria-hidden="true"
+            class="absolute inset-0 bg-gradient-to-r from-primary-500/20 to-cyan-400/20 rounded-full filter blur-xl opacity-60 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none">
+          </div>
+          <img src="./images/logo_opt.png" alt="Water Cycle Systems Logo"
+            class="h-24 sm:h-32 w-auto object-contain brightness-0 invert opacity-90 group-hover:opacity-100 transform group-hover:scale-105 transition-all duration-500 relative z-10"
+            loading="lazy" width="200" height="128">
         </div>
-        
-        <div class="flex flex-col justify-center border-l-2 border-slate-800 group-hover:border-primary-500/50 pl-4 py-2 text-left transition-colors duration-500">
-          <span data-translate="brand-loc" class="text-xs sm:text-sm font-extrabold tracking-widest text-primary-500 uppercase leading-none block">Santorini</span>
-          <span data-translate="brand-sub" class="text-[10px] sm:text-xs font-medium text-slate-500 group-hover:text-slate-400 tracking-wider mt-1.5 leading-none block transition-colors">Headquarters</span>
+
+        <div
+          class="flex flex-col justify-center border-l-2 border-slate-800 group-hover:border-primary-500/50 pl-4 py-2 text-left transition-colors duration-500">
+          <span data-translate="brand-loc"
+            class="text-xs sm:text-sm font-extrabold tracking-widest text-primary-500 uppercase leading-none block">Santorini</span>
+          <span data-translate="brand-sub"
+            class="text-[10px] sm:text-xs font-medium text-slate-500 group-hover:text-slate-400 tracking-wider mt-1.5 leading-none block transition-colors">Headquarters</span>
         </div>
-      </div>
+      </a>
+
 
       <div class="text-xs text-slate-500 text-center md:text-left space-y-2">
-        <div>&copy; <span id="current-year">2026</span> <span data-translate="ft-copyright"><strong class="font-bold text-primary-500">Water Cycle Systems</strong>. All rights reserved.</span></div>
-        <a href="https://noustelos.gr" target="_blank" rel="noopener noreferrer" class="inline-block font-space font-bold text-primary-500 hover:text-primary-400 tracking-widest transition-colors text-[11px]">
+        <div>&copy; <span id="current-year">2026</span> <span data-translate="ft-copyright"><strong
+              class="font-bold text-primary-500">Water Cycle Systems</strong>. All rights reserved.</span></div>
+        <a href="https://noustelos.gr" target="_blank" rel="noopener noreferrer"
+          class="inline-block font-space font-bold text-primary-500 hover:text-primary-400 tracking-widest transition-colors text-[11px]">
           DESIGNED BY NOUSTELOS_STUDIO /&gt; SANTORINI
         </a>
       </div>
 
       <div class="flex flex-wrap gap-6 text-xs text-slate-500">
-        <button id="open-privacy-modal" class="hover:text-slate-300 transition-colors text-left">Πολιτική Απορρήτου &amp; Cookies</button>
+        <button id="open-privacy-modal" type="button" class="hover:text-slate-300 transition-colors text-left">Πολιτική Απορρήτου
+          &amp; Cookies</button>
+
         <a href="#" data-translate="ft-terms" class="hover:text-slate-300 transition-colors">Terms of Care</a>
-        <a href="mailto:info@watercyclesystem.gr" class="text-primary-500 hover:text-primary-400 transition-colors">info@watercyclesystem.gr</a>
+        <a href="mailto:info@watercyclesystem.gr"
+          class="text-primary-500 hover:text-primary-400 font-bold text-sm transition-colors">info@watercyclesystem.gr</a>
       </div>
 
     </div>
   </footer>
 
   <!-- Privacy Policy Modal -->
-  <div id="privacy-modal" class="fixed inset-0 z-[9998] hidden items-center justify-center p-4" role="dialog" aria-modal="true" aria-labelledby="privacy-modal-title">
+  <div id="privacy-modal" class="fixed inset-0 z-[9998] hidden items-center justify-center p-4" role="dialog"
+    aria-modal="true" aria-labelledby="privacy-modal-title">
     <!-- Backdrop -->
     <div id="privacy-modal-backdrop" class="absolute inset-0 bg-slate-950/80 backdrop-blur-sm"></div>
     <!-- Panel -->
-    <div class="relative z-10 w-full max-w-2xl max-h-[85vh] flex flex-col glass-dark rounded-3xl border border-cyan-500/20 shadow-2xl overflow-hidden">
+    <div
+      class="relative z-10 w-full max-w-2xl max-h-[85vh] flex flex-col glass-dark rounded-3xl border border-cyan-500/20 shadow-2xl overflow-hidden">
       <!-- Header -->
       <div class="flex items-center justify-between px-7 py-5 border-b border-slate-700/60 shrink-0">
         <div class="flex items-center gap-3">
-          <div class="w-8 h-8 rounded-xl bg-gradient-to-br from-primary-500 to-cyan-500 flex items-center justify-center shrink-0">
-            <svg class="w-4 h-4 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"></path></svg>
+          <div
+            class="w-8 h-8 rounded-xl bg-gradient-to-br from-primary-500 to-cyan-500 flex items-center justify-center shrink-0">
+            <svg class="w-4 h-4 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z">
+              </path>
+            </svg>
           </div>
-          <h2 id="privacy-modal-title" class="text-white font-extrabold text-lg tracking-tight">Πολιτική Απορρήτου &amp; Cookies</h2>
+          <h2 id="privacy-modal-title" class="text-white font-extrabold text-lg tracking-tight">Πολιτική Απορρήτου &amp;
+            Cookies</h2>
         </div>
-        <button id="close-privacy-modal" class="p-2 rounded-full hover:bg-white/10 text-slate-400 hover:text-white transition-colors" aria-label="Κλείσιμο">
-          <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg>
+        <button id="close-privacy-modal"
+          class="p-2 rounded-full hover:bg-white/10 text-slate-400 hover:text-white transition-colors"
+          aria-label="Κλείσιμο">
+          <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
+          </svg>
         </button>
       </div>
       <!-- Scrollable Body -->
       <div class="overflow-y-auto px-7 py-6 text-slate-300 text-sm leading-relaxed space-y-5">
-        <p class="text-slate-400 text-xs">Τελευταία ενημέρωση: Μάιος 2025 &nbsp;·&nbsp; Water Cycle Systems, Σαντορίνη, Ελλάδα</p>
+        <p class="text-slate-400 text-xs">Τελευταία ενημέρωση: Μάιος 2025 &nbsp;·&nbsp; Water Cycle Systems, Σαντορίνη,
+          Ελλάδα</p>
 
         <section>
           <h3 class="text-white font-bold text-base mb-2">1. Ποιοι είμαστε</h3>
-          <p>Η <strong class="text-primary-400">Water Cycle Systems</strong> είναι εταιρεία παροχής επαγγελματικών υπηρεσιών συντήρησης πισίνας και spa, με έδρα τη Σαντορίνη. Μπορείτε να επικοινωνήσετε μαζί μας στο <a href="mailto:info@watercyclesystem.gr" class="text-primary-400 hover:text-primary-300 transition-colors underline">info@watercyclesystem.gr</a> ή στο +30 694 207 2531.</p>
+          <p>Η <strong class="text-primary-400">Water Cycle Systems</strong> είναι εταιρεία παροχής επαγγελματικών
+            υπηρεσιών συντήρησης πισίνας και spa, με έδρα τη Σαντορίνη. Μπορείτε να επικοινωνήσετε μαζί μας στο <a
+              href="mailto:info@watercyclesystem.gr"
+              class="text-primary-400 hover:text-primary-300 transition-colors underline">info@watercyclesystem.gr</a> ή
+            στο +30 694 207 2531.</p>
         </section>
 
         <section>
@@ -602,17 +814,22 @@
 
         <section>
           <h3 class="text-white font-bold text-base mb-2">4. Διαμοιρασμός δεδομένων</h3>
-          <p>Δεν πωλούμε ούτε εκχωρούμε τα προσωπικά σας δεδομένα σε τρίτους. Ενδέχεται να χρησιμοποιούμε αξιόπιστους τρίτους παρόχους (π.χ. υπηρεσία αποστολής email) αποκλειστικά για τη διαβίβαση του μηνύματός σας, υπό την προϋπόθεση ότι δεσμεύονται από αντίστοιχες υποχρεώσεις εμπιστευτικότητας.</p>
+          <p>Δεν πωλούμε ούτε εκχωρούμε τα προσωπικά σας δεδομένα σε τρίτους. Ενδέχεται να χρησιμοποιούμε αξιόπιστους
+            τρίτους παρόχους (π.χ. υπηρεσία αποστολής email) αποκλειστικά για τη διαβίβαση του μηνύματός σας, υπό την
+            προϋπόθεση ότι δεσμεύονται από αντίστοιχες υποχρεώσεις εμπιστευτικότητας.</p>
         </section>
 
         <section>
           <h3 class="text-white font-bold text-base mb-2">5. Cookies</h3>
           <p>Ο ιστότοπος χρησιμοποιεί τα εξής είδη cookies:</p>
           <ul class="list-disc list-inside mt-2 space-y-1 text-slate-400">
-            <li><strong class="text-slate-300">Απαραίτητα cookies:</strong> Για τη βασική λειτουργία του ιστότοπου (π.χ. αποθήκευση γλώσσας, προτίμηση cookies).</li>
-            <li><strong class="text-slate-300">Αναλυτικά cookies (με συγκατάθεση):</strong> Για ανώνυμη ανάλυση επισκεψιμότητας και βελτίωση της εμπειρίας σας.</li>
+            <li><strong class="text-slate-300">Απαραίτητα cookies:</strong> Για τη βασική λειτουργία του ιστότοπου (π.χ.
+              αποθήκευση γλώσσας, προτίμηση cookies).</li>
+            <li><strong class="text-slate-300">Αναλυτικά cookies (με συγκατάθεση):</strong> Για ανώνυμη ανάλυση
+              επισκεψιμότητας και βελτίωση της εμπειρίας σας.</li>
           </ul>
-          <p class="mt-2">Μπορείτε να ανακαλέσετε τη συγκατάθεσή σας για τα analytics cookies ανά πάσα στιγμή διαγράφοντας το localStorage του browser σας.</p>
+          <p class="mt-2">Μπορείτε να ανακαλέσετε τη συγκατάθεσή σας για τα analytics cookies ανά πάσα στιγμή
+            διαγράφοντας το localStorage του browser σας.</p>
         </section>
 
         <section>
@@ -625,42 +842,59 @@
             <li>Φορητότητας των δεδομένων σας</li>
             <li>Εναντίωσης στην επεξεργασία</li>
           </ul>
-          <p class="mt-2">Για οποιοδήποτε αίτημα, επικοινωνήστε μαζί μας στο <a href="mailto:info@watercyclesystem.gr" class="text-primary-400 hover:text-primary-300 transition-colors underline">info@watercyclesystem.gr</a>.</p>
+          <p class="mt-2">Για οποιοδήποτε αίτημα, επικοινωνήστε μαζί μας στο <a href="mailto:info@watercyclesystem.gr"
+              class="text-primary-400 hover:text-primary-300 transition-colors underline">info@watercyclesystem.gr</a>.
+          </p>
         </section>
 
         <section>
           <h3 class="text-white font-bold text-base mb-2">7. Διατήρηση δεδομένων</h3>
-          <p>Τα δεδομένα επικοινωνίας διατηρούνται για όσο διάστημα είναι απαραίτητο για τη διεκπεραίωση του αιτήματός σας και για έως 12 μήνες μετά, εκτός εάν ζητήσετε τη διαγραφή τους νωρίτερα.</p>
+          <p>Τα δεδομένα επικοινωνίας διατηρούνται για όσο διάστημα είναι απαραίτητο για τη διεκπεραίωση του αιτήματός
+            σας και για έως 12 μήνες μετά, εκτός εάν ζητήσετε τη διαγραφή τους νωρίτερα.</p>
         </section>
 
-        <p class="text-slate-500 text-xs border-t border-slate-700/60 pt-4">Για καταγγελίες μπορείτε να απευθυνθείτε στην Αρχή Προστασίας Δεδομένων Προσωπικού Χαρακτήρα (ΑΠΔΠΧ): <a href="https://www.dpa.gr" target="_blank" rel="noopener" class="text-primary-400 hover:text-primary-300 underline transition-colors">www.dpa.gr</a></p>
+        <p class="text-slate-500 text-xs border-t border-slate-700/60 pt-4">Για καταγγελίες μπορείτε να απευθυνθείτε
+          στην Αρχή Προστασίας Δεδομένων Προσωπικού Χαρακτήρα (ΑΠΔΠΧ): <a href="https://www.dpa.gr" target="_blank"
+            rel="noopener" class="text-primary-400 hover:text-primary-300 underline transition-colors">www.dpa.gr</a>
+        </p>
       </div>
       <!-- Footer -->
       <div class="px-7 py-4 border-t border-slate-700/60 shrink-0 flex justify-end">
-        <button id="close-privacy-modal-btn" class="px-6 py-2.5 rounded-full bg-gradient-to-r from-primary-500 to-cyan-500 hover:from-primary-600 hover:to-cyan-600 text-white font-semibold text-sm transition-all duration-200">Κατανοώ &amp; Κλείνω</button>
+        <button id="close-privacy-modal-btn"
+          class="px-6 py-2.5 rounded-full bg-gradient-to-r from-primary-500 to-cyan-500 hover:from-primary-600 hover:to-cyan-600 text-white font-semibold text-sm transition-all duration-200">Κατανοώ
+          &amp; Κλείνω</button>
       </div>
     </div>
   </div>
 
   <!-- Cookie Consent Banner -->
-  <div id="cookie-banner" class="fixed bottom-0 left-0 right-0 z-[9997] cookie-banner-slide" role="region" aria-label="Cookie consent">
+  <div id="cookie-banner" class="fixed bottom-0 left-0 right-0 z-[9997] cookie-banner-slide" role="region"
+    aria-label="Cookie consent">
     <div class="bg-slate-900/95 backdrop-blur-xl border-t border-slate-700/60 shadow-2xl">
-      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4 flex flex-col sm:flex-row items-start sm:items-center gap-4 justify-between">
+      <div
+        class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4 flex flex-col sm:flex-row items-start sm:items-center gap-4 justify-between">
         <div class="flex items-start gap-3 flex-1 min-w-0">
-          <span class="text-xl mt-0.5 shrink-0">🍪</span>
+          <span class="text-xl mt-0.5 shrink-0" aria-hidden="true">🍪</span>
           <p class="text-slate-300 text-sm leading-relaxed">
+            <span class="sr-only">Cookies:</span>
             Ο ιστότοπός μας χρησιμοποιεί cookies για να βελτιώσει την εμπειρία σας και να αναλύσει την επισκεψιμότητα.
-            <button id="cookie-open-privacy" class="text-primary-400 hover:text-primary-300 underline underline-offset-2 transition-colors ml-1 font-medium">Μάθετε περισσότερα</button>
+            <button id="cookie-open-privacy" type="button"
+              class="text-primary-400 hover:text-primary-300 underline underline-offset-2 transition-colors ml-1 font-medium">Μάθετε
+              περισσότερα</button>
           </p>
         </div>
+
         <div class="flex items-center gap-3 shrink-0 w-full sm:w-auto">
-          <button id="cookie-necessary-btn" class="flex-1 sm:flex-none px-5 py-2.5 rounded-full bg-slate-700 hover:bg-slate-600 text-slate-300 hover:text-white text-xs font-semibold transition-all duration-200 border border-slate-600 hover:border-slate-500 whitespace-nowrap">
+          <button id="cookie-necessary-btn" type="button"
+            class="flex-1 sm:flex-none px-5 py-2.5 rounded-full bg-slate-700 hover:bg-slate-600 text-slate-300 hover:text-white text-xs font-semibold transition-all duration-200 border border-slate-600 hover:border-slate-500 whitespace-nowrap">
             Μόνο τα Απαραίτητα
           </button>
-          <button id="cookie-accept-btn" class="flex-1 sm:flex-none px-6 py-2.5 rounded-full bg-gradient-to-r from-primary-500 to-cyan-500 hover:from-primary-600 hover:to-cyan-600 text-white text-xs font-bold transition-all duration-200 shadow-md hover:shadow-cyan-500/25 whitespace-nowrap">
+          <button id="cookie-accept-btn" type="button"
+            class="flex-1 sm:flex-none px-6 py-2.5 rounded-full bg-gradient-to-r from-primary-500 to-cyan-500 hover:from-primary-600 hover:to-cyan-600 text-white text-xs font-bold transition-all duration-200 shadow-md hover:shadow-cyan-500/25 whitespace-nowrap">
             Αποδοχή Όλων
           </button>
         </div>
+
       </div>
     </div>
   </div>
@@ -669,39 +903,47 @@
   <div id="toast-container" class="fixed bottom-5 right-5 z-50 flex flex-col gap-3 max-w-sm w-full px-4 sm:px-0"></div>
 
   <!-- Floating Chat Widget -->
-  <div id="chat-widget-container" class="fixed bottom-[85px] right-5 z-[9999] hidden flex-col glass shadow-2xl rounded-3xl overflow-hidden transition-all duration-300 w-[420px] h-[680px] max-h-[80vh]">
-    <div class="flex-none p-4 bg-gradient-to-r from-primary-600 to-cyan-600 text-white flex items-center justify-between shadow-md">
+  <div id="chat-widget-container"
+    class="fixed bottom-[85px] right-5 z-[9999] hidden flex-col glass shadow-2xl rounded-3xl overflow-hidden transition-all duration-300 w-[420px] h-[680px] max-h-[80vh]">
+    <div
+      class="flex-none p-4 bg-gradient-to-r from-primary-600 to-cyan-600 text-white flex items-center justify-between shadow-md">
       <div class="flex items-center gap-2">
         <div class="w-2 h-2 rounded-full bg-emerald-400 animate-pulse"></div>
         <span data-translate="chat-title" class="font-bold text-sm">Water Cycle Systems Assistant</span>
       </div>
       <div class="flex items-center gap-1">
-        <button id="minimize-chat-btn" class="p-1 hover:bg-white/20 rounded-full transition-colors" title="Minimize">
-          <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <button id="minimize-chat-btn" class="p-1 hover:bg-white/20 rounded-full transition-colors" aria-label="Minimize Chat">
+          <svg aria-hidden="true" focusable="false" class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20 12H4"></path>
           </svg>
         </button>
-        <button id="close-chat-btn" class="p-1 hover:bg-white/20 rounded-full transition-colors" title="Close">
-          <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+
+        <button id="close-chat-btn" class="p-1 hover:bg-white/20 rounded-full transition-colors" aria-label="Close Chat">
+          <svg aria-hidden="true" focusable="false" class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
           </svg>
         </button>
+
       </div>
     </div>
     <div class="flex-1 w-full overflow-y-auto bg-white/50 relative">
       <script type="module" src="https://gradio.s3-us-west-2.amazonaws.com/6.14.0/gradio.js"></script>
-      <gradio-app src="https://nik-greek-water.hf.space" theme_mode="light" eager="true" style="display: block; width: 100%;"></gradio-app>
+      <gradio-app src="https://nik-greek-water.hf.space" theme_mode="light" eager="true"
+        style="display: block; width: 100%;"></gradio-app>
     </div>
   </div>
 
-  <button id="chat-widget-btn" aria-label="Open Chat" class="fixed bottom-6 right-5 z-[9999] px-5 py-3 rounded-full bg-gradient-to-r from-primary-500 to-cyan-500 text-white shadow-lg shadow-cyan-500/30 flex items-center gap-3 hover:scale-105 active:scale-95 transition-all duration-200 group">
+  <button id="chat-widget-btn" aria-label="Open Chat"
+    class="fixed bottom-6 right-5 z-[9999] px-5 py-3 rounded-full bg-gradient-to-r from-primary-500 to-cyan-500 text-white shadow-lg shadow-cyan-500/30 flex items-center gap-3 hover:scale-105 active:scale-95 transition-all duration-200 group">
     <div class="relative flex items-center justify-center">
       <span class="absolute -top-1 -right-1 flex h-3 w-3">
         <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
         <span class="relative inline-flex rounded-full h-3 w-3 bg-emerald-500"></span>
       </span>
       <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 10h.01M12 10h.01M16 10h.01M9 16H5a2 2 0 01-2-2V6a2 2 0 012-2h14a2 2 0 012 2v8a2 2 0 01-2 2h-5l-5 5v-5z"></path>
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+          d="M8 10h.01M12 10h.01M16 10h.01M9 16H5a2 2 0 01-2-2V6a2 2 0 012-2h14a2 2 0 012 2v8a2 2 0 01-2 2h-5l-5 5v-5z">
+        </path>
       </svg>
     </div>
     <span class="font-bold text-xs tracking-widest uppercase pr-1">AI Chat</span>
@@ -710,4 +952,5 @@
   <!-- Custom Javascript application logic -->
   <script src="./js/main.js"></script>
 </body>
+
 </html>

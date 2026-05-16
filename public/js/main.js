@@ -16,8 +16,12 @@ document.addEventListener('DOMContentLoaded', () => {
     langToggleBtn.addEventListener('click', () => {
       window.currentLang = window.currentLang === 'en' ? 'el' : 'en';
       setLanguage(window.currentLang);
+      
+      // Update target language in aria-label
+      langToggleBtn.setAttribute('aria-label', window.currentLang === 'en' ? 'Switch to Greek' : 'Switch to English');
     });
   }
+
 
   // Mobile Menu Toggle Logic
   const mobileMenuBtn = document.getElementById('mobile-menu-btn');
@@ -28,19 +32,27 @@ document.addEventListener('DOMContentLoaded', () => {
       const isHidden = mobileMenu.classList.contains('hidden');
       if (isHidden) {
         mobileMenu.classList.remove('hidden');
-        // Simple animation or transform classes can be extended here
+        mobileMenuBtn.setAttribute('aria-expanded', 'true');
+        mobileMenuBtn.setAttribute('aria-label', 'Close navigation menu');
       } else {
         mobileMenu.classList.add('hidden');
+        mobileMenuBtn.setAttribute('aria-expanded', 'false');
+        mobileMenuBtn.setAttribute('aria-label', 'Open navigation menu');
       }
     });
+
 
     // Close menu when clicking links inside mobile menu
     const mobileLinks = mobileMenu.querySelectorAll('a');
     mobileLinks.forEach(link => {
       link.addEventListener('click', () => {
         mobileMenu.classList.add('hidden');
+        mobileMenuBtn.setAttribute('aria-expanded', 'false');
+        mobileMenuBtn.setAttribute('aria-label', 'Open navigation menu');
+        mobileMenuBtn.focus(); // Return focus to the toggle button
       });
     });
+
   }
 
   // Contact Form Handling
@@ -48,6 +60,8 @@ document.addEventListener('DOMContentLoaded', () => {
   const submitBtn    = document.getElementById('form-submit-btn');
   const submitText   = document.getElementById('submit-text');
   const submitSpinner = document.getElementById('submit-spinner');
+  const formStatus   = document.getElementById('form-status');
+
 
   // ── reCAPTCHA v3 helper ──────────────────────────────────────────────────
   // Reads site key from the button's data-sitekey.
@@ -96,6 +110,8 @@ document.addEventListener('DOMContentLoaded', () => {
       if (submitBtn)    submitBtn.disabled = true;
       if (submitText)   submitText.textContent = isGreek ? 'Επαληθευση...' : 'Verifying...';
       if (submitSpinner) submitSpinner.classList.remove('hidden');
+      if (formStatus)   formStatus.textContent = isGreek ? 'Επαλήθευση στοιχείων...' : 'Verifying details...';
+
 
       try {
         // ── Acquire reCAPTCHA v3 token ───────────────────────────────────
@@ -107,6 +123,8 @@ document.addEventListener('DOMContentLoaded', () => {
 
         // Update loading label now that verification is done
         if (submitText) submitText.textContent = isGreek ? 'Αποστολη...' : 'Sending...';
+        if (formStatus) formStatus.textContent = isGreek ? 'Αποστολή μηνύματος...' : 'Sending message...';
+
 
         // ── Send to API ─────────────────────────────────────────────────
         const response = await fetch('/api/contact', {
@@ -127,13 +145,16 @@ document.addEventListener('DOMContentLoaded', () => {
             'success'
           );
           contactForm.reset();
+          if (formStatus) formStatus.textContent = isGreek ? 'Ευχαριστούμε. Το μήνυμά σας στάλθηκε με επιτυχία.' : 'Thank you. Your message has been sent successfully.';
         } else {
           showToast(
             isGreek ? 'Σφάλμα αποστολής' : 'Error sending message',
             result.error || (isGreek ? 'Αποτυχία αποστολής email.' : 'Failed to dispatch email.'),
             'error'
           );
+          if (formStatus) formStatus.textContent = isGreek ? 'Σφάλμα: ' + (result.error || 'Αποτυχία αποστολής.') : 'Error: ' + (result.error || 'Failed to dispatch.');
         }
+
 
       } catch (err) {
         console.error('Submission processing error:', err);
@@ -142,6 +163,8 @@ document.addEventListener('DOMContentLoaded', () => {
           isGreek ? 'Αδυναμία σύνδεσης στον server. Παρακαλώ δοκιμάστε ξανά.' : 'Could not reach server. Please try again later.',
           'error'
         );
+        if (formStatus) formStatus.textContent = isGreek ? 'Σφάλμα σύνδεσης. Παρακαλώ δοκιμάστε ξανά.' : 'Connection error. Please try again.';
+
       } finally {
         // Revert Loading State
         if (submitBtn)    submitBtn.disabled = false;
@@ -212,7 +235,14 @@ document.addEventListener('DOMContentLoaded', () => {
         const isActive = link.getAttribute('href') === '#' + activeId;
         link.style.color = isActive ? '#06b6d4' : '';
         link.style.fontWeight = isActive ? '700' : '';
+        
+        if (isActive) {
+          link.setAttribute('aria-current', 'page');
+        } else {
+          link.removeAttribute('aria-current');
+        }
       });
+
     }
 
     window.addEventListener('scroll', update, { passive: true });
@@ -262,7 +292,8 @@ function showToast(title, message, type = 'success') {
       <strong class="block font-bold text-sm leading-tight mb-0.5">${title}</strong>
       <span class="block text-xs opacity-90">${message}</span>
     </div>
-    <button onclick="document.getElementById('${toastId}').remove()" class="text-slate-400 hover:text-slate-600 text-xs font-bold p-1">&times;</button>
+    <button onclick="this.parentElement.remove()" class="text-slate-400 hover:text-slate-600 text-xs font-bold p-1" aria-label="Dismiss notification">&times;</button>
+
   `;
 
   container.appendChild(toastEl);
@@ -359,7 +390,7 @@ const translations = {
     "chat-title": "Water Cycle Systems Assistant"
   },
   el: {
-    "brand-loc": "Σαντορίνη",
+    "brand-loc": "Σαντορινη",
     "brand-sub": "Κεντρικά Γραφεία",
     "nav-services": "Υπηρεσίες",
     "nav-about": "Η Εταιρεία",
@@ -367,17 +398,17 @@ const translations = {
     "nav-testimonials": "Κριτικές",
     "nav-contact": "Επικοινωνία",
     "nav-cta": "Επικοινωνία",
-    "hero-badge": "Επίσημος Συνεργάτης Fluidra",
+    "hero-badge": "Επισημος Συνεργατης Fluidra",
     "hero-h1-1": "Φροντίδα Πισίνας & Spa",
     "hero-h1-2": "για Βίλες & Ξενοδοχεία στη Σαντορίνη",
     "hero-p": "Κατασκευή, συντήρηση, ανάλυση νερού και επαγγελματικά χημικά για πισίνες, jacuzzi, χαμάμ και σάουνες. Τοπική υποστήριξη στη Σαντορίνη, με άμεση ανταπόκριση και αξιόπιστο εξοπλισμό Fluidra / AstralPool.",
     "hero-btn-1": "Επικοινωνήστε",
     "hero-btn-2": "Υπηρεσίες",
-    "badge-1": "24/7 Υποστήριξη",
-    "badge-2": "Συνεργάτης Fluidra",
-    "badge-3": "Τεχνική Εξειδίκευση",
-    "overlay-1": "Πιστοποίηση AstralPool",
-    "overlay-2": "Κορυφαίος Εξοπλισμός",
+    "badge-1": "24/7 Υποστηριξη",
+    "badge-2": "Συνεργατης Fluidra",
+    "badge-3": "Τεχνικη Εξειδικευση",
+    "overlay-1": "Πιστοποιηση AstralPool",
+    "overlay-2": "Κορυφαιος Εξοπλισμος",
     "srv-subtitle": "Τοπικες Υπηρεσιες",
     "srv-title": "Ολα όσα χρειάζεται η πισίνα σας, πριν το προσέξει ο επισκέπτης",
     "srv-desc": "Επαγγελματική φροντίδα για βίλες και ξενοδοχεία. Αναλαμβάνουμε το τεχνικό κομμάτι για να είναι οι εγκαταστάσεις σας πάντα καθαρές και ασφαλείς.",
@@ -465,7 +496,14 @@ function setLanguage(lang) {
     submitText.textContent = lang === 'el' ? 'Αποστολη Μηνυματος' : 'Send Message';
   }
 
+  // Update lang toggle aria-label on language change
+  const langToggleBtn = document.getElementById('lang-toggle-btn');
+  if (langToggleBtn) {
+    langToggleBtn.setAttribute('aria-label', lang === 'en' ? 'Switch to Greek' : 'Switch to English');
+  }
+
   // Translate all tagged elements
+
   const elements = document.querySelectorAll('[data-translate]');
   elements.forEach(el => {
     const key = el.getAttribute('data-translate');
@@ -541,6 +579,13 @@ function openPrivacyModal() {
   modal.classList.remove('hidden');
   modal.classList.add('modal-open');
   document.body.style.overflow = 'hidden';
+  
+  // Accessibility: Focus the modal title or first button
+  const focusTarget = modal.querySelector('#privacy-modal-title') || modal.querySelector('button');
+  if (focusTarget) {
+    if (focusTarget.tagName === 'H2') focusTarget.setAttribute('tabindex', '-1');
+    focusTarget.focus();
+  }
 }
 
 function closePrivacyModal() {
@@ -549,7 +594,38 @@ function closePrivacyModal() {
   modal.classList.add('hidden');
   modal.classList.remove('modal-open');
   document.body.style.overflow = '';
+  
+  // Accessibility: Return focus to trigger button
+  const trigger = document.getElementById('open-privacy-modal') || document.getElementById('cookie-open-privacy');
+  if (trigger) trigger.focus();
 }
+
+// Modal Focus Trap Logic
+(function initModalFocusTrap() {
+  const modal = document.getElementById('privacy-modal');
+  if (!modal) return;
+
+  modal.addEventListener('keydown', (e) => {
+    if (e.key !== 'Tab') return;
+    
+    const focusableElements = modal.querySelectorAll('button, [href], input, select, textarea, [tabindex]:not([tabindex="-1"])');
+    const first = focusableElements[0];
+    const last = focusableElements[focusableElements.length - 1];
+
+    if (e.shiftKey) {
+      if (document.activeElement === first) {
+        last.focus();
+        e.preventDefault();
+      }
+    } else {
+      if (document.activeElement === last) {
+        first.focus();
+        e.preventDefault();
+      }
+    }
+  });
+})();
+
 
 (function initPrivacyModal() {
   // Open triggers
