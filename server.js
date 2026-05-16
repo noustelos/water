@@ -40,12 +40,20 @@ app.post('/api/contact', async (req, res) => {
 
     console.log(`Processing contact submission from: ${name} (${email})`);
 
-    // If using a placeholder key, simulate success to verify frontend flow
+    // In development, allow visual/demo form testing without dispatching email.
+    // In production, fail clearly if email delivery is not configured.
     if (!resendApiKey || resendApiKey.startsWith('re_dummy') || resendApiKey === 're_1234567890abcdefghijklmnopqrstuvwxyz') {
-      console.warn('⚠️ Placeholder or missing RESEND_API_KEY detected. Simulating successful email dispatch.');
+      if (process.env.NODE_ENV === 'production') {
+        return res.status(503).json({
+          success: false,
+          error: 'Email delivery is not configured yet.'
+        });
+      }
+
+      console.warn('Missing RESEND_API_KEY; development contact form submission was not emailed.');
       return res.status(200).json({
         success: true,
-        message: 'Message simulated successfully (Placeholder API key active).'
+        message: 'Your message has been received for this demo.'
       });
     }
 

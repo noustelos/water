@@ -72,7 +72,6 @@ document.addEventListener('DOMContentLoaded', () => {
     const action  = submitBtn?.getAttribute('data-action')  || 'submit';
 
     if (!siteKey || siteKey === 'YOUR_SITE_KEY' || typeof grecaptcha === 'undefined') {
-      console.warn('reCAPTCHA: placeholder key or library not loaded — skipping token (dev mode).');
       return null;
     }
 
@@ -105,6 +104,21 @@ document.addEventListener('DOMContentLoaded', () => {
         message: formData.get('message')?.trim()
       };
 
+      function openEmailFallback() {
+        const subject = `Water Cycle Systems inquiry: ${payload.service || 'General Inquiry'}`;
+        const body = [
+          `Name: ${payload.name || ''}`,
+          `Email: ${payload.email || ''}`,
+          `Phone: ${payload.phone || ''}`,
+          `Service: ${payload.service || 'General Inquiry'}`,
+          '',
+          'Message:',
+          payload.message || ''
+        ].join('\n');
+
+        window.location.href = `mailto:info@watercyclesystem.gr?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+      }
+
       // Set Loading State
       const isGreek = window.currentLang === 'el';
       if (submitBtn)    submitBtn.disabled = true;
@@ -136,16 +150,32 @@ document.addEventListener('DOMContentLoaded', () => {
           body: JSON.stringify(payload)
         });
 
-        const result = await response.json();
+        const contentType = response.headers.get('content-type') || '';
+        const result = contentType.includes('application/json') ? await response.json() : {};
+
+        if (response.status === 404 || !contentType.includes('application/json')) {
+          openEmailFallback();
+          showToast(
+            isGreek ? 'Άνοιγμα email' : 'Opening email',
+            isGreek ? 'Άνοιξε το email app σας με προσυμπληρωμένο μήνυμα.' : 'Your email app opened with the message prefilled.',
+            'success'
+          );
+          if (formStatus) formStatus.textContent = isGreek ? 'Άνοιξε το email app σας με προσυμπληρωμένο μήνυμα.' : 'Your email app opened with the message prefilled.';
+          return;
+        }
 
         if (response.ok && result.success) {
+          const successMessage = isGreek
+            ? 'Ευχαριστούμε. Το μήνυμά σας στάλθηκε με επιτυχία.'
+            : (result.message || 'Thank you. Your message has been sent successfully.');
+
           showToast(
             isGreek ? 'Επιτυχία!' : 'Success!',
-            result.message || (isGreek ? 'Ευχαριστούμε. Το μήνυμά σας στάλθηκε με επιτυχία.' : 'Thank you. Your message has been sent successfully.'),
+            successMessage,
             'success'
           );
           contactForm.reset();
-          if (formStatus) formStatus.textContent = isGreek ? 'Ευχαριστούμε. Το μήνυμά σας στάλθηκε με επιτυχία.' : 'Thank you. Your message has been sent successfully.';
+          if (formStatus) formStatus.textContent = successMessage;
         } else {
           showToast(
             isGreek ? 'Σφάλμα αποστολής' : 'Error sending message',
@@ -157,13 +187,13 @@ document.addEventListener('DOMContentLoaded', () => {
 
 
       } catch (err) {
-        console.error('Submission processing error:', err);
+        openEmailFallback();
         showToast(
-          isGreek ? 'Σφάλμα Σύνδεσης' : 'Network Connection Error',
-          isGreek ? 'Αδυναμία σύνδεσης στον server. Παρακαλώ δοκιμάστε ξανά.' : 'Could not reach server. Please try again later.',
-          'error'
+          isGreek ? 'Άνοιγμα email' : 'Opening email',
+          isGreek ? 'Άνοιξε το email app σας με προσυμπληρωμένο μήνυμα.' : 'Your email app opened with the message prefilled.',
+          'success'
         );
-        if (formStatus) formStatus.textContent = isGreek ? 'Σφάλμα σύνδεσης. Παρακαλώ δοκιμάστε ξανά.' : 'Connection error. Please try again.';
+        if (formStatus) formStatus.textContent = isGreek ? 'Άνοιξε το email app σας με προσυμπληρωμένο μήνυμα.' : 'Your email app opened with the message prefilled.';
 
       } finally {
         // Revert Loading State
@@ -179,10 +209,25 @@ document.addEventListener('DOMContentLoaded', () => {
   const closeChatBtn = document.getElementById('close-chat-btn');
   const minimizeChatBtn = document.getElementById('minimize-chat-btn');
   const chatContainer = document.getElementById('chat-widget-container');
+  const chatBody = document.getElementById('chat-widget-body');
+  let chatLoaded = false;
+
+  function loadChatWidget() {
+    if (chatLoaded || !chatBody) return;
+    chatLoaded = true;
+
+    const script = document.createElement('script');
+    script.type = 'module';
+    script.src = 'https://gradio.s3-us-west-2.amazonaws.com/6.14.0/gradio.js';
+    document.body.appendChild(script);
+
+    chatBody.innerHTML = '<gradio-app src="https://nik-greek-water.hf.space" theme_mode="light" eager="true" style="display: block; width: 100%;"></gradio-app>';
+  }
 
   if (chatBtn && chatContainer) {
     chatBtn.addEventListener('click', () => {
       chatContainer.classList.toggle('show-chat');
+      if (chatContainer.classList.contains('show-chat')) loadChatWidget();
       // Hide button when chat is open on mobile
       if (window.innerWidth < 640 && chatContainer.classList.contains('show-chat')) {
         chatBtn.style.display = 'none';
@@ -205,12 +250,10 @@ document.addEventListener('DOMContentLoaded', () => {
     const mobileLinks = Array.from(document.querySelectorAll('#mobile-menu a[href^="#"]'));
     const allLinks = [...desktopLinks, ...mobileLinks];
 
-    if (allLinks.length === 0) { console.warn('ScrollSpy: no nav links found'); return; }
+    if (allLinks.length === 0) return;
 
     // Unique section IDs referenced by desktop nav
     const sectionIds = desktopLinks.map(l => l.getAttribute('href').slice(1));
-
-    console.warn('ScrollSpy ready. Tracking:', sectionIds);
 
     function update() {
       const scrollY = window.scrollY || window.pageYOffset;
@@ -526,6 +569,11 @@ function setLanguage(lang) {
 
   // Push the chat FAB + panel above the banner
   function liftChatUI() {
+    if (window.innerWidth < 640) {
+      if (chatBtn) chatBtn.style.display = 'none';
+      return;
+    }
+
     const h = banner.offsetHeight;
     if (chatBtn)   chatBtn.style.bottom   = (h + GAP) + 'px';
     if (chatPanel) chatPanel.style.bottom = (h + GAP + chatBtn.offsetHeight + 8) + 'px';
@@ -533,7 +581,10 @@ function setLanguage(lang) {
 
   // Reset to Tailwind defaults (bottom-6 = 24px)
   function resetChatUI() {
-    if (chatBtn)   chatBtn.style.bottom   = '';
+    if (chatBtn) {
+      chatBtn.style.bottom = '';
+      chatBtn.style.display = '';
+    }
     if (chatPanel) chatPanel.style.bottom = '';
   }
 
@@ -629,8 +680,8 @@ function closePrivacyModal() {
 
 (function initPrivacyModal() {
   // Open triggers
-  const openBtn = document.getElementById('open-privacy-modal');
-  if (openBtn) openBtn.addEventListener('click', openPrivacyModal);
+  const openBtns = document.querySelectorAll('#open-privacy-modal, [data-open-privacy-modal]');
+  openBtns.forEach((openBtn) => openBtn.addEventListener('click', openPrivacyModal));
 
   // Close triggers: X button, footer button, backdrop click, ESC key
   const closeBtn = document.getElementById('close-privacy-modal');
@@ -645,4 +696,3 @@ function closePrivacyModal() {
     if (e.key === 'Escape') closePrivacyModal();
   });
 })();
-
