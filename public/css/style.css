@@ -246,13 +246,48 @@ label,
 
 
 /* ScrollSpy Navigation Highlight */
-.nav-link-active {
+nav a.nav-link-active,
+#mobile-menu a.nav-link-active {
   color: #06b6d4 !important;
-  font-weight: 700;
-  transition: color 0.3s ease;
+  font-weight: 800 !important;
+  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+  position: relative;
 }
 
-/* Cookie Banner */
+nav a.nav-link-active::after,
+#mobile-menu a.nav-link-active::after {
+  content: '';
+  position: absolute;
+  bottom: -4px;
+  left: 0;
+  width: 100%;
+  height: 2px;
+  background: #06b6d4;
+  border-radius: 2px;
+  box-shadow: 0 0 10px rgba(6, 182, 212, 0.7);
+}
+
+/* Header Scrolled State */
+#main-nav-container.header-scrolled {
+  transform: translateY(-2px);
+}
+
+#main-nav-container.header-scrolled > div {
+  padding-top: 0.5rem;
+}
+
+#main-nav-container.header-scrolled header {
+  background: rgba(255, 255, 255, 0.85);
+  backdrop-filter: blur(24px);
+  padding-top: 0.5rem;
+  padding-bottom: 0.5rem;
+  box-shadow: 0 10px 40px -10px rgba(6, 182, 212, 0.15);
+}
+
+#main-nav-container.header-scrolled .h-14,
+#main-nav-container.header-scrolled .sm\:h-16 {
+  height: 3.5rem;
+}
 @keyframes cookieSlideUp {
   from { transform: translateY(100%); opacity: 0; }
   to   { transform: translateY(0);    opacity: 1; }

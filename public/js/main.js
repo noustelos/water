@@ -55,6 +55,20 @@ document.addEventListener('DOMContentLoaded', () => {
 
   }
 
+  // --- Header Scroll Logic: Toggle background/shadow on scroll ---
+  const headerContainer = document.getElementById('main-nav-container');
+  if (headerContainer) {
+    const handleHeaderScroll = () => {
+      if (window.scrollY > 20) {
+        headerContainer.classList.add('header-scrolled');
+      } else {
+        headerContainer.classList.remove('header-scrolled');
+      }
+    };
+    window.addEventListener('scroll', handleHeaderScroll, { passive: true });
+    handleHeaderScroll(); // Initial check
+  }
+
   // Contact Form Handling
   const contactForm  = document.getElementById('noustelos-contact-form');
   const submitBtn    = document.getElementById('form-submit-btn');
@@ -257,11 +271,11 @@ document.addEventListener('DOMContentLoaded', () => {
 
     function update() {
       const scrollY = window.scrollY || window.pageYOffset;
-      const threshold = scrollY + window.innerHeight * 0.4;
+      const threshold = scrollY + 120; // Trigger highlight when section is 120px from top
       let activeId = null;
 
       // If scrolled to (or very near) the bottom of the page, always activate last section
-      const nearBottom = (window.innerHeight + scrollY) >= (document.documentElement.scrollHeight - 40);
+      const nearBottom = (window.innerHeight + scrollY) >= (document.documentElement.scrollHeight - 100);
 
       if (nearBottom && sectionIds.length > 0) {
         activeId = sectionIds[sectionIds.length - 1];
@@ -269,19 +283,20 @@ document.addEventListener('DOMContentLoaded', () => {
         sectionIds.forEach(id => {
           const section = document.getElementById(id);
           if (!section) return;
-          const sectionTop = section.getBoundingClientRect().top + scrollY;
+          const sectionTop = section.offsetTop;
           if (sectionTop <= threshold) activeId = id;
         });
       }
 
       allLinks.forEach(link => {
-        const isActive = link.getAttribute('href') === '#' + activeId;
-        link.style.color = isActive ? '#06b6d4' : '';
-        link.style.fontWeight = isActive ? '700' : '';
+        const targetId = link.getAttribute('href').slice(1);
+        const isActive = targetId === activeId;
         
         if (isActive) {
+          link.classList.add('nav-link-active');
           link.setAttribute('aria-current', 'page');
         } else {
+          link.classList.remove('nav-link-active');
           link.removeAttribute('aria-current');
         }
       });
