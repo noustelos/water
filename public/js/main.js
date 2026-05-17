@@ -203,6 +203,24 @@ document.addEventListener('DOMContentLoaded', () => {
     chatBody.innerHTML = `<div class="h-full flex items-center justify-center p-6 text-center text-slate-600 text-sm"><span data-translate="${key}">${fallback}</span></div>`;
   }
 
+  // Pre-load Gradio script in the background after page load to cache it and register
+  // the custom element early, making the widget open instantly on mobile devices.
+  function preloadGradioScript() {
+    if (customElements.get('gradio-app')) return;
+    
+    let script = document.querySelector('script[src*="gradio.js"]');
+    if (!script) {
+      script = document.createElement('script');
+      script.type = 'module';
+      script.src = 'https://gradio.s3-us-west-2.amazonaws.com/6.14.0/gradio.js';
+      script.async = true;
+      document.body.appendChild(script);
+    }
+  }
+
+  // Delay the preload slightly so it does not compete with critical initial page load resources
+  setTimeout(preloadGradioScript, 1500);
+
   function loadChatWidget() {
     if (chatLoaded || !chatBody) return;
     chatLoaded = true;
@@ -217,15 +235,19 @@ document.addEventListener('DOMContentLoaded', () => {
       return;
     }
 
-    const script = document.createElement('script');
-    script.type = 'module';
-    script.src = 'https://gradio.s3-us-west-2.amazonaws.com/6.14.0/gradio.js';
+    let script = document.querySelector('script[src*="gradio.js"]');
+    if (!script) {
+      script = document.createElement('script');
+      script.type = 'module';
+      script.src = 'https://gradio.s3-us-west-2.amazonaws.com/6.14.0/gradio.js';
+      document.body.appendChild(script);
+    }
+
     script.addEventListener('load', mountChatApp, { once: true });
     script.addEventListener('error', () => {
       setChatMessage('chat-error', window.currentLang === 'el' ? 'Ο βοηθός δεν φορτώθηκε. Παρακαλούμε επικοινωνήστε απευθείας με την εταιρεία.' : 'The assistant could not load. Please contact the company directly.');
       chatLoaded = false;
     });
-    document.body.appendChild(script);
   }
 
   if (chatBtn && chatContainer) {
