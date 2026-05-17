@@ -278,6 +278,38 @@ nav a.nav-link-active::after,
 }
 
 /* Header Scrolled State */
+.brand-logo-header {
+  height: 4rem;
+  width: auto;
+  max-width: 11rem;
+  flex: 0 0 auto;
+}
+
+.footer-logo-frame {
+  padding: 0.65rem 0.9rem;
+  border: 1px solid rgba(255, 255, 255, 0.16);
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.96);
+}
+
+.brand-logo-footer {
+  height: 5.25rem;
+  width: auto;
+  max-width: 14rem;
+}
+
+@media (min-width: 640px) {
+  .brand-logo-header {
+    height: 4.5rem;
+    max-width: 12.5rem;
+  }
+
+  .brand-logo-footer {
+    height: 6.25rem;
+    max-width: 16rem;
+  }
+}
+
 #main-nav-container.header-scrolled {
   transform: translateY(-2px);
 }
@@ -294,9 +326,9 @@ nav a.nav-link-active::after,
   box-shadow: 0 10px 40px -10px rgba(6, 182, 212, 0.15);
 }
 
-#main-nav-container.header-scrolled .h-16,
-#main-nav-container.header-scrolled .sm\:h-20 {
+#main-nav-container.header-scrolled .brand-logo-header {
   height: 3.5rem;
+  max-width: 9.75rem;
 }
 @keyframes cookieSlideUp {
   from { transform: translateY(100%); opacity: 0; }
