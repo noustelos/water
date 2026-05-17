@@ -294,8 +294,8 @@ nav a.nav-link-active::after,
   box-shadow: 0 10px 40px -10px rgba(6, 182, 212, 0.15);
 }
 
-#main-nav-container.header-scrolled .h-14,
-#main-nav-container.header-scrolled .sm\:h-16 {
+#main-nav-container.header-scrolled .h-16,
+#main-nav-container.header-scrolled .sm\:h-20 {
   height: 3.5rem;
 }
 @keyframes cookieSlideUp {
