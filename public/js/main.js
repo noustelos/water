@@ -16,9 +16,6 @@ document.addEventListener('DOMContentLoaded', () => {
     langToggleBtn.addEventListener('click', () => {
       window.currentLang = window.currentLang === 'en' ? 'el' : 'en';
       setLanguage(window.currentLang);
-      
-      // Update target language in aria-label
-      langToggleBtn.setAttribute('aria-label', window.currentLang === 'en' ? 'Switch to Greek' : 'Switch to English');
     });
   }
 
@@ -33,13 +30,13 @@ document.addEventListener('DOMContentLoaded', () => {
       if (isHidden) {
         mobileMenu.classList.remove('hidden');
         mobileMenuBtn.setAttribute('aria-expanded', 'true');
-        mobileMenuBtn.setAttribute('aria-label', 'Close navigation menu');
+        mobileMenuBtn.setAttribute('aria-label', window.currentLang === 'el' ? 'Κλείσιμο μενού πλοήγησης' : 'Close navigation menu');
         const firstLink = mobileMenu.querySelector('a');
         if (firstLink) firstLink.focus();
       } else {
         mobileMenu.classList.add('hidden');
         mobileMenuBtn.setAttribute('aria-expanded', 'false');
-        mobileMenuBtn.setAttribute('aria-label', 'Open navigation menu');
+        mobileMenuBtn.setAttribute('aria-label', window.currentLang === 'el' ? 'Άνοιγμα μενού πλοήγησης' : 'Open navigation menu');
       }
     });
 
@@ -50,7 +47,7 @@ document.addEventListener('DOMContentLoaded', () => {
       link.addEventListener('click', () => {
         mobileMenu.classList.add('hidden');
         mobileMenuBtn.setAttribute('aria-expanded', 'false');
-        mobileMenuBtn.setAttribute('aria-label', 'Open navigation menu');
+        mobileMenuBtn.setAttribute('aria-label', window.currentLang === 'el' ? 'Άνοιγμα μενού πλοήγησης' : 'Open navigation menu');
         mobileMenuBtn.focus(); // Return focus to the toggle button
       });
     });
@@ -61,7 +58,7 @@ document.addEventListener('DOMContentLoaded', () => {
     if (e.key === 'Escape' && mobileMenu && mobileMenuBtn && !mobileMenu.classList.contains('hidden')) {
       mobileMenu.classList.add('hidden');
       mobileMenuBtn.setAttribute('aria-expanded', 'false');
-      mobileMenuBtn.setAttribute('aria-label', 'Open navigation menu');
+      mobileMenuBtn.setAttribute('aria-label', window.currentLang === 'el' ? 'Άνοιγμα μενού πλοήγησης' : 'Open navigation menu');
       mobileMenuBtn.focus();
     }
   });
@@ -120,13 +117,13 @@ document.addEventListener('DOMContentLoaded', () => {
       // Set Loading State
       const isGreek = window.currentLang === 'el';
       if (submitBtn)    submitBtn.disabled = true;
-      if (submitText)   submitText.textContent = isGreek ? 'Προετοιμασια...' : 'Preparing...';
+      if (submitText)   submitText.textContent = isGreek ? 'Προετοιμασία...' : 'Preparing...';
       if (submitSpinner) submitSpinner.classList.remove('hidden');
       if (formStatus)   formStatus.textContent = isGreek ? 'Προετοιμασία αποστολής...' : 'Preparing submission...';
 
 
       try {
-        if (submitText) submitText.textContent = isGreek ? 'Αποστολη...' : 'Sending...';
+        if (submitText) submitText.textContent = isGreek ? 'Αποστολή...' : 'Sending...';
         if (formStatus) formStatus.textContent = isGreek ? 'Αποστολή μηνύματος...' : 'Sending message...';
 
 
@@ -187,7 +184,7 @@ document.addEventListener('DOMContentLoaded', () => {
       } finally {
         // Revert Loading State
         if (submitBtn)    submitBtn.disabled = false;
-        if (submitText)   submitText.textContent = isGreek ? 'Αποστολη Μηνυματος' : 'Send Message';
+        if (submitText)   submitText.textContent = isGreek ? 'Αποστολή Μηνύματος' : 'Send Message';
         if (submitSpinner) submitSpinner.classList.add('hidden');
       }
     });
@@ -201,23 +198,51 @@ document.addEventListener('DOMContentLoaded', () => {
   const chatBody = document.getElementById('chat-widget-body');
   let chatLoaded = false;
 
+  function setChatMessage(key, fallback) {
+    if (!chatBody) return;
+    chatBody.innerHTML = `<div class="h-full flex items-center justify-center p-6 text-center text-slate-600 text-sm"><span data-translate="${key}">${fallback}</span></div>`;
+  }
+
   function loadChatWidget() {
     if (chatLoaded || !chatBody) return;
     chatLoaded = true;
+    setChatMessage('chat-loading', window.currentLang === 'el' ? 'Φόρτωση βοηθού...' : 'Loading assistant...');
+
+    const mountChatApp = () => {
+      chatBody.innerHTML = '<gradio-app src="https://nik-greek-water.hf.space" theme_mode="light" eager="true" style="display: block; width: 100%; min-height: 100%;"></gradio-app>';
+    };
+
+    if (customElements.get('gradio-app')) {
+      mountChatApp();
+      return;
+    }
 
     const script = document.createElement('script');
     script.type = 'module';
     script.src = 'https://gradio.s3-us-west-2.amazonaws.com/6.14.0/gradio.js';
+    script.addEventListener('load', mountChatApp, { once: true });
+    script.addEventListener('error', () => {
+      setChatMessage('chat-error', window.currentLang === 'el' ? 'Ο βοηθός δεν φορτώθηκε. Παρακαλούμε επικοινωνήστε απευθείας με την εταιρεία.' : 'The assistant could not load. Please contact the company directly.');
+      chatLoaded = false;
+    });
     document.body.appendChild(script);
-
-    chatBody.innerHTML = '<gradio-app src="https://nik-greek-water.hf.space" theme_mode="light" eager="true" style="display: block; width: 100%;"></gradio-app>';
   }
-
-  loadChatWidget();
 
   if (chatBtn && chatContainer) {
     chatBtn.addEventListener('click', () => {
+      const isOpening = !chatContainer.classList.contains('show-chat');
       chatContainer.classList.toggle('show-chat');
+      chatBtn.setAttribute('aria-expanded', isOpening ? 'true' : 'false');
+      chatBtn.setAttribute('aria-label', window.currentLang === 'el'
+        ? (isOpening ? 'Κλείσιμο AI chat' : 'Άνοιγμα AI chat')
+        : (isOpening ? 'Close AI chat' : 'Open AI chat'));
+      if (isOpening) {
+        loadChatWidget();
+        const focusTarget = minimizeChatBtn || closeChatBtn;
+        if (focusTarget) focusTarget.focus();
+      } else {
+        chatBtn.focus();
+      }
       // Hide button when chat is open on mobile
       if (window.innerWidth < 640 && chatContainer.classList.contains('show-chat')) {
         chatBtn.style.display = 'none';
@@ -227,11 +252,22 @@ document.addEventListener('DOMContentLoaded', () => {
 
   const hideChat = () => {
     chatContainer.classList.remove('show-chat');
-    if (chatBtn) chatBtn.style.display = 'flex';
+    if (chatBtn) {
+      chatBtn.style.display = 'flex';
+      chatBtn.setAttribute('aria-expanded', 'false');
+      chatBtn.setAttribute('aria-label', window.currentLang === 'el' ? 'Άνοιγμα AI chat' : 'Open AI chat');
+      chatBtn.focus();
+    }
   };
 
   if (closeChatBtn && chatContainer) closeChatBtn.addEventListener('click', hideChat);
   if (minimizeChatBtn && chatContainer) minimizeChatBtn.addEventListener('click', hideChat);
+
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape' && chatContainer && chatContainer.classList.contains('show-chat')) {
+      hideChat();
+    }
+  });
 
   document.querySelectorAll('[data-service]').forEach((link) => {
     link.addEventListener('click', () => {
@@ -371,20 +407,20 @@ const translations = {
     "nav-standards": "Partnership",
     "nav-contact": "Contact",
     "nav-cta": "Contact Us",
-    "hero-badge": "Official Fluidra Partner",
+    "hero-badge": "Fluidra / AstralPool Equipment Partner",
     "hero-h1-1": "Pool & Spa Care",
     "hero-h1-2": "for Santorini Villas & Hotels",
-    "hero-p": "Construction, maintenance, water analysis and professional chemicals for pools, jacuzzis, hamams and saunas. Local support in Santorini, with fast response and trusted equipment from Fluidra / AstralPool.",
+    "hero-p": "Construction, maintenance, water analysis and professional equipment support for pools, jacuzzis, hamams and saunas. Local service in Santorini, with fast response and trusted Fluidra / AstralPool solutions.",
     "hero-btn-1": "Contact Us",
     "hero-btn-2": "Explore Services",
     "badge-1": "24/7 Support",
-    "badge-2": "Fluidra Partner",
+    "badge-2": "Equipment Partner",
     "badge-3": "Expert Tech",
-    "overlay-1": "AstralPool Certified",
+    "overlay-1": "Equipment Partner",
     "overlay-2": "Premium Equipment",
-    "srv-subtitle": "Local Services",
+    "srv-subtitle": "Services",
     "srv-title": "Everything Your Pool Needs Before Guests Notice a Problem",
-    "srv-desc": "Professional care for villas and resorts. We handle the technical work so your facilities are always clean, safe, and ready.",
+    "srv-desc": "Professional pool and spa care for villas, hotels and resorts. We handle the technical work so your facilities stay clean, safe and guest-ready throughout the season.",
     "srv-card1-title": "Design & Construction",
     "srv-card1-desc": "Custom pools, jacuzzis, hamams, and saunas tailored for boutique hotels and luxury private villas.",
     "srv-card2-title": "Seasonal & Year-Round Maintenance",
@@ -396,16 +432,16 @@ const translations = {
     "srv-inquire": "Inquire Service &rarr;",
     "abt-subtitle": "Local Support",
     "abt-title": "In Santorini, a pool is part of the guest experience.",
-    "abt-p1": "A cloudy pool, a cold jacuzzi or a chemical imbalance can turn into a complaint fast. Water Cycle System provides local, professional pool and spa support for properties that cannot afford downtime during the season.",
-    "abt-p2": "We combine technical knowledge, water analysis and fast response, helping villas and hotels keep their facilities clean, safe and ready every day.",
+    "abt-p1": "A cloudy pool, a cold jacuzzi or a chemical imbalance can turn into a complaint fast. Water Cycle System provides professional pool and spa support for properties that need every facility guest-ready throughout the season.",
+    "abt-p2": "We combine technical knowledge, careful water analysis and reliable local service, helping villas and hotels keep their facilities clean, safe and ready every day.",
     "abt-feat1-title": "Local Technicians",
-    "abt-feat1-desc": "Based in Santorini for fast response when your property needs it most.",
+    "abt-feat1-desc": "Based in Santorini for timely support when your property needs it most.",
     "abt-feat2-title": "Detailed Logging",
     "abt-feat2-desc": "Detailed chemical logs so property managers always know the state of their pools.",
-    "part-subtitle": "Official Partner",
+    "part-subtitle": "Equipment Partner",
     "part-title": "Trusted Equipment for Professional Properties.",
-    "part-copy": "As an official partner of Fluidra S.A. and AstralPool, we supply and install professional-grade pool and spa equipment built for heavy seasonal use.",
-    "part-feat1": "Official access to AstralPool's full range of professional equipment.",
+    "part-copy": "As a Fluidra / AstralPool equipment partner, we supply and install professional-grade pool and spa equipment built for heavy seasonal use.",
+    "part-feat1": "Access to AstralPool's professional pool and spa equipment range.",
     "part-feat2": "Direct technical support and fast access to original spare parts.",
     "part-feat3": "Equipment built for the heavy demands of commercial pools and spas.",
     "cnt-subtitle": "Direct Support",
@@ -427,10 +463,14 @@ const translations = {
     "ft-copyright": "<strong class=\"font-bold text-primary-500\">Water Cycle System</strong>. All rights reserved.",
     "ft-privacy": "Privacy Policy",
     "ft-terms": "Terms of Service",
-    "chat-title": "Water Cycle System Assistant"
+    "chat-title": "Water Cycle System Assistant",
+    "chat-disclaimer": "This assistant provides general information about Water Cycle System services. For confirmed pricing, availability or urgent technical support, please contact the company directly.",
+    "chat-ready": "Open the chat to load the assistant.",
+    "chat-loading": "Loading assistant...",
+    "chat-error": "The assistant could not load. Please contact the company directly."
   },
   el: {
-    "brand-loc": "Σαντορινη",
+    "brand-loc": "Σαντορίνη",
     "brand-sub": "Κεντρικά Γραφεία",
     "brand-region": "ΚΥΚΛΑΔΕΣ",
     "nav-services": "Υπηρεσίες",
@@ -438,20 +478,20 @@ const translations = {
     "nav-standards": "Συνεργασία",
     "nav-contact": "Επικοινωνία",
     "nav-cta": "Επικοινωνία",
-    "hero-badge": "Επισημος Συνεργατης Fluidra",
+    "hero-badge": "Συνεργάτης Εξοπλισμού Fluidra / AstralPool",
     "hero-h1-1": "Φροντίδα Πισίνας & Spa",
     "hero-h1-2": "για Βίλες & Ξενοδοχεία στη Σαντορίνη",
-    "hero-p": "Κατασκευή, συντήρηση, ανάλυση νερού και επαγγελματικά χημικά για πισίνες, jacuzzi, χαμάμ και σάουνες. Τοπική υποστήριξη στη Σαντορίνη, με άμεση ανταπόκριση και αξιόπιστο εξοπλισμό Fluidra / AstralPool.",
-    "hero-btn-1": "Επικοινωνήστε",
+    "hero-p": "Κατασκευή, συντήρηση, ανάλυση νερού και επαγγελματική υποστήριξη εξοπλισμού για πισίνες, jacuzzi, χαμάμ και σάουνες. Τοπική εξυπηρέτηση στη Σαντορίνη, με άμεση ανταπόκριση και αξιόπιστες λύσεις Fluidra / AstralPool.",
+    "hero-btn-1": "Επικοινωνία",
     "hero-btn-2": "Υπηρεσίες",
-    "badge-1": "24/7 Υποστηριξη",
-    "badge-2": "Συνεργατης Fluidra",
-    "badge-3": "Τεχνικη Εξειδικευση",
-    "overlay-1": "Πιστοποιηση AstralPool",
-    "overlay-2": "Κορυφαιος Εξοπλισμος",
-    "srv-subtitle": "Τοπικες Υπηρεσιες",
-    "srv-title": "Ολα όσα χρειάζεται η πισίνα σας, πριν το προσέξει ο επισκέπτης",
-    "srv-desc": "Επαγγελματική φροντίδα για βίλες και ξενοδοχεία. Αναλαμβάνουμε το τεχνικό κομμάτι για να είναι οι εγκαταστάσεις σας πάντα καθαρές και ασφαλείς.",
+    "badge-1": "24/7 Υποστήριξη",
+    "badge-2": "Συνεργάτης Εξοπλισμού",
+    "badge-3": "Τεχνική Εξειδίκευση",
+    "overlay-1": "Συνεργάτης Εξοπλισμού",
+    "overlay-2": "Κορυφαίος Εξοπλισμός",
+    "srv-subtitle": "Υπηρεσίες",
+    "srv-title": "Όλα όσα χρειάζεται η πισίνα σας, πριν το προσέξει ο επισκέπτης",
+    "srv-desc": "Επαγγελματική φροντίδα πισίνας και spa για βίλες, ξενοδοχεία και resorts. Αναλαμβάνουμε το τεχνικό κομμάτι, ώστε οι εγκαταστάσεις σας να παραμένουν καθαρές, ασφαλείς και έτοιμες για επισκέπτες όλη τη σεζόν.",
     "srv-card1-title": "Σχεδιασμός & Κατασκευή",
     "srv-card1-desc": "Προσαρμοσμένες πισίνες, jacuzzi, χαμάμ και σάουνες, ιδανικές για boutique ξενοδοχεία και πολυτελείς βίλες.",
     "srv-card2-title": "Εποχιακή & Ετήσια Συντήρηση",
@@ -461,40 +501,44 @@ const translations = {
     "srv-card4-title": "Υποστήριξη Εξοπλισμού",
     "srv-card4-desc": "Άμεσες τοπικές επισκευές και λύσεις αυτοματοποιημένου καθαρισμού με ρομπότ Zodiac & Polaris.",
     "srv-inquire": "Εκδήλωση Ενδιαφέροντος &rarr;",
-    "abt-subtitle": "Τοπικη Υποστηριξη",
+    "abt-subtitle": "Τοπική Υποστήριξη",
     "abt-title": "Στη Σαντορίνη, η πισίνα είναι μέρος της εμπειρίας του επισκέπτη.",
-    "abt-p1": "Θολό νερό, πρόβλημα στο jacuzzi ή λάθος χημική ισορροπία μπορούν πολύ γρήγορα να γίνουν παράπονο. Η Water Cycle System προσφέρει τοπική, επαγγελματική υποστήριξη για βίλες και ξενοδοχειακές μονάδες που δεν έχουν περιθώριο για προβλήματα μέσα στη σεζόν.",
-    "abt-p2": "Συνδυάζουμε τεχνική γνώση, ανάλυση νερού και άμεση ανταπόκριση, ώστε οι εγκαταστάσεις σας να παραμένουν καθαρές, ασφαλείς και έτοιμες κάθε μέρα.",
+    "abt-p1": "Θολό νερό, κρύο jacuzzi ή λάθος χημική ισορροπία μπορούν γρήγορα να γίνουν παράπονο. Η Water Cycle System προσφέρει επαγγελματική υποστήριξη πισίνας και spa για βίλες και ξενοδοχειακές μονάδες που χρειάζονται εγκαταστάσεις πάντα έτοιμες για επισκέπτες μέσα στη σεζόν.",
+    "abt-p2": "Συνδυάζουμε τεχνική γνώση, προσεκτική ανάλυση νερού και αξιόπιστη τοπική εξυπηρέτηση, ώστε οι εγκαταστάσεις σας να παραμένουν καθαρές, ασφαλείς και έτοιμες κάθε μέρα.",
     "abt-feat1-title": "Τοπικοί Τεχνικοί",
     "abt-feat1-desc": "Με έδρα τη Σαντορίνη για άμεση ανταπόκριση όταν η εγκατάστασή σας το χρειάζεται.",
     "abt-feat2-title": "Αναλυτική Καταγραφή",
     "abt-feat2-desc": "Αναλυτικά αρχεία χημικών ώστε οι διαχειριστές να γνωρίζουν πάντα την κατάσταση.",
-    "part-subtitle": "Επισημος Συνεργατης",
+    "part-subtitle": "Συνεργάτης Εξοπλισμού",
     "part-title": "Αξιόπιστος Εξοπλισμός για Επαγγελματικές Εγκαταστάσεις.",
-    "part-copy": "Ως επίσημος συνεργάτης της Fluidra S.A. και της AstralPool, παρέχουμε και εγκαθιστούμε επαγγελματικό εξοπλισμό πισίνας και spa, κατασκευασμένο για βαριά εποχιακή χρήση.",
-    "part-feat1": "Επίσημη πρόσβαση στην πλήρη γκάμα επαγγελματικού εξοπλισμού της AstralPool.",
+    "part-copy": "Ως συνεργάτης εξοπλισμού Fluidra / AstralPool, παρέχουμε και εγκαθιστούμε επαγγελματικό εξοπλισμό πισίνας και spa, κατασκευασμένο για βαριά εποχιακή χρήση.",
+    "part-feat1": "Πρόσβαση σε επαγγελματικό εξοπλισμό πισίνας και spa της AstralPool.",
     "part-feat2": "Άμεση τεχνική υποστήριξη και γρήγορη πρόσβαση σε γνήσια ανταλλακτικά.",
     "part-feat3": "Εξοπλισμός σχεδιασμένος για τις υψηλές απαιτήσεις των εμπορικών κολυμβητηρίων και spa.",
-    "cnt-subtitle": "Αμεση Υποστηριξη",
+    "cnt-subtitle": "Άμεση Υποστήριξη",
     "cnt-title": "Θέλετε η πισίνα να είναι έτοιμη πριν το επόμενο check-in;",
     "cnt-desc": "Πείτε μας τι ακίνητο διαχειρίζεστε και τι υποστήριξη χρειάζεστε. Θα επικοινωνήσουμε μαζί σας με ξεκάθαρο επόμενο βήμα.",
     "cnt-btn-phone": "+30 694 207 2531",
     "cnt-btn-email": "info@watercyclesystem.gr",
-    "cnt-lbl-name": "Ονοματεπωνυμο *",
-    "cnt-lbl-email": "Διευθυνση Email *",
-    "cnt-lbl-phone": "Τηλεφωνο Επικοινωνιας",
-    "cnt-lbl-service": "Υπηρεσια Ενδιαφεροντος",
+    "cnt-lbl-name": "Ονοματεπώνυμο *",
+    "cnt-lbl-email": "Διεύθυνση Email *",
+    "cnt-lbl-phone": "Τηλέφωνο Επικοινωνίας",
+    "cnt-lbl-service": "Υπηρεσία Ενδιαφέροντος",
     "opt-1": "Σχεδιασμός & Κατασκευή",
     "opt-2": "Εποχιακή & Ετήσια Συντήρηση",
     "opt-3": "Ανάλυση Νερού & Χημικά",
     "opt-4": "Υποστήριξη Εξοπλισμού",
     "opt-5": "Γενική Ερώτηση",
-    "cnt-lbl-message": "Μηνυμα *",
-    "cnt-submit": "Αποστολη Μηνυματος",
+    "cnt-lbl-message": "Μήνυμα *",
+    "cnt-submit": "Αποστολή Μηνύματος",
     "ft-copyright": "<strong class=\"font-bold text-primary-500\">Water Cycle System</strong>. Με την επιφύλαξη παντός δικαιώματος.",
     "ft-privacy": "Πολιτική Απορρήτου",
-    "ft-terms": "Οροι Υπηρεσιών",
-    "chat-title": "Βοηθός Water Cycle System"
+    "ft-terms": "Όροι Υπηρεσιών",
+    "chat-title": "Βοηθός Water Cycle System",
+    "chat-disclaimer": "Ο βοηθός παρέχει γενικές πληροφορίες για τις υπηρεσίες της Water Cycle System. Για επιβεβαιωμένες τιμές, διαθεσιμότητα ή άμεση τεχνική υποστήριξη, επικοινωνήστε απευθείας με την εταιρεία.",
+    "chat-ready": "Ανοίξτε το chat για να φορτώσει ο βοηθός.",
+    "chat-loading": "Φόρτωση βοηθού...",
+    "chat-error": "Ο βοηθός δεν φορτώθηκε. Παρακαλούμε επικοινωνήστε απευθείας με την εταιρεία."
   }
 };
 
@@ -522,13 +566,40 @@ function setLanguage(lang) {
   // Update dynamic submit button text if form is present
   const submitText = document.getElementById('submit-text');
   if (submitText) {
-    submitText.textContent = lang === 'el' ? 'Αποστολη Μηνυματος' : 'Send Message';
+    submitText.textContent = lang === 'el' ? 'Αποστολή Μηνύματος' : 'Send Message';
   }
 
   // Update lang toggle aria-label on language change
   const langToggleBtn = document.getElementById('lang-toggle-btn');
   if (langToggleBtn) {
     langToggleBtn.setAttribute('aria-label', lang === 'en' ? 'Switch to Greek' : 'Switch to English');
+  }
+
+  const mobileMenuBtn = document.getElementById('mobile-menu-btn');
+  const mobileMenu = document.getElementById('mobile-menu');
+  if (mobileMenuBtn && mobileMenu) {
+    const menuOpen = !mobileMenu.classList.contains('hidden');
+    mobileMenuBtn.setAttribute('aria-label', lang === 'el'
+      ? (menuOpen ? 'Κλείσιμο μενού πλοήγησης' : 'Άνοιγμα μενού πλοήγησης')
+      : (menuOpen ? 'Close navigation menu' : 'Open navigation menu'));
+  }
+
+  const chatBtn = document.getElementById('chat-widget-btn');
+  if (chatBtn) {
+    const chatOpen = chatBtn.getAttribute('aria-expanded') === 'true';
+    chatBtn.setAttribute('aria-label', lang === 'el'
+      ? (chatOpen ? 'Κλείσιμο AI chat' : 'Άνοιγμα AI chat')
+      : (chatOpen ? 'Close AI chat' : 'Open AI chat'));
+  }
+
+  const minimizeChatBtn = document.getElementById('minimize-chat-btn');
+  if (minimizeChatBtn) {
+    minimizeChatBtn.setAttribute('aria-label', lang === 'el' ? 'Ελαχιστοποίηση chat' : 'Minimize chat');
+  }
+
+  const closeChatBtn = document.getElementById('close-chat-btn');
+  if (closeChatBtn) {
+    closeChatBtn.setAttribute('aria-label', lang === 'el' ? 'Κλείσιμο chat' : 'Close chat');
   }
 
   // Translate all tagged elements
@@ -574,15 +645,20 @@ function setLanguage(lang) {
     if (chatPanel) chatPanel.style.bottom = '';
   }
 
-  // Hide banner immediately if consent already given
-  if (localStorage.getItem(COOKIE_KEY)) {
-    banner.style.display = 'none';
-    return;
+  function showBanner() {
+    banner.style.display = '';
+    banner.classList.remove('cookie-banner-hide');
+    banner.classList.add('cookie-banner-slide');
+    liftChatUI();
+    window.addEventListener('resize', liftChatUI, { passive: true });
+    const firstButton = banner.querySelector('button');
+    if (firstButton) firstButton.focus();
   }
 
-  // Lift on first paint, and again if window resizes (banner height may change on mobile)
-  liftChatUI();
-  window.addEventListener('resize', liftChatUI, { passive: true });
+  function hideBannerImmediately() {
+    banner.style.display = 'none';
+    resetChatUI();
+  }
 
   function dismissBanner(consentValue) {
     localStorage.setItem(COOKIE_KEY, consentValue);
@@ -597,14 +673,27 @@ function setLanguage(lang) {
 
   const acceptBtn    = document.getElementById('cookie-accept-btn');
   const necessaryBtn = document.getElementById('cookie-necessary-btn');
+  const preferencesBtn = document.getElementById('open-cookie-preferences');
 
-  if (acceptBtn)    acceptBtn.addEventListener('click',    () => dismissBanner('all'));
+  if (acceptBtn)    acceptBtn.addEventListener('click',    () => dismissBanner('accepted'));
   if (necessaryBtn) necessaryBtn.addEventListener('click', () => dismissBanner('necessary'));
+  if (preferencesBtn) {
+    preferencesBtn.addEventListener('click', () => {
+      localStorage.removeItem(COOKIE_KEY);
+      showBanner();
+    });
+  }
 
   // "Μάθετε περισσότερα" opens the privacy modal
   const cookieOpenPrivacy = document.getElementById('cookie-open-privacy');
   if (cookieOpenPrivacy) {
     cookieOpenPrivacy.addEventListener('click', () => openPrivacyModal());
+  }
+
+  if (localStorage.getItem(COOKIE_KEY)) {
+    hideBannerImmediately();
+  } else {
+    showBanner();
   }
 })();
 
