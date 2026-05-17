@@ -196,18 +196,45 @@ document.addEventListener('DOMContentLoaded', () => {
   const minimizeChatBtn = document.getElementById('minimize-chat-btn');
   const chatContainer = document.getElementById('chat-widget-container');
   const chatBody = document.getElementById('chat-widget-body');
+  const HF_SPACE_URL = 'https://nik-greek-water.hf.space';
   let chatLoaded = false;
+  let warmupInFlight = false;
+  let lastWarmupAt = 0;
 
   function setChatMessage(key, fallback) {
     if (!chatBody) return;
     chatBody.innerHTML = `<div class="h-full flex items-center justify-center p-6 text-center text-slate-600 text-sm"><span data-translate="${key}">${fallback}</span></div>`;
   }
 
+  function pingHfSpace(force = false) {
+    const now = Date.now();
+    const minGapMs = 25000;
+
+    if (!force && (warmupInFlight || now - lastWarmupAt < minGapMs)) {
+      return Promise.resolve(false);
+    }
+
+    warmupInFlight = true;
+    lastWarmupAt = now;
+
+    return fetch(`${HF_SPACE_URL}/?warmup=${now}`, {
+      method: 'GET',
+      mode: 'no-cors',
+      cache: 'no-store',
+      credentials: 'omit',
+      keepalive: true
+    })
+      .catch(() => {})
+      .finally(() => {
+        warmupInFlight = false;
+      });
+  }
+
   // Pre-load Gradio script in the background after page load to cache it and register
   // the custom element early, making the widget open instantly on mobile devices.
   function preloadGradioScript() {
-    // Pre-warm/wake up the Hugging Face Space connection in the background
-    fetch('https://nik-greek-water.hf.space', { mode: 'no-cors' }).catch(() => {});
+    // Pre-warm/wake up the Hugging Face Space connection in the background.
+    pingHfSpace(true);
 
     if (customElements.get('gradio-app')) return;
     
@@ -221,8 +248,24 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   }
 
-  // Delay the preload slightly so it does not compete with critical initial page load resources
+  // Delay preload slightly so it does not compete with critical initial page load resources.
   setTimeout(preloadGradioScript, 1500);
+  // Single delayed warmup to reduce background network traffic.
+  setTimeout(() => pingHfSpace(true), 12000);
+
+  document.addEventListener('visibilitychange', () => {
+    if (document.visibilityState === 'visible') {
+      pingHfSpace();
+    }
+  });
+  window.addEventListener('focus', () => pingHfSpace());
+
+  // Keep the Space warm with a conservative cadence while the tab is visible.
+  setInterval(() => {
+    if (document.visibilityState === 'visible') {
+      pingHfSpace();
+    }
+  }, 10 * 60 * 1000);
 
   function loadChatWidget() {
     if (chatLoaded || !chatBody) return;
@@ -230,7 +273,7 @@ document.addEventListener('DOMContentLoaded', () => {
     setChatMessage('chat-loading', window.currentLang === 'el' ? 'Φόρτωση βοηθού...' : 'Loading assistant...');
 
     const mountChatApp = () => {
-      chatBody.innerHTML = '<gradio-app src="https://nik-greek-water.hf.space" theme_mode="light" eager="true" style="display: block; width: 100%; min-height: 100%;"></gradio-app>';
+      chatBody.innerHTML = `<gradio-app src="${HF_SPACE_URL}" theme_mode="light" eager="true" style="display: block; width: 100%; min-height: 100%;"></gradio-app>`;
     };
 
     if (customElements.get('gradio-app')) {
@@ -262,6 +305,7 @@ document.addEventListener('DOMContentLoaded', () => {
         ? (isOpening ? 'Κλείσιμο AI chat' : 'Άνοιγμα AI chat')
         : (isOpening ? 'Close AI chat' : 'Open AI chat'));
       if (isOpening) {
+        pingHfSpace(true);
         loadChatWidget();
         const focusTarget = minimizeChatBtn || closeChatBtn;
         if (focusTarget) focusTarget.focus();
@@ -567,6 +611,58 @@ const translations = {
   }
 };
 
+const GREEK_UPPER_TONOS_MAP = {
+  'Ά': 'Α',
+  'Έ': 'Ε',
+  'Ή': 'Η',
+  'Ί': 'Ι',
+  'Ό': 'Ο',
+  'Ύ': 'Υ',
+  'Ώ': 'Ω',
+  'Ϊ': 'Ι',
+  'Ϋ': 'Υ'
+};
+
+function stripTonosFromUppercaseGreekWord(word) {
+  if (!/[ΆΈΉΊΌΎΏΪΫ]/.test(word)) return word;
+  if (word !== word.toLocaleUpperCase('el-GR')) return word;
+  return word.replace(/[ΆΈΉΊΌΎΏΪΫ]/g, (char) => GREEK_UPPER_TONOS_MAP[char] || char);
+}
+
+function normalizeUppercaseGreekAccentsInText(text) {
+  if (!text || !/[ΆΈΉΊΌΎΏΪΫ]/.test(text)) return text;
+  return text.replace(/[Α-ΩΆΈΉΊΌΎΏΪΫ]+/g, stripTonosFromUppercaseGreekWord);
+}
+
+function applyGreekUppercaseAccentRule(root = document.body) {
+  if (!root) return;
+
+  const walker = document.createTreeWalker(root, NodeFilter.SHOW_TEXT);
+  let textNode = walker.nextNode();
+  while (textNode) {
+    const parentTag = textNode.parentElement ? textNode.parentElement.tagName : '';
+    if (!['SCRIPT', 'STYLE', 'NOSCRIPT', 'TEXTAREA'].includes(parentTag)) {
+      const normalized = normalizeUppercaseGreekAccentsInText(textNode.nodeValue || '');
+      if (normalized !== textNode.nodeValue) {
+        textNode.nodeValue = normalized;
+      }
+    }
+    textNode = walker.nextNode();
+  }
+
+  const elements = root.querySelectorAll('*');
+  elements.forEach((el) => {
+    ['aria-label', 'placeholder', 'title', 'value'].forEach((attr) => {
+      if (!el.hasAttribute(attr)) return;
+      const current = el.getAttribute(attr) || '';
+      const normalized = normalizeUppercaseGreekAccentsInText(current);
+      if (normalized !== current) {
+        el.setAttribute(attr, normalized);
+      }
+    });
+  });
+}
+
 // Function to update language UI across the DOM
 function setLanguage(lang) {
   window.currentLang = lang;
@@ -636,6 +732,8 @@ function setLanguage(lang) {
       el.innerHTML = translations[lang][key];
     }
   });
+
+  applyGreekUppercaseAccentRule(document.body);
 }
 
 // ─── GDPR: Cookie Consent Banner ────────────────────────────────────────────
