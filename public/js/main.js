@@ -34,6 +34,8 @@ document.addEventListener('DOMContentLoaded', () => {
         mobileMenu.classList.remove('hidden');
         mobileMenuBtn.setAttribute('aria-expanded', 'true');
         mobileMenuBtn.setAttribute('aria-label', 'Close navigation menu');
+        const firstLink = mobileMenu.querySelector('a');
+        if (firstLink) firstLink.focus();
       } else {
         mobileMenu.classList.add('hidden');
         mobileMenuBtn.setAttribute('aria-expanded', 'false');
@@ -54,6 +56,15 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 
   }
+
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape' && mobileMenu && mobileMenuBtn && !mobileMenu.classList.contains('hidden')) {
+      mobileMenu.classList.add('hidden');
+      mobileMenuBtn.setAttribute('aria-expanded', 'false');
+      mobileMenuBtn.setAttribute('aria-label', 'Open navigation menu');
+      mobileMenuBtn.focus();
+    }
+  });
 
   // --- Header Scroll Logic: Toggle background/shadow on scroll ---
   const headerContainer = document.getElementById('main-nav-container');
@@ -76,34 +87,6 @@ document.addEventListener('DOMContentLoaded', () => {
   const submitSpinner = document.getElementById('submit-spinner');
   const formStatus   = document.getElementById('form-status');
 
-
-  // ── reCAPTCHA v3 helper ──────────────────────────────────────────────────
-  // Reads site key from the button's data-sitekey.
-  // Falls back to submitting without a token when key is still the placeholder
-  // (so local dev is never blocked).
-  async function getRecaptchaToken() {
-    const siteKey = submitBtn?.getAttribute('data-sitekey') || '';
-    const action  = submitBtn?.getAttribute('data-action')  || 'submit';
-
-    if (!siteKey || siteKey === 'YOUR_SITE_KEY' || typeof grecaptcha === 'undefined') {
-      return null;
-    }
-
-    return new Promise((resolve) => {
-      grecaptcha.ready(() => {
-        grecaptcha.execute(siteKey, { action }).then(resolve);
-      });
-    });
-  }
-
-  // ── Global callback referenced by data-callback="onRecaptchaSuccess" ─────
-  // Called automatically by reCAPTCHA if the button is rendered as a widget;
-  // also invoked manually below for the programmatic v3 flow.
-  window.onRecaptchaSuccess = function(token) {
-    // Expose latest token so the submit handler can pick it up
-    window._recaptchaToken = token;
-  };
-
   if (contactForm) {
     contactForm.addEventListener('submit', async (e) => {
       e.preventDefault();
@@ -115,7 +98,8 @@ document.addEventListener('DOMContentLoaded', () => {
         email:   formData.get('email')?.trim(),
         phone:   formData.get('phone')?.trim(),
         service: formData.get('service'),
-        message: formData.get('message')?.trim()
+        message: formData.get('message')?.trim(),
+        website: formData.get('website')?.trim()
       };
 
       function openEmailFallback() {
@@ -136,25 +120,16 @@ document.addEventListener('DOMContentLoaded', () => {
       // Set Loading State
       const isGreek = window.currentLang === 'el';
       if (submitBtn)    submitBtn.disabled = true;
-      if (submitText)   submitText.textContent = isGreek ? 'Επαληθευση...' : 'Verifying...';
+      if (submitText)   submitText.textContent = isGreek ? 'Προετοιμασια...' : 'Preparing...';
       if (submitSpinner) submitSpinner.classList.remove('hidden');
-      if (formStatus)   formStatus.textContent = isGreek ? 'Επαλήθευση στοιχείων...' : 'Verifying details...';
+      if (formStatus)   formStatus.textContent = isGreek ? 'Προετοιμασία αποστολής...' : 'Preparing submission...';
 
 
       try {
-        // ── Acquire reCAPTCHA v3 token ───────────────────────────────────
-        const token = await getRecaptchaToken();
-        if (token) {
-          window.onRecaptchaSuccess(token);   // keep global in sync
-          payload.recaptchaToken = token;     // send to backend for verification
-        }
-
-        // Update loading label now that verification is done
         if (submitText) submitText.textContent = isGreek ? 'Αποστολη...' : 'Sending...';
         if (formStatus) formStatus.textContent = isGreek ? 'Αποστολή μηνύματος...' : 'Sending message...';
 
 
-        // ── Send to API ─────────────────────────────────────────────────
         const response = await fetch('/api/contact', {
           method: 'POST',
           headers: {
@@ -238,10 +213,11 @@ document.addEventListener('DOMContentLoaded', () => {
     chatBody.innerHTML = '<gradio-app src="https://nik-greek-water.hf.space" theme_mode="light" eager="true" style="display: block; width: 100%;"></gradio-app>';
   }
 
+  loadChatWidget();
+
   if (chatBtn && chatContainer) {
     chatBtn.addEventListener('click', () => {
       chatContainer.classList.toggle('show-chat');
-      if (chatContainer.classList.contains('show-chat')) loadChatWidget();
       // Hide button when chat is open on mobile
       if (window.innerWidth < 640 && chatContainer.classList.contains('show-chat')) {
         chatBtn.style.display = 'none';
@@ -256,6 +232,12 @@ document.addEventListener('DOMContentLoaded', () => {
 
   if (closeChatBtn && chatContainer) closeChatBtn.addEventListener('click', hideChat);
   if (minimizeChatBtn && chatContainer) minimizeChatBtn.addEventListener('click', hideChat);
+
+  document.querySelectorAll('[data-service]').forEach((link) => {
+    link.addEventListener('click', () => {
+      preselectService(link.getAttribute('data-service'));
+    });
+  });
 
   // --- ScrollSpy: inline-style approach for both desktop + mobile nav ---
   (function initScrollSpy() {
@@ -328,9 +310,8 @@ function showToast(title, message, type = 'success') {
   const container = document.getElementById('toast-container');
   if (!container) return;
 
-  const toastId = 'toast-' + Date.now();
   const toastEl = document.createElement('div');
-  toastEl.id = toastId;
+  toastEl.id = 'toast-' + Date.now();
   
   // Base toast classes
   toastEl.className = `toast p-4 rounded-xl shadow-xl border flex items-start gap-3 backdrop-blur-md transition-all duration-300 transform translate-y-0 opacity-100 ${
@@ -339,26 +320,38 @@ function showToast(title, message, type = 'success') {
       : 'bg-rose-50/95 border-rose-200 text-rose-900'
   }`;
 
-  // Icon HTML depending on type
-  const iconHtml = type === 'success'
-    ? `<div class="w-6 h-6 rounded-full bg-emerald-500 text-white flex items-center justify-center shrink-0 text-xs font-bold">&#10003;</div>`
-    : `<div class="w-6 h-6 rounded-full bg-rose-500 text-white flex items-center justify-center shrink-0 text-xs font-bold">!</div>`;
+  const iconEl = document.createElement('div');
+  iconEl.className = type === 'success'
+    ? 'w-6 h-6 rounded-full bg-emerald-500 text-white flex items-center justify-center shrink-0 text-xs font-bold'
+    : 'w-6 h-6 rounded-full bg-rose-500 text-white flex items-center justify-center shrink-0 text-xs font-bold';
+  iconEl.textContent = type === 'success' ? '\u2713' : '!';
 
-  toastEl.innerHTML = `
-    ${iconHtml}
-    <div class="flex-1">
-      <strong class="block font-bold text-sm leading-tight mb-0.5">${title}</strong>
-      <span class="block text-xs opacity-90">${message}</span>
-    </div>
-    <button onclick="this.parentElement.remove()" class="text-slate-400 hover:text-slate-600 text-xs font-bold p-1" aria-label="Dismiss notification">&times;</button>
+  const bodyEl = document.createElement('div');
+  bodyEl.className = 'flex-1';
 
-  `;
+  const titleEl = document.createElement('strong');
+  titleEl.className = 'block font-bold text-sm leading-tight mb-0.5';
+  titleEl.textContent = title;
+
+  const messageEl = document.createElement('span');
+  messageEl.className = 'block text-xs opacity-90';
+  messageEl.textContent = message;
+
+  const dismissBtn = document.createElement('button');
+  dismissBtn.type = 'button';
+  dismissBtn.className = 'text-slate-400 hover:text-slate-600 text-xs font-bold p-1';
+  dismissBtn.setAttribute('aria-label', 'Dismiss notification');
+  dismissBtn.textContent = '\u00d7';
+  dismissBtn.addEventListener('click', () => toastEl.remove());
+
+  bodyEl.append(titleEl, messageEl);
+  toastEl.append(iconEl, bodyEl, dismissBtn);
 
   container.appendChild(toastEl);
 
   // Auto remove toast after 6.5 seconds
   setTimeout(() => {
-    const el = document.getElementById(toastId);
+    const el = document.getElementById(toastEl.id);
     if (el) {
       el.style.opacity = '0';
       el.style.transform = 'translateY(10px)';
@@ -372,6 +365,7 @@ const translations = {
   en: {
     "brand-loc": "Santorini",
     "brand-sub": "Headquarters",
+    "brand-region": "Cyclades",
     "nav-services": "Services",
     "nav-about": "About Us",
     "nav-standards": "Partnership",
@@ -438,6 +432,7 @@ const translations = {
   el: {
     "brand-loc": "Σαντορινη",
     "brand-sub": "Κεντρικά Γραφεία",
+    "brand-region": "ΚΥΚΛΑΔΕΣ",
     "nav-services": "Υπηρεσίες",
     "nav-about": "Η Εταιρεία",
     "nav-standards": "Συνεργασία",

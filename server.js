@@ -13,22 +13,66 @@ const __dirname = path.dirname(__filename);
 
 const app = express();
 const port = process.env.PORT || 3000;
+const isProduction = process.env.NODE_ENV === 'production';
+const contactAttempts = new Map();
 
 // Initialize Resend API client
 const resendApiKey = process.env.RESEND_API_KEY;
 const resend = new Resend(resendApiKey || 're_dummy_key');
 
 // Middleware
-app.use(cors());
-app.use(express.json());
+app.disable('x-powered-by');
+app.use(cors({ origin: true, methods: ['GET', 'POST', 'OPTIONS'] }));
+app.use(express.json({ limit: '32kb' }));
+app.use((req, res, next) => {
+  res.setHeader('X-Content-Type-Options', 'nosniff');
+  res.setHeader('Referrer-Policy', 'strict-origin-when-cross-origin');
+  res.setHeader('Permissions-Policy', 'camera=(), microphone=(), geolocation=()');
+  if (isProduction) {
+    res.setHeader('Strict-Transport-Security', 'max-age=31536000; includeSubDomains');
+  }
+  next();
+});
 
 // Serve static files from the 'public' directory
-app.use(express.static(path.join(__dirname, 'public')));
+app.use(express.static(path.join(__dirname, 'public'), {
+  etag: true,
+  maxAge: isProduction ? '7d' : 0
+}));
+
+function isRateLimited(req) {
+  const ip = req.ip || req.headers['x-forwarded-for'] || req.socket.remoteAddress || 'unknown';
+  const now = Date.now();
+  const windowMs = 10 * 60 * 1000;
+  const maxAttempts = 5;
+  const attempts = (contactAttempts.get(ip) || []).filter((time) => now - time < windowMs);
+  attempts.push(now);
+  contactAttempts.set(ip, attempts);
+  return attempts.length > maxAttempts;
+}
+
+function isValidEmail(email) {
+  return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
+}
 
 // API Endpoint to handle contact form submission
 app.post('/api/contact', async (req, res) => {
   try {
-    const { name, email, phone, service, message } = req.body;
+    const { name, email, phone, service, message, website } = req.body;
+
+    if (website) {
+      return res.status(200).json({
+        success: true,
+        message: 'Your message has been received.'
+      });
+    }
+
+    if (isRateLimited(req)) {
+      return res.status(429).json({
+        success: false,
+        error: 'Too many submissions. Please try again later.'
+      });
+    }
 
     // Basic input validation
     if (!name || !email || !message) {
@@ -38,7 +82,23 @@ app.post('/api/contact', async (req, res) => {
       });
     }
 
-    console.log(`Processing contact submission from: ${name} (${email})`);
+    if (name.length > 80 || email.length > 120 || message.length > 2000 || (phone && phone.length > 40)) {
+      return res.status(400).json({
+        success: false,
+        error: 'Please shorten your submission and try again.'
+      });
+    }
+
+    if (!isValidEmail(email)) {
+      return res.status(400).json({
+        success: false,
+        error: 'Please provide a valid email address.'
+      });
+    }
+
+    if (!isProduction) {
+      console.log(`Processing contact submission from: ${name} (${email})`);
+    }
 
     // In development, allow visual/demo form testing without dispatching email.
     // In production, fail clearly if email delivery is not configured.
@@ -109,7 +169,9 @@ app.post('/api/contact', async (req, res) => {
       });
     }
 
-    console.log('Email dispatched successfully via Resend API:', data.id);
+    if (!isProduction) {
+      console.log('Email dispatched successfully via Resend API:', data.id);
+    }
     return res.status(200).json({
       success: true,
       message: 'Your message has been sent successfully! We will get back to you shortly.',

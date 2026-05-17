@@ -1,0 +1,17 @@
+{
+  "name": "Water Cycle System",
+  "short_name": "WCS",
+  "description": "Professional pool and spa care in Santorini and the Cyclades.",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#ffffff",
+  "theme_color": "#06b6d4",
+  "icons": [
+    {
+      "src": "/images/logo_opt.png",
+      "sizes": "400x400",
+      "type": "image/png",
+      "purpose": "any maskable"
+    }
+  ]
+}
