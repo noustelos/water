@@ -206,6 +206,9 @@ document.addEventListener('DOMContentLoaded', () => {
   // Pre-load Gradio script in the background after page load to cache it and register
   // the custom element early, making the widget open instantly on mobile devices.
   function preloadGradioScript() {
+    // Pre-warm/wake up the Hugging Face Space connection in the background
+    fetch('https://nik-greek-water.hf.space', { mode: 'no-cors' }).catch(() => {});
+
     if (customElements.get('gradio-app')) return;
     
     let script = document.querySelector('script[src*="gradio.js"]');
