@@ -39,12 +39,13 @@ npx cleancss -o public/css/styles.min.css public/css/tailwind.css public/css/sty
 
 **Fonts:** Inter/Manrope are loaded via a `<link rel="stylesheet">` in `index.html <head>`. Do **not** move them back into a CSS `@import` — because the bundle concatenates tailwind first, a `@import` in `style.css` is no longer at the top of the stylesheet and clean-css silently drops it (this previously meant the custom fonts never loaded at all).
 
-## Dual deployment (two independent targets from the same repo)
+## Deployment
 
-1. **GitHub Pages** — `.github/workflows/deploy-pages.yml` publishes `./public` as a static site on every push to `main`. This serves the frontend **only**; `/api/contact` does not exist there, so the contact form falls back accordingly.
-2. **Node VPS** — `deploy.sh` provisions an Ubuntu VPS (Node 20, PM2 process `water-cycle-system-server`, Nginx reverse proxy → port 3000, UFW). This is the only target where `server.js` and the `/api/contact` email backend actually run.
+**Production = GitHub Pages.** `.github/workflows/deploy-pages.yml` publishes `./public` as a static site on every push to `main` (free, auto-HTTPS). This is the live target — there is no backend here, so `POST /api/contact` 404s and the contact form falls back to a prefilled `mailto:` (see `openEmailFallback` in `main.js`).
 
-When changing the contact flow, remember it must degrade gracefully on the static (Pages) deployment where the backend is absent.
+**`server.js` + `deploy.sh` are currently NOT in use.** They implement an alternative Node/VPS host (PM2 process `water-cycle-system-server`, Nginx → port 3000) where the Resend `/api/contact` backend *would* run. Kept for reference / a possible future move (note: `deploy.sh` sets up nginx on port 80 only — no SSL/certbot). Don't assume the email backend is live; on the current Pages host it never executes.
+
+When changing the contact flow, it must keep working with **no backend** (the mailto fallback is the real path in production).
 
 ## Backend (`server.js`)
 
