@@ -35,8 +35,12 @@
   <link rel="preconnect" href="https://huggingface.co">
   <link rel="preconnect" href="https://gradio.s3-us-west-2.amazonaws.com">
 
+  <!-- Fonts (moved out of CSS @import to avoid render-blocking) -->
+  <link rel="stylesheet"
+    href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Manrope:wght@500;600;700;800&display=swap">
+
   <!-- Stylesheets -->
-  <link rel="stylesheet" href="./css/styles.min.css?v=4a18eb2">
+  <link rel="stylesheet" href="./css/styles.min.css?v=wcs-20260624">
   <link rel="manifest" href="./site.webmanifest">
 
   <!-- Favicon -->
@@ -81,8 +85,7 @@
         <!-- Brand Logo -->
         <a href="#hero" class="flex items-center gap-3 group shrink-0">
           <img src="./images/logo_lockup_opt.png" alt="Water Cycle System Logo"
-            class="brand-logo-header object-contain group-hover:scale-105 transition-transform" width="378" height="234"
-            fetchpriority="high">
+            class="brand-logo-header object-contain group-hover:scale-105 transition-transform" width="378" height="234">
           <div class="hidden sm:flex flex-col justify-center border-l-2 border-primary-200 pl-3 py-0.5">
             <span data-translate="brand-loc"
               class="text-[10px] font-bold tracking-widest text-primary-600 uppercase leading-none">Santorini</span>
@@ -256,10 +259,9 @@
 
                 </div>
                 <div>
-                  <span data-translate="overlay-1" class="text-xs font-bold text-slate-900 block">pH Perfectly
-                    Balanced</span>
-                  <span data-translate="overlay-2" class="text-xs text-slate-500 block">Tested automatically
-                    today</span>
+                  <span data-translate="overlay-1" class="text-xs font-bold text-slate-900 block">AstralPool
+                    Certified</span>
+                  <span data-translate="overlay-2" class="text-xs text-slate-500 block">Premium Equipment</span>
                 </div>
               </div>
 
@@ -700,9 +702,9 @@
       </div>
 
       <div class="flex flex-wrap gap-6 text-xs text-slate-300">
-        <button id="open-privacy-modal" type="button" class="hover:text-white transition-colors text-left">Πολιτική Απορρήτου
+        <button id="open-privacy-modal" type="button" data-translate="ft-privacy-link" class="hover:text-white transition-colors text-left">Πολιτική Απορρήτου
           &amp; Cookies</button>
-        <button id="open-cookie-preferences" type="button" class="hover:text-white transition-colors text-left">Προτιμήσεις Cookies</button>
+        <button id="open-cookie-preferences" type="button" data-translate="ft-cookie-prefs" class="hover:text-white transition-colors text-left">Προτιμήσεις Cookies</button>
 
         <button type="button" data-open-privacy-modal data-translate="ft-terms"
           class="hover:text-white transition-colors text-left">Terms of Service</button>
@@ -740,7 +742,7 @@
               </path>
             </svg>
           </div>
-          <h2 id="privacy-modal-title" class="text-white font-extrabold text-lg tracking-tight">Πολιτική Απορρήτου &amp;
+          <h2 id="privacy-modal-title" data-translate="pp-title" class="text-white font-extrabold text-lg tracking-tight">Πολιτική Απορρήτου &amp;
             Cookies</h2>
         </div>
         <button id="close-privacy-modal"
@@ -753,12 +755,12 @@
       </div>
       <!-- Scrollable Body -->
       <div class="overflow-y-auto px-7 py-6 text-slate-300 text-sm leading-relaxed space-y-5">
-        <p class="text-slate-400 text-xs">Τελευταία ενημέρωση: Μάιος 2026 &nbsp;·&nbsp; Water Cycle System, Σαντορίνη,
+        <p data-translate="pp-updated" class="text-slate-400 text-xs">Τελευταία ενημέρωση: Μάιος 2026 &nbsp;·&nbsp; Water Cycle System, Σαντορίνη,
           Ελλάδα</p>
 
         <section>
-          <h3 class="text-white font-bold text-base mb-2">1. Ποιοι είμαστε</h3>
-          <p>Η <strong class="text-primary-400">Water Cycle System</strong> είναι εταιρεία παροχής επαγγελματικών
+          <h3 data-translate="pp-s1-h" class="text-white font-bold text-base mb-2">1. Ποιοι είμαστε</h3>
+          <p data-translate="pp-s1-p">Η <strong class="text-primary-400">Water Cycle System</strong> είναι εταιρεία παροχής επαγγελματικών
             υπηρεσιών συντήρησης πισίνας και spa, με έδρα τη Σαντορίνη. Μπορείτε να επικοινωνήσετε μαζί μας στο <a
               href="mailto:info@watercyclesystem.gr"
               class="text-primary-400 hover:text-primary-300 transition-colors underline">info@watercyclesystem.gr</a> ή
@@ -767,80 +769,80 @@
         </section>
 
         <section>
-          <h3 class="text-white font-bold text-base mb-2">2. Ποια δεδομένα συλλέγουμε</h3>
-          <p>Μέσω της φόρμας επικοινωνίας του ιστότοπού μας συλλέγουμε τα εξής προσωπικά δεδομένα:</p>
-          <ul class="list-disc list-inside mt-2 space-y-1 text-slate-400">
+          <h3 data-translate="pp-s2-h" class="text-white font-bold text-base mb-2">2. Ποια δεδομένα συλλέγουμε</h3>
+          <p data-translate="pp-s2-p1">Μέσω της φόρμας επικοινωνίας του ιστότοπού μας συλλέγουμε τα εξής προσωπικά δεδομένα:</p>
+          <ul data-translate="pp-s2-ul" class="list-disc list-inside mt-2 space-y-1 text-slate-400">
             <li>Ονοματεπώνυμο</li>
             <li>Διεύθυνση ηλεκτρονικού ταχυδρομείου (email)</li>
             <li>Αριθμός τηλεφώνου (προαιρετικό)</li>
             <li>Μήνυμα / Λεπτομέρειες αιτήματος</li>
           </ul>
-          <p class="mt-2">Δεν συλλέγουμε δεδομένα πληρωμής ούτε ευαίσθητα προσωπικά δεδομένα.</p>
+          <p data-translate="pp-s2-p2" class="mt-2">Δεν συλλέγουμε δεδομένα πληρωμής ούτε ευαίσθητα προσωπικά δεδομένα.</p>
         </section>
 
         <section>
-          <h3 class="text-white font-bold text-base mb-2">3. Σκοπός επεξεργασίας</h3>
-          <p>Τα δεδομένα που συλλέγουμε χρησιμοποιούνται αποκλειστικά για:</p>
-          <ul class="list-disc list-inside mt-2 space-y-1 text-slate-400">
+          <h3 data-translate="pp-s3-h" class="text-white font-bold text-base mb-2">3. Σκοπός επεξεργασίας</h3>
+          <p data-translate="pp-s3-p1">Τα δεδομένα που συλλέγουμε χρησιμοποιούνται αποκλειστικά για:</p>
+          <ul data-translate="pp-s3-ul" class="list-disc list-inside mt-2 space-y-1 text-slate-400">
             <li>Απάντηση στο αίτημά σας και παροχή προσφοράς/υπηρεσίας</li>
             <li>Επικοινωνία σχετικά με την υπηρεσία που ζητήσατε</li>
           </ul>
-          <p class="mt-2">Δεν χρησιμοποιούμε τα δεδομένα σας για marketing χωρίς ρητή συγκατάθεσή σας.</p>
+          <p data-translate="pp-s3-p2" class="mt-2">Δεν χρησιμοποιούμε τα δεδομένα σας για marketing χωρίς ρητή συγκατάθεσή σας.</p>
         </section>
 
         <section>
-          <h3 class="text-white font-bold text-base mb-2">4. Διαμοιρασμός δεδομένων</h3>
-          <p>Δεν πωλούμε ούτε εκχωρούμε τα προσωπικά σας δεδομένα σε τρίτους. Ενδέχεται να χρησιμοποιούμε αξιόπιστους
+          <h3 data-translate="pp-s4-h" class="text-white font-bold text-base mb-2">4. Διαμοιρασμός δεδομένων</h3>
+          <p data-translate="pp-s4-p">Δεν πωλούμε ούτε εκχωρούμε τα προσωπικά σας δεδομένα σε τρίτους. Ενδέχεται να χρησιμοποιούμε αξιόπιστους
             τρίτους παρόχους, όπως υπηρεσία αποστολής email για τη φόρμα επικοινωνίας. Αν ανοίξετε το AI chat, τα
             μηνύματά σας επεξεργάζονται από εξωτερική υπηρεσία Gradio/Hugging Face ώστε να λειτουργήσει ο βοηθός.</p>
         </section>
 
         <section>
-          <h3 class="text-white font-bold text-base mb-2">5. Cookies</h3>
-          <p>Ο ιστότοπος χρησιμοποιεί μόνο απαραίτητες τοπικές αποθηκεύσεις για τη λειτουργία του:</p>
-          <ul class="list-disc list-inside mt-2 space-y-1 text-slate-400">
+          <h3 data-translate="pp-s5-h" class="text-white font-bold text-base mb-2">5. Cookies</h3>
+          <p data-translate="pp-s5-p1">Ο ιστότοπος χρησιμοποιεί μόνο απαραίτητες τοπικές αποθηκεύσεις για τη λειτουργία του:</p>
+          <ul data-translate="pp-s5-ul" class="list-disc list-inside mt-2 space-y-1 text-slate-400">
             <li><strong class="text-slate-300">Απαραίτητα cookies:</strong> Για τη βασική λειτουργία του ιστότοπου (π.χ.
               αποθήκευση γλώσσας, προτίμηση cookies).</li>
           </ul>
-          <p class="mt-2">Δεν έχουν εγκατασταθεί εργαλεία analytics στον ιστότοπο. Μπορείτε να ανοίξετε ξανά τις
+          <p data-translate="pp-s5-p2" class="mt-2">Δεν έχουν εγκατασταθεί εργαλεία analytics στον ιστότοπο. Μπορείτε να ανοίξετε ξανά τις
             προτιμήσεις cookies από τον σύνδεσμο στο υποσέλιδο.</p>
         </section>
 
         <section>
-          <h3 class="text-white font-bold text-base mb-2">6. Τα δικαιώματά σας (GDPR)</h3>
-          <p>Βάσει του Κανονισμού (ΕΕ) 2016/679 (GDPR), έχετε δικαίωμα:</p>
-          <ul class="list-disc list-inside mt-2 space-y-1 text-slate-400">
+          <h3 data-translate="pp-s6-h" class="text-white font-bold text-base mb-2">6. Τα δικαιώματά σας (GDPR)</h3>
+          <p data-translate="pp-s6-p1">Βάσει του Κανονισμού (ΕΕ) 2016/679 (GDPR), έχετε δικαίωμα:</p>
+          <ul data-translate="pp-s6-ul" class="list-disc list-inside mt-2 space-y-1 text-slate-400">
             <li>Πρόσβασης στα δεδομένα σας</li>
             <li>Διόρθωσης ανακριβών δεδομένων</li>
             <li>Διαγραφής («δικαίωμα στη λήθη»)</li>
             <li>Φορητότητας των δεδομένων σας</li>
             <li>Εναντίωσης στην επεξεργασία</li>
           </ul>
-          <p class="mt-2">Για οποιοδήποτε αίτημα, επικοινωνήστε μαζί μας στο <a href="mailto:info@watercyclesystem.gr"
+          <p data-translate="pp-s6-p2" class="mt-2">Για οποιοδήποτε αίτημα, επικοινωνήστε μαζί μας στο <a href="mailto:info@watercyclesystem.gr"
               class="text-primary-400 hover:text-primary-300 transition-colors underline">info@watercyclesystem.gr</a>.
           </p>
         </section>
 
         <section>
-          <h3 class="text-white font-bold text-base mb-2">7. Διατήρηση δεδομένων</h3>
-          <p>Τα δεδομένα επικοινωνίας διατηρούνται για όσο διάστημα είναι απαραίτητο για τη διεκπεραίωση του αιτήματός
+          <h3 data-translate="pp-s7-h" class="text-white font-bold text-base mb-2">7. Διατήρηση δεδομένων</h3>
+          <p data-translate="pp-s7-p">Τα δεδομένα επικοινωνίας διατηρούνται για όσο διάστημα είναι απαραίτητο για τη διεκπεραίωση του αιτήματός
             σας και για έως 12 μήνες μετά, εκτός εάν ζητήσετε τη διαγραφή τους νωρίτερα.</p>
         </section>
 
         <section>
-          <h3 class="text-white font-bold text-base mb-2">8. Δικαιώματα υλικού</h3>
-          <p>Οι εικόνες, το λογότυπο και το οπτικό υλικό του ιστότοπου χρησιμοποιούνται με δικαιώματα/παραχώρηση από
+          <h3 data-translate="pp-s8-h" class="text-white font-bold text-base mb-2">8. Δικαιώματα υλικού</h3>
+          <p data-translate="pp-s8-p">Οι εικόνες, το λογότυπο και το οπτικό υλικό του ιστότοπου χρησιμοποιούνται με δικαιώματα/παραχώρηση από
             <a href="https://noustelos.gr" target="_blank" rel="noopener noreferrer" class="text-primary-400 hover:text-primary-300 underline transition-colors">noustelos.gr</a>.</p>
         </section>
 
-        <p class="text-slate-500 text-xs border-t border-slate-700/60 pt-4">Για καταγγελίες μπορείτε να απευθυνθείτε
+        <p data-translate="pp-authority" class="text-slate-500 text-xs border-t border-slate-700/60 pt-4">Για καταγγελίες μπορείτε να απευθυνθείτε
           στην Αρχή Προστασίας Δεδομένων Προσωπικού Χαρακτήρα (ΑΠΔΠΧ): <a href="https://www.dpa.gr" target="_blank"
             rel="noopener" class="text-primary-400 hover:text-primary-300 underline transition-colors">www.dpa.gr</a>
         </p>
       </div>
       <!-- Footer -->
       <div class="px-7 py-4 border-t border-slate-700/60 shrink-0 flex justify-end">
-        <button id="close-privacy-modal-btn"
+        <button id="close-privacy-modal-btn" data-translate="pp-close"
           class="px-6 py-2.5 rounded-full bg-gradient-to-r from-primary-500 to-cyan-500 hover:from-primary-600 hover:to-cyan-600 text-white font-semibold text-sm transition-all duration-200">Κατανοώ
           &amp; Κλείνω</button>
       </div>
@@ -857,19 +859,19 @@
           <span class="text-xl mt-0.5 shrink-0" aria-hidden="true">🍪</span>
           <p class="text-slate-300 text-sm leading-relaxed">
             <span class="sr-only">Cookies:</span>
-            Ο ιστότοπός μας χρησιμοποιεί απαραίτητες τοπικές αποθηκεύσεις για τη γλώσσα και τις προτιμήσεις cookies.
-            <button id="cookie-open-privacy" type="button"
+            <span data-translate="cookie-text">Ο ιστότοπός μας χρησιμοποιεί απαραίτητες τοπικές αποθηκεύσεις για τη γλώσσα και τις προτιμήσεις cookies.</span>
+            <button id="cookie-open-privacy" type="button" data-translate="cookie-learn"
               class="text-primary-400 hover:text-primary-300 underline underline-offset-2 transition-colors ml-1 font-medium">Μάθετε
               περισσότερα</button>
           </p>
         </div>
 
         <div class="flex items-center gap-3 shrink-0 w-full sm:w-auto">
-          <button id="cookie-necessary-btn" type="button"
+          <button id="cookie-necessary-btn" type="button" data-translate="cookie-necessary"
             class="flex-1 sm:flex-none px-5 py-2.5 rounded-full bg-slate-700 hover:bg-slate-600 text-slate-300 hover:text-white text-xs font-semibold transition-all duration-200 border border-slate-600 hover:border-slate-500 whitespace-nowrap">
             Μόνο τα Απαραίτητα
           </button>
-          <button id="cookie-accept-btn" type="button"
+          <button id="cookie-accept-btn" type="button" data-translate="cookie-accept"
             class="flex-1 sm:flex-none px-6 py-2.5 rounded-full bg-gradient-to-r from-primary-500 to-cyan-500 hover:from-primary-600 hover:to-cyan-600 text-white text-xs font-bold transition-all duration-200 shadow-md hover:shadow-cyan-500/25 whitespace-nowrap">
             Αποδοχή
           </button>
@@ -933,7 +935,7 @@
   </button>
 
   <!-- Custom Javascript application logic -->
-  <script src="./js/script.min.js?v=4a18eb2"></script>
+  <script src="./js/script.min.js?v=wcs-20260624"></script>
 </body>
 
 </html>

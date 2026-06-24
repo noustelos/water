@@ -2,3 +2,6 @@ User-agent: *
 Allow: /
 
 Sitemap: https://watercyclesystem.gr/sitemap.xml
+
+# LLM-friendly site summary (llmstxt.org)
+# https://watercyclesystem.gr/llms.txt

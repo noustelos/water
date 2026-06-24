@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 # ==============================================================================
-# Noustelos Pool Services - Production Ubuntu VPS Deployment Script
+# Water Cycle System - Production Ubuntu VPS Deployment Script
 # ==============================================================================
 # Designed for automated deployment on clean Ubuntu 22.04 / 24.04 LTS servers.
 # Sets up Node.js, PM2 Daemon, Firewall rules, and optionally configures Nginx.
@@ -15,7 +15,7 @@ if [[ $EUID -ne 0 ]]; then
 fi
 
 echo "=================================================================="
-echo "🚀 Starting Noustelos Pool Services Automated VPS Deployment..."
+echo "🚀 Starting Water Cycle System Automated VPS Deployment..."
 echo "=================================================================="
 
 # 1. Update system packages
@@ -42,7 +42,7 @@ else
 fi
 
 # 4. Prepare project directory and dependencies
-APP_DIR="/var/www/noustelos-pools"
+APP_DIR="/var/www/water-cycle-system"
 echo "📂 Preparing Application Directory at $APP_DIR..."
 
 # If running locally from repository folder, copy files over, or ensure directory exists
@@ -82,11 +82,11 @@ ufw allow 'Nginx Full'
 # 7. Start application daemon using PM2
 echo "🔄 Starting Node.js backend cluster daemon via PM2..."
 # Stop existing daemon if present to prevent overlap
-pm2 stop noustelos-server 2>/dev/null || true
-pm2 delete noustelos-server 2>/dev/null || true
+pm2 stop water-cycle-system-server 2>/dev/null || true
+pm2 delete water-cycle-system-server 2>/dev/null || true
 
-# Start server script named 'noustelos-server'
-pm2 start server.js --name "noustelos-server" --env production
+# Start server script named 'water-cycle-system-server'
+pm2 start server.js --name "water-cycle-system-server" --env production
 
 # Setup PM2 to persist on server reboot
 echo "💾 Saving PM2 process list for automatic server startup..."
@@ -94,13 +94,13 @@ pm2 save
 pm2 startup systemd -u root --hp /root || true
 
 # 8. Configure Nginx Reverse Proxy template
-NGINX_CONF="/etc/nginx/sites-available/noustelos.gr"
+NGINX_CONF="/etc/nginx/sites-available/watercyclesystem.gr"
 echo "🌐 Configuring Nginx Reverse Proxy block..."
 
 cat > "$NGINX_CONF" << 'EOF'
 server {
     listen 80;
-    server_name noustelos.gr www.noustelos.gr;
+    server_name watercyclesystem.gr www.watercyclesystem.gr;
 
     location / {
         proxy_pass http://localhost:3000;
@@ -127,5 +127,5 @@ nginx -t && systemctl reload nginx
 echo "=================================================================="
 echo "🎉 DEPLOYMENT COMPLETE!"
 echo "👉 Your application is running actively on port 3000 behind Nginx."
-echo "👉 Verify real-time logs using: pm2 logs noustelos-server"
+echo "👉 Verify real-time logs using: pm2 logs water-cycle-system-server"
 echo "=================================================================="

@@ -12,9 +12,28 @@ const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
 const app = express();
+// Behind the Nginx reverse proxy (see deploy.sh): trust the first proxy hop so
+// req.ip reflects the real client IP from X-Forwarded-For instead of 127.0.0.1.
+// Without this, per-IP rate limiting buckets every visitor together.
+app.set('trust proxy', 1);
 const port = process.env.PORT || 3000;
 const isProduction = process.env.NODE_ENV === 'production';
 const contactAttempts = new Map();
+
+// Periodically evict stale IP buckets so the Map does not grow unbounded
+// over the lifetime of the long-running process.
+setInterval(() => {
+  const now = Date.now();
+  const windowMs = 10 * 60 * 1000;
+  for (const [ip, times] of contactAttempts) {
+    const recent = times.filter((time) => now - time < windowMs);
+    if (recent.length === 0) {
+      contactAttempts.delete(ip);
+    } else {
+      contactAttempts.set(ip, recent);
+    }
+  }
+}, 15 * 60 * 1000).unref();
 
 // Initialize Resend API client
 const resendApiKey = process.env.RESEND_API_KEY;

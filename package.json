@@ -1,7 +1,7 @@
 {
-  "name": "noustelos-pool-services",
+  "name": "water-cycle-system",
   "version": "1.0.0",
-  "description": "Professional Landing Page and Backend for Noustelos Pool Services",
+  "description": "Professional Landing Page and Backend for Water Cycle System",
   "main": "server.js",
   "type": "module",
   "scripts": {

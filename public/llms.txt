@@ -1,0 +1,34 @@
+# Water Cycle System
+
+> Professional pool and spa care for villas, hotels and resorts in Santorini and the Cyclades, Greece. Services include design and construction, seasonal and year-round maintenance, water analysis and chemical balancing, and equipment support. Official Fluidra / AstralPool equipment partner with local technicians based in Santorini.
+
+Water Cycle System is a Santorini-based company providing professional pool and spa maintenance for properties that need every facility guest-ready throughout the tourist season. The website is a single bilingual (English / Greek) landing page with a contact form and an AI assistant.
+
+Key facts:
+- Location: Santorini, Cyclades, Greece (local technicians, on-site service)
+- Equipment partner: Fluidra / AstralPool; chemicals: CTX; cleaning robots: Zodiac & Polaris
+- Languages: English and Greek
+- Contact: info@watercyclesystem.gr · +30 694 207 2531 · +30 22860 34132
+
+## Services
+
+- [Design & Construction](https://watercyclesystem.gr/#services): Custom pools, jacuzzis, hamams and saunas for boutique hotels and luxury private villas.
+- [Seasonal & Year-Round Maintenance](https://watercyclesystem.gr/#services): Reliable cleaning and system checks to keep water crystal clear through the heavy tourist season.
+- [Water Analysis & Chemicals](https://watercyclesystem.gr/#services): Precise chemical balancing using CTX products for safe swimming conditions.
+- [Equipment Support](https://watercyclesystem.gr/#services): Fast local repairs and automated cleaning with Zodiac & Polaris robots to minimize downtime.
+
+## Company
+
+- [About / Local Support](https://watercyclesystem.gr/#about): Local technicians based in Santorini and detailed chemical logging for property managers.
+- [Equipment Partnership](https://watercyclesystem.gr/#gallery): Fluidra / AstralPool partner supplying professional-grade pool and spa equipment for heavy seasonal use.
+
+## Contact
+
+- [Contact form](https://watercyclesystem.gr/#contact): Request a quote or support; choose a service of interest and describe the property.
+- Email: info@watercyclesystem.gr
+- Phone: +30 694 207 2531 (mobile) · +30 22860 34132 (landline)
+
+## Optional
+
+- [Privacy & Cookie Policy](https://watercyclesystem.gr/): GDPR-compliant policy available in-page (footer "Privacy Policy & Cookies"). The site uses only necessary local storage (language and cookie preference); no analytics are installed.
+- [AI Assistant](https://watercyclesystem.gr/): An in-page chat assistant provides general information about services. For confirmed pricing, availability or urgent technical support, contact the company directly.
